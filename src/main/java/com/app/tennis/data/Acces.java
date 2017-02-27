@@ -7,9 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
+@Table(name="acces")
 @NamedQueries({
 	@NamedQuery(name = "Acces.findAll", query = "select p from Acces p"),
 	@NamedQuery(name = "Acces.findObj", query = "select p from Acces p where p.login = :login")

@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="pays")
 @NamedQuery(name = "Pays.findAll", query = "select p from Pays p order by p.nom")
 public class Pays {
 
