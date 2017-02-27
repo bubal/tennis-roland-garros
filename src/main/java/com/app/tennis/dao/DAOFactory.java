@@ -87,7 +87,7 @@ public class DAOFactory {
 		
 		String[] nameObj = typeClass.getName().split("\\.");
 		
-		String strClass = "com.cgi.rolandgarros.dao.jdbc."+nameObj[nameObj.length-1]+"DAO";
+		String strClass = "com.app.tennis.dao.jdbc."+nameObj[nameObj.length-1]+"DAO";
 		
 		Class<?> classeDAO = Class.forName (strClass);
 		
