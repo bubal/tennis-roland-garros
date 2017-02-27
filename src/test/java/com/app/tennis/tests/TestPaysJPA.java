@@ -29,7 +29,7 @@ public class TestPaysJPA {
 	@Test
 	public void testFindInt() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
 		Pays obj = objDao.find(1);
-		assertTrue("Angleterre".equals(obj.getNom()));
+		assertEquals("Angleterre",obj.getNom());
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class TestPaysJPA {
 		List<Pays> listeObj = new ArrayList<Pays>();
 		listeObj = objDao.listAll();
 		assertTrue(listeObj.size()==17);
-		assertTrue("Angleterre".equals(listeObj.get(1).getNom()));
+		assertEquals("Angleterre",listeObj.get(1).getNom());
 	}
 
 }
