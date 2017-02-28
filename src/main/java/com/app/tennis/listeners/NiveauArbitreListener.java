@@ -35,7 +35,7 @@ public class NiveauArbitreListener implements ServletContextListener {
     	
     	if (daoFactory==null){
     		try {
-				daoFactory = DAOFactory.getInstance();
+				daoFactory = new DAOFactory();
 				application.setAttribute("daoFactory",daoFactory);
 			} catch (DAOConfigurationException e1) {
 				e1.printStackTrace();
