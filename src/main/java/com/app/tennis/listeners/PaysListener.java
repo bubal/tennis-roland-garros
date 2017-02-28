@@ -44,7 +44,7 @@ public class PaysListener implements ServletContextListener {
     	}
     	
     	try {
-			DAO<Pays> paysDao = daoFactory.getObjJPA(Pays.class);
+			DAO<Pays> paysDao = daoFactory.getObjDAO(Pays.class);
 			listePays = paysDao.listAll();
 		} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e1) {
 			e1.printStackTrace();

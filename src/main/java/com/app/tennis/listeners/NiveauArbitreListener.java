@@ -43,7 +43,7 @@ public class NiveauArbitreListener implements ServletContextListener {
     	}
     	
     	try {
-    		DAO<NiveauArbitre> niveauDao = daoFactory.getObjJPA(NiveauArbitre.class);
+    		DAO<NiveauArbitre> niveauDao = daoFactory.getObjDAO(NiveauArbitre.class);
 			listeNiveauArbitre = niveauDao.listAll();
 			
 		} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e1) {

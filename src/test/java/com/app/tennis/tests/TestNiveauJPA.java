@@ -23,7 +23,7 @@ public class TestNiveauJPA {
 	@BeforeClass
 	public static void initDAO() throws DAOConfigurationException, DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		daoFactory = new DAOFactory();
-		objDaoJpa = daoFactory.getObjJPA(NiveauArbitre.class);
+		objDaoJpa = daoFactory.getObjDAO(NiveauArbitre.class);
 	}
 
 	@Test

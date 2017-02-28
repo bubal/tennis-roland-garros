@@ -25,7 +25,7 @@ public class TestAccesJpa {
 		
 		try {
 			daoFactory = new DAOFactory();
-			DAO<Acces> objDao = daoFactory.getObjJPA(Acces.class);
+			DAO<Acces> objDao = daoFactory.getObjDAO(Acces.class);
 			
 			//DAO<Pays> objDaojdbc = daoFactory.getObjJDBC(Pays.class);
 

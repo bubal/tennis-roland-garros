@@ -25,7 +25,7 @@ public class CourtSubController {
 		
 		ServletContext application = request.getServletContext();
 		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
-		courtDao = daoFactory.getObjJPA(Court.class);
+		courtDao = daoFactory.getObjDAO(Court.class);
 		
 		String strAction = request.getParameter("action");
 		

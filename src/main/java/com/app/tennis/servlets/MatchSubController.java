@@ -41,11 +41,11 @@ public class MatchSubController {
 		/* Initialisation du DAO */
 		ServletContext application = request.getServletContext();
 		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
-		matchDao = daoFactory.getObjJPA(Match.class);
-		joueurDao = daoFactory.getObjJPA(Joueur.class);
-		courtDao = daoFactory.getObjJPA(Court.class);
-		arbitreDao = daoFactory.getObjJPA(Arbitre.class);
-		tournoiDao = daoFactory.getObjJPA(Tournoi.class);
+		matchDao = daoFactory.getObjDAO(Match.class);
+		joueurDao = daoFactory.getObjDAO(Joueur.class);
+		courtDao = daoFactory.getObjDAO(Court.class);
+		arbitreDao = daoFactory.getObjDAO(Arbitre.class);
+		tournoiDao = daoFactory.getObjDAO(Tournoi.class);
 		
 		listeCourts = courtDao.listAll();
 		listeJoueurs = joueurDao.listAll();

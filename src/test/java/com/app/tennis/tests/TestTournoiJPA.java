@@ -23,7 +23,7 @@ public class TestTournoiJPA {
 	@BeforeClass
 	public static void initDAO() throws DAOConfigurationException, DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 			daoFactory = new DAOFactory();
-			objDaoJpa = daoFactory.getObjJPA(Tournoi.class);
+			objDaoJpa = daoFactory.getObjDAO(Tournoi.class);
 		}
 	
 	@Test

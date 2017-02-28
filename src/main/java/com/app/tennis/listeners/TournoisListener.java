@@ -43,7 +43,7 @@ public class TournoisListener implements ServletContextListener {
     	}
     	
     	try {
-    		DAO<Tournoi> tournoiDao= daoFactory.getObjJPA(Tournoi.class);
+    		DAO<Tournoi> tournoiDao= daoFactory.getObjDAO(Tournoi.class);
     		listeTournois = tournoiDao.listAll();
 		} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e1) {
 			e1.printStackTrace();

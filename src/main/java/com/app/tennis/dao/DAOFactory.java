@@ -4,7 +4,7 @@ package com.app.tennis.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-import com.app.tennis.dao.jpa.ObjJPA;
+import com.app.tennis.dao.impl.ObjDAO;
 import com.app.tennis.exceptions.DAOConfigurationException;
 import com.app.tennis.exceptions.DAOException;
 
@@ -23,8 +23,8 @@ public class DAOFactory {
 	}
 	
 	/* Accès aux DAO */
-	public <T> DAO<T> getObjJPA(Class<T> typeClass) throws DAOException{
-		return new ObjJPA<T>(entityManager,typeClass);
+	public <T> DAO<T> getObjDAO(Class<T> typeClass) throws DAOException{
+		return new ObjDAO<T>(entityManager,typeClass);
 	}
 	
 }

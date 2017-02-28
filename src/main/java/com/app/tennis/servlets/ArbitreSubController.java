@@ -27,7 +27,7 @@ public class ArbitreSubController {
 		
 		ServletContext application = request.getServletContext();
 		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
-		arbitreDao = daoFactory.getObjJPA(Arbitre.class);
+		arbitreDao = daoFactory.getObjDAO(Arbitre.class);
 		
 		String strAction = request.getParameter("action");
 		
@@ -60,8 +60,8 @@ public class ArbitreSubController {
 
 	private void create(HttpServletRequest request) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		Arbitre newarbitre = new Arbitre();
-		DAO<Pays> paysDao = daoFactory.getObjJPA(Pays.class);
-		DAO<NiveauArbitre> niveauDao= daoFactory.getObjJPA(NiveauArbitre.class);
+		DAO<Pays> paysDao = daoFactory.getObjDAO(Pays.class);
+		DAO<NiveauArbitre> niveauDao= daoFactory.getObjDAO(NiveauArbitre.class);
 		
 		int id_pays = Integer.parseInt(request.getParameter("pays"));
 		int id_niveau = Integer.parseInt(request.getParameter("niveau"));

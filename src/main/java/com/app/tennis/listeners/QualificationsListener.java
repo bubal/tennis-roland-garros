@@ -43,7 +43,7 @@ public class QualificationsListener implements ServletContextListener {
     	}
     	
     	try {
-    		DAO<TypeQualification> qualificationDao= daoFactory.getObjJPA(TypeQualification.class);
+    		DAO<TypeQualification> qualificationDao= daoFactory.getObjDAO(TypeQualification.class);
 			listeQualifications = qualificationDao.listAll();
 		} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e1) {
 			e1.printStackTrace();

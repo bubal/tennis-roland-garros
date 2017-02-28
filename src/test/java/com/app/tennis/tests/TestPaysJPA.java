@@ -24,7 +24,7 @@ public class TestPaysJPA {
 	@BeforeClass
 	public static void initDAO() throws DAOConfigurationException, DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 			daoFactory = new DAOFactory();
-			objDaoJpa = daoFactory.getObjJPA(Pays.class);
+			objDaoJpa = daoFactory.getObjDAO(Pays.class);
 		}
 	
 	@Test

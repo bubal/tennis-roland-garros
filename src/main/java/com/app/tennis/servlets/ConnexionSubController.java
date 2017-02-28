@@ -31,7 +31,7 @@ public class ConnexionSubController {
 		HttpSession session = request.getSession();
 		
 		try {
-			DAO<Acces> accesDao = daoFactory.getObjJPA(Acces.class);
+			DAO<Acces> accesDao = daoFactory.getObjDAO(Acces.class);
 			user = new Acces(login);
 			try {
 				user = accesDao.find("login",login);

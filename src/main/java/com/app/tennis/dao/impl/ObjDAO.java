@@ -1,4 +1,4 @@
-package com.app.tennis.dao.jpa;
+package com.app.tennis.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +9,12 @@ import javax.persistence.TypedQuery;
 import com.app.tennis.dao.DAO;
 import com.app.tennis.exceptions.DAOException;
 
-public class ObjJPA<T> implements DAO<T> {
+public class ObjDAO<T> implements DAO<T> {
 	
 	private EntityManager connection;
 	final Class<T> typeClass;
 	
-	public ObjJPA(EntityManager connection, Class<T> typeClass) throws DAOException {
+	public ObjDAO(EntityManager connection, Class<T> typeClass) throws DAOException {
 		this.connection = connection;
 		this.typeClass = typeClass;
 	}

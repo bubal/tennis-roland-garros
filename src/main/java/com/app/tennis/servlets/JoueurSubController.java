@@ -30,7 +30,7 @@ public class JoueurSubController {
 		/* Initialisation du DAO */
 		ServletContext application = request.getServletContext();
 		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
-		joueurDao = daoFactory.getObjJPA(Joueur.class);
+		joueurDao = daoFactory.getObjDAO(Joueur.class);
 		
 		String strAction = request.getParameter("action");
 		
@@ -57,8 +57,8 @@ public class JoueurSubController {
 
 	private void create(HttpServletRequest request) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		Joueur newjoueur = new Joueur();
-		DAO<Pays> paysDao = daoFactory.getObjJPA(Pays.class);
-		DAO<TypeQualification> qualificationDao= daoFactory.getObjJPA(TypeQualification.class);
+		DAO<Pays> paysDao = daoFactory.getObjDAO(Pays.class);
+		DAO<TypeQualification> qualificationDao= daoFactory.getObjDAO(TypeQualification.class);
 		
 		int id_pays = Integer.parseInt(request.getParameter("pays"));
 		int id_qualification = Integer.parseInt(request.getParameter("qualification"));
