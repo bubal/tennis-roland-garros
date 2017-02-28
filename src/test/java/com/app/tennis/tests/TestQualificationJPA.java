@@ -19,13 +19,11 @@ public class TestQualificationJPA {
 	
 	private static DAOFactory daoFactory;
 	private static DAO<TypeQualification> objDaoJpa;
-	private static DAO<TypeQualification> objDaoJdbc;
 
 	@BeforeClass
 	public static void initDAO() throws DAOConfigurationException, DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
-			daoFactory = DAOFactory.getInstance();
+			daoFactory = new DAOFactory();
 			objDaoJpa = daoFactory.getObjJPA(TypeQualification.class);
-			objDaoJdbc = daoFactory.getObjJDBC(TypeQualification.class);
 		}
 	
 	@Test
@@ -38,20 +36,6 @@ public class TestQualificationJPA {
 	public void testListAllJpa() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
 		List<TypeQualification> listeObj = new ArrayList<TypeQualification>();
 		listeObj = objDaoJpa.listAll();
-		assertTrue(listeObj.size()==3);
-		assertEquals("Par classement ATP/WPA",listeObj.get(1).getNom());
-	}
-	
-	@Test
-	public void testFindIntJdbc() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
-		TypeQualification obj = objDaoJdbc.find(1);
-		assertEquals("Wildcards",obj.getNom());
-	}
-
-	@Test
-	public void testListAllJdbc() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
-		List<TypeQualification> listeObj = new ArrayList<TypeQualification>();
-		listeObj = objDaoJdbc.listAll();
 		assertTrue(listeObj.size()==3);
 		assertEquals("Par classement ATP/WPA",listeObj.get(1).getNom());
 	}

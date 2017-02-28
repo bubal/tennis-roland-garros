@@ -19,13 +19,11 @@ public class TestTournoiJPA {
 	
 	private static DAOFactory daoFactory;
 	private static DAO<Tournoi> objDaoJpa;
-	private static DAO<Tournoi> objDaoJdbc;
 
 	@BeforeClass
 	public static void initDAO() throws DAOConfigurationException, DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
-			daoFactory = DAOFactory.getInstance();
+			daoFactory = new DAOFactory();
 			objDaoJpa = daoFactory.getObjJPA(Tournoi.class);
-			objDaoJdbc = daoFactory.getObjJDBC(Tournoi.class);
 		}
 	
 	@Test
@@ -38,20 +36,6 @@ public class TestTournoiJPA {
 	public void testListAllJpa() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
 		List<Tournoi> listeObj = new ArrayList<Tournoi>();
 		listeObj = objDaoJpa.listAll();
-		assertTrue(listeObj.size()==6);
-		assertEquals("Simple Dames",listeObj.get(1).getNom());
-	}
-	
-	@Test
-	public void testFindIntJdbc() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
-		Tournoi obj = objDaoJdbc.find(1);
-		assertEquals("Simple Messieurs",obj.getNom());
-	}
-
-	@Test
-	public void testListAllJdbc() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
-		List<Tournoi> listeObj = new ArrayList<Tournoi>();
-		listeObj = objDaoJdbc.listAll();
 		assertTrue(listeObj.size()==6);
 		assertEquals("Simple Dames",listeObj.get(1).getNom());
 	}
