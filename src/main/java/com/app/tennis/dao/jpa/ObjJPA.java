@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.app.tennis.dao.DAO;
-import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.exceptions.DAOException;
 
 public class ObjJPA<T> implements DAO<T> {
@@ -15,8 +14,8 @@ public class ObjJPA<T> implements DAO<T> {
 	private EntityManager connection;
 	final Class<T> typeClass;
 	
-	public ObjJPA(DAOFactory daoFactory, Class<T> typeClass) throws DAOException {
-		this.connection = daoFactory.getEntityManager();
+	public ObjJPA(EntityManager connection, Class<T> typeClass) throws DAOException {
+		this.connection = connection;
 		this.typeClass = typeClass;
 	}
 
