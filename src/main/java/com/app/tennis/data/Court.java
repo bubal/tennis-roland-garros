@@ -11,19 +11,19 @@ import javax.persistence.Table;
 @Table(name="courts")
 @NamedQuery(name = "Court.findAll", query = "select p from Court p")
 public class Court {
-	
+
 	@Id 
 	@Column(name = "id_court")
 	@GeneratedValue
 	private int id;
 	private String nom;
 
-	
+
 	public Court() {
 		super();
-		
+
 	}
-	
+
 	public Court(String nom) {
 		super();
 		this.id = 0;
@@ -47,7 +47,35 @@ public class Court {
 	public String toString() {
 		return "Court [id=" + id + ", nom=" + nom + "]";
 	}
-	
-	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Court other = (Court) obj;
+		if (id != other.id)
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		return true;
+	}
+
+
+
 }

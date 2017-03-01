@@ -14,38 +14,38 @@ import javax.persistence.Table;
 @Table(name="matchs")
 @NamedQuery(name = "Match.findAll", query = "select p from Match p")
 public class Match {
-	
+
 	@Id 
 	@Column(name = "id_match")
 	@GeneratedValue
 	private int id;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_tournoi")
 	private Tournoi tournoi;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_court")
 	private Court court;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_arbitre")
 	private Arbitre arbitre;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_joueur1")
 	private Joueur joueur1;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_joueur2")
 	private Joueur joueur2;
-	
+
 	private String date;
 	private String heure_debut;
 	private String heure_fin;
 	private Long sets_joueur1;
 	private Long sets_joueur2;
-	
+
 	public Match() {
 		super();
 	}
@@ -161,7 +161,88 @@ public class Match {
 				+ heure_fin + ", sets_joueur1=" + sets_joueur1 + ", sets_joueur2=" + sets_joueur2
 				+ "]";
 	}
-	
-	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((arbitre == null) ? 0 : arbitre.hashCode());
+		result = prime * result + ((court == null) ? 0 : court.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((heure_debut == null) ? 0 : heure_debut.hashCode());
+		result = prime * result + ((heure_fin == null) ? 0 : heure_fin.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((joueur1 == null) ? 0 : joueur1.hashCode());
+		result = prime * result + ((joueur2 == null) ? 0 : joueur2.hashCode());
+		result = prime * result + ((sets_joueur1 == null) ? 0 : sets_joueur1.hashCode());
+		result = prime * result + ((sets_joueur2 == null) ? 0 : sets_joueur2.hashCode());
+		result = prime * result + ((tournoi == null) ? 0 : tournoi.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Match other = (Match) obj;
+		if (arbitre == null) {
+			if (other.arbitre != null)
+				return false;
+		} else if (!arbitre.equals(other.arbitre))
+			return false;
+		if (court == null) {
+			if (other.court != null)
+				return false;
+		} else if (!court.equals(other.court))
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (heure_debut == null) {
+			if (other.heure_debut != null)
+				return false;
+		} else if (!heure_debut.equals(other.heure_debut))
+			return false;
+		if (heure_fin == null) {
+			if (other.heure_fin != null)
+				return false;
+		} else if (!heure_fin.equals(other.heure_fin))
+			return false;
+		if (id != other.id)
+			return false;
+		if (joueur1 == null) {
+			if (other.joueur1 != null)
+				return false;
+		} else if (!joueur1.equals(other.joueur1))
+			return false;
+		if (joueur2 == null) {
+			if (other.joueur2 != null)
+				return false;
+		} else if (!joueur2.equals(other.joueur2))
+			return false;
+		if (sets_joueur1 == null) {
+			if (other.sets_joueur1 != null)
+				return false;
+		} else if (!sets_joueur1.equals(other.sets_joueur1))
+			return false;
+		if (sets_joueur2 == null) {
+			if (other.sets_joueur2 != null)
+				return false;
+		} else if (!sets_joueur2.equals(other.sets_joueur2))
+			return false;
+		if (tournoi == null) {
+			if (other.tournoi != null)
+				return false;
+		} else if (!tournoi.equals(other.tournoi))
+			return false;
+		return true;
+	}
+
+
 }

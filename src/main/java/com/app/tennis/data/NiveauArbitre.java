@@ -18,8 +18,8 @@ public class NiveauArbitre {
 	private int id;
 	private String nom;
 	private String description;
-	
-	
+
+
 	public NiveauArbitre() {
 		super();
 	}
@@ -59,5 +59,39 @@ public class NiveauArbitre {
 	public String toString() {
 		return "NiveauArbitre [nom=" + nom + ", description=" + description + "]";
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NiveauArbitre other = (NiveauArbitre) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (id != other.id)
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		return true;
+	}
+
 }
