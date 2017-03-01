@@ -74,8 +74,8 @@ public class JoueurSubController {
 		newjoueur.setNom(request.getParameter("nom"));
 		newjoueur.setPrenom(request.getParameter("prenom"));
 		newjoueur.setSexe(request.getParameter("sexe"));
-		newjoueur.setPays(paysDao.find(id_pays));
-		newjoueur.setQualification(qualificationDao.find(id_qualification));
+		newjoueur.setPays(paysDao.findById(id_pays));
+		newjoueur.setQualification(qualificationDao.findById(id_qualification));
 		newjoueur.setClassement(num);
 		this.joueur = joueurDao.create(newjoueur);
 	}
@@ -87,7 +87,7 @@ public class JoueurSubController {
 	private void delete(HttpServletRequest request) throws DAOException {
 		
 		int id_joueur = Integer.parseInt(request.getParameter("id"));
-		joueurDao.delete(id_joueur);
+		joueurDao.deleteById(id_joueur);
 		
 	}
 

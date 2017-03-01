@@ -1,10 +1,12 @@
 package com.app.tennis.servlets;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.app.tennis.dao.DAO;
+import com.app.tennis.dao.AccesDAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Acces;
 import com.app.tennis.exceptions.DAOException;
@@ -31,10 +33,10 @@ public class ConnexionSubController {
 		HttpSession session = request.getSession();
 		
 		try {
-			DAO<Acces> accesDao = daoFactory.getObjDAO(Acces.class);
+			AccesDAO accesDao = (AccesDAO) daoFactory.getObjDAO(Acces.class);
 			user = new Acces(login);
 			try {
-				user = accesDao.find("login",login);
+				user = accesDao.findByLogin(login);
 				user.setExist(true);
 			} catch (Exception e) {
 				session.setAttribute( "sessionUser", null );
@@ -42,7 +44,7 @@ public class ConnexionSubController {
 				user.setExist(false);
 			}
 			
-		} catch (DAOException e) {
+		} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			user.setError(e.getMessage());
 		}
 		

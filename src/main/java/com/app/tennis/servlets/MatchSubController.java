@@ -88,11 +88,11 @@ public class MatchSubController {
 		String dateDb = formatDb.format(formatSaisie.parse(request.getParameter("date")));
 		
 	
-		newmatch.setTournoi(tournoiDao.find(id_tournoi));
-		newmatch.setArbitre(arbitreDao.find(id_arbitre));
-		newmatch.setCourt(courtDao.find(id_court));
-		newmatch.setJoueur1(joueurDao.find(id_joueur1));
-		newmatch.setJoueur2(joueurDao.find(id_joueur2));
+		newmatch.setTournoi(tournoiDao.findById(id_tournoi));
+		newmatch.setArbitre(arbitreDao.findById(id_arbitre));
+		newmatch.setCourt(courtDao.findById(id_court));
+		newmatch.setJoueur1(joueurDao.findById(id_joueur1));
+		newmatch.setJoueur2(joueurDao.findById(id_joueur2));
 		newmatch.setSets_joueur1(0L);
 		newmatch.setSets_joueur2(0L);
 		newmatch.setDate(dateDb);
@@ -118,7 +118,7 @@ public class MatchSubController {
 	private void delete(HttpServletRequest request) throws DAOException {
 		
 		int id_match = Integer.parseInt(request.getParameter("id"));
-		matchDao.delete(id_match);
+		matchDao.deleteById(id_match);
 		
 	}
 

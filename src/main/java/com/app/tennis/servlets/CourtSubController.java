@@ -51,7 +51,7 @@ public class CourtSubController {
 
 	private void delete(HttpServletRequest request) throws DAOException {
 		int id_court = Integer.parseInt(request.getParameter("id"));
-		courtDao.delete(id_court);
+		courtDao.deleteById(id_court);
 	}
 
 	private void create(HttpServletRequest request) throws DAOException {

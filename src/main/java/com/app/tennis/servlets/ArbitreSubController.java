@@ -54,7 +54,7 @@ public class ArbitreSubController {
 
 	private void delete(HttpServletRequest request) throws DAOException {
 		int id_arbitre = Integer.parseInt(request.getParameter("id"));
-		arbitreDao.delete(id_arbitre);
+		arbitreDao.deleteById(id_arbitre);
 		
 	}
 
@@ -69,8 +69,8 @@ public class ArbitreSubController {
 		newarbitre.setNom(request.getParameter("nom"));
 		newarbitre.setPrenom(request.getParameter("prenom"));
 		newarbitre.setSexe(request.getParameter("sexe"));
-		newarbitre.setPays(paysDao.find(id_pays));
-		newarbitre.setNiveau(niveauDao.find(id_niveau));
+		newarbitre.setPays(paysDao.findById(id_pays));
+		newarbitre.setNiveau(niveauDao.findById(id_niveau));
 		this.arbitre = arbitreDao.create(newarbitre);
 		
 	}
