@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
+import com.app.tennis.dao.impl.ObjDAOImpl;
 import com.app.tennis.exceptions.DAOConfigurationException;
 import com.app.tennis.exceptions.DAOException;
 
@@ -29,7 +30,7 @@ public class DAOFactory {
 	public <T> DAO<T> getObjDAO(Class<T> typeClass) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
 		/* On construit le nom de la classe DAO à partir du nom de l'objet et on la charge */
-		String strClass = "com.app.tennis.dao.impl."+typeClass.getSimpleName()+"DAOImpl";
+		String strClass = ObjDAOImpl.class.getPackage().getName()+"."+typeClass.getSimpleName()+"DAOImpl";
 		Class<?> classeDAO = Class.forName (strClass);
 		
 		/* On instancie la classe DAO */
