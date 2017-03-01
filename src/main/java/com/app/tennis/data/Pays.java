@@ -24,7 +24,7 @@ public class Pays implements Serializable {
 	private int id;
 	
 	@NotNull
-    @Size(max = 30)
+	@Size(max = 30)
 	private String nom;
 
 	public Pays(){

@@ -24,11 +24,11 @@ public class NiveauArbitre implements Serializable{
 	private int id;
 	
 	@NotNull
-    @Size(max = 30)
+	@Size(max = 30)
 	private String nom;
 	
 	@NotNull
-    @Size(max = 50)
+	@Size(max = 50)
 	private String description;
 
 

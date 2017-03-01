@@ -24,7 +24,7 @@ public class TypeQualification implements Serializable{
 	private int id;
 	
 	@NotNull
-    @Size(max = 50)
+	@Size(max = 50)
 	private String nom;
 
 	public TypeQualification() {
