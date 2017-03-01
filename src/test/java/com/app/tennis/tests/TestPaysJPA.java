@@ -29,7 +29,7 @@ public class TestPaysJPA {
 	
 	@Test
 	public void testFindIntJpa() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
-		Pays obj = objDaoJpa.find(1);
+		Pays obj = objDaoJpa.findById(1);
 		assertEquals("Angleterre",obj.getNom());
 	}
 

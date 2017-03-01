@@ -4,7 +4,7 @@ package com.app.tennis.tests;
 
 import java.lang.reflect.InvocationTargetException;
 
-import com.app.tennis.dao.DAO;
+import com.app.tennis.dao.AccesDAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Acces;
 import com.app.tennis.exceptions.DAOConfigurationException;
@@ -24,10 +24,11 @@ public class TestAccesJpa {
 		DAOFactory daoFactory;
 		
 		try {
-			daoFactory = new DAOFactory();
-			DAO<Acces> objDao = daoFactory.getObjDAO(Acces.class);
 			
-			//DAO<Pays> objDaojdbc = daoFactory.getObjJDBC(Pays.class);
+			daoFactory = new DAOFactory();
+			
+			AccesDAO objDao = (AccesDAO) daoFactory.getObjDAO(Acces.class);
+			
 
 			System.out.println("1. Tous les Acces");
 			System.out.println("");
@@ -35,12 +36,12 @@ public class TestAccesJpa {
 				System.out.println(obj.toString());
 			}
 			
-			String login = "bubu";
+			String login = "admin";
 			String password = "admin";
 			
 			Acces user = new Acces(login);
 			try {
-				user = objDao.find("login",login);
+				user = objDao.findByLogin(login);
 				user.setExist(true);
 			} catch (Exception e) {
 				System.out.println("Le login "+ login + " n'existe pas!");

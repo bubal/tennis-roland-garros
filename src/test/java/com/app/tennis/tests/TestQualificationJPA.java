@@ -28,7 +28,7 @@ public class TestQualificationJPA {
 	
 	@Test
 	public void testFindIntJpa() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
-		TypeQualification obj = objDaoJpa.find(1);
+		TypeQualification obj = objDaoJpa.findById(1);
 		assertEquals("Wildcards",obj.getNom());
 	}
 

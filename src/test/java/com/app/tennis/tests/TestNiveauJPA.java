@@ -28,7 +28,7 @@ public class TestNiveauJPA {
 
 	@Test
 	public void testFindIntJpa() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, DAOException {
-		NiveauArbitre obj = objDaoJpa.find(1);
+		NiveauArbitre obj = objDaoJpa.findById(1);
 		assertEquals("A1",obj.getNom());
 	}
 
