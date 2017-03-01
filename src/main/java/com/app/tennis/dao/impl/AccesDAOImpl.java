@@ -16,7 +16,7 @@ public class AccesDAOImpl extends ObjDAOImpl<Acces> implements AccesDAO {
 	@Override
 	public Acces findByLogin(String login){
 		TypedQuery<Acces> query;
-		query = connection.createNamedQuery("AccesfindObj", Acces.class).setParameter("login", login);
+		query = connection.createNamedQuery("Acces.findObj", Acces.class).setParameter("login", login);
 		return query.getSingleResult();
 	}
 }
