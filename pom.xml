@@ -7,16 +7,19 @@
 	<version>0.1</version>
 	<name>tennis Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	
 	<scm>
 		<connection>scm:git:git@github.com:bubal/tennis-roland-garros.git</connection>
 		<url>scm:git:git@github.com:bubal/tennis-roland-garros.git</url>
 		<developerConnection>scm:git:git@github.com:bubal/tennis-roland-garros.git</developerConnection>
 	</scm>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<mysql.version>5.1.38</mysql.version>
 	</properties>
+	
 	<dependencies>
 
 		<dependency>
@@ -25,6 +28,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -40,6 +44,12 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.3.1.Final</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
