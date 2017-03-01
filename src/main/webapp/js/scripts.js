@@ -155,8 +155,8 @@ function listArbitre(url_json,idDiv){
 		   		},
 		   	success:function(resultat){
 		   		$.each( resultat, function( indice, valeurs ) {
-		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delArbitre('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></th></tr>";
-		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><th>" + valeurs.nom + "</th><th>" + valeurs.prenom + "</th><th>" + valeurs.niveau.nom +"</th><th>" + buttons );
+		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delArbitre('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
+		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.nom + "</td><td>" + valeurs.prenom + "</td><td>" + valeurs.niveau.nom +"</td><td>" + buttons );
 		   		});
 		   		$("#"+idDiv).html(listeDyn.join(""));
 		   	},
@@ -244,8 +244,8 @@ function listJoueur(url_json,idDiv){
 		   		$.each( resultat, function( indice, valeurs ) {
 		   			classement = valeurs.classement;
 		   			if (classement == 0){classement="Aucun";}
-		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delJoueur('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></th></tr>";
-		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><th>" + valeurs.nom + "</th><th>" + valeurs.prenom + "</th><th>" + classement +"</th><th>" + buttons );
+		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delJoueur('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
+		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.nom + "</td><td>" + valeurs.prenom + "</td><td>" + classement +"</td><td>" + buttons );
 		   		});
 		   		$("#"+idDiv).html(listeDyn.join(""));
 		   	},
@@ -321,8 +321,8 @@ function listCourt(url_json,idDiv){
 		   		},
 		   	success:function(resultat){
 		   		$.each( resultat, function( indice, valeurs ) {
-		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delCourt('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></th></tr>";
-		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><th>" + valeurs.nom + "</th><th>" + buttons );
+		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delCourt('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
+		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.nom + "</td><td>" + buttons );
 		   		});
 		   		$("#"+idDiv).html(listeDyn.join(""));
 		   	},
@@ -406,8 +406,8 @@ function listMatch(url_json,idDiv){
 		   		},
 		   	success:function(resultat){
 		   		$.each( resultat, function( indice, valeurs ) {
-		   			var buttons = "<th><button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delMatch('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></th></tr>";
-		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><th>" + valeurs.id + "</th><th>" + valeurs.tournoi.nom + "</th><th>" + valeurs.court.nom + "</th><th>" + valeurs.joueur1.prenom + "</th><th>" + valeurs.joueur2.prenom + "</th><th>" + valeurs.date + "</th>" + buttons );
+		   			var buttons = "<th><button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delMatch('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
+		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.id + "</td><td>" + valeurs.tournoi.nom + "</td><td>" + valeurs.court.nom + "</td><td>" + valeurs.joueur1.prenom + "</td><td>" + valeurs.joueur2.prenom + "</td><td>" + valeurs.date + "</td>" + buttons );
 		   		});
 		   		$("#"+idDiv).html(listeDyn.join(""));
 		   	},

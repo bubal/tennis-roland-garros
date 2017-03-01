@@ -109,13 +109,13 @@
 						<tbody id="TabDyn">
 							<c:forEach var="match" items="${listingMatchs}">
 								<tr id="${match.id}_TabDyn">
-									<th>${match.id}</th>
-									<th>${match.tournoi.nom}</th>
-									<th>${match.court.nom}</th>
-									<th>${match.joueur1.prenom} ${match.joueur1.nom}</th>
-									<th>${match.joueur2.prenom} ${match.joueur2.nom}</th>
-									<th>${match.date}</th>
-									<th><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delMatch('<c:url value='/AjaxServlet' />', '${match.id}_TabDyn','msg');">Delete</button></th>
+									<td>${match.id}</td>
+									<td>${match.tournoi.nom}</td>
+									<td>${match.court.nom}</td>
+									<td>${match.joueur1.prenom} ${match.joueur1.nom}</td>
+									<td>${match.joueur2.prenom} ${match.joueur2.nom}</td>
+									<td>${match.date}</td>
+									<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delMatch('<c:url value='/AjaxServlet' />', '${match.id}_TabDyn','msg');">Delete</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

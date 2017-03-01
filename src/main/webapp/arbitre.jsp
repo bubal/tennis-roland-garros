@@ -72,12 +72,20 @@
 					<table class="table table-hover" >
 						<thead>
 			              	<tr>
-			              		<th>Nom</th><th>Prénom</th><th>Niveau</th><th></th>
+			              		<th>Nom</th>
+			              		<th>Prénom</th>
+			              		<th>Niveau</th>
+			              		<th></th>
 			              	</tr>
 			             </thead>
 			             <tbody id="TabDyn">
 			              	<c:forEach var="arbitre" items="${listingArbitres}">
-		             		<tr id="${arbitre.id}_TabDyn"><th>${arbitre.nom}</th><th>${arbitre.prenom}</th><th>${arbitre.niveau.nom}</th><th><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delArbitre('<c:url value='/AjaxServlet' />', '${arbitre.id}_TabDyn','msg');">Delete</button></th></tr>
+		             		<tr id="${arbitre.id}_TabDyn">
+		             			<td>${arbitre.nom}</td>
+		             			<td>${arbitre.prenom}</td>
+		             			<td>${arbitre.niveau.nom}</td>
+		             			<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delArbitre('<c:url value='/AjaxServlet' />', '${arbitre.id}_TabDyn','msg');">Delete</button></td>
+		             		</tr>
 							</c:forEach>
 		              	</tbody>
 					</table>

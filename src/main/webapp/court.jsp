@@ -45,12 +45,16 @@
 					<table class="table table-hover" >
 						<thead>
 			              	<tr>
-			              		<th>Nom</th><th></th>
+			              		<th>Nom</th>
+			              		<th></th>
 			              	</tr>
 			             </thead>
 			             <tbody id="TabDyn">
 			            	<c:forEach var="court" items="${listingCourts}">
-		             			<tr id="${court.id}_TabDyn"><th>${court.nom}</th><th><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delCourt('<c:url value='/AjaxServlet' />', '${court.id}_TabDyn','msg');">Delete</button></th></tr>
+		             			<tr id="${court.id}_TabDyn">
+		             				<td>${court.nom}</td>
+		             				<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delCourt('<c:url value='/AjaxServlet' />', '${court.id}_TabDyn','msg');">Delete</button></td>
+		             			</tr>
 							</c:forEach>
 		              	</tbody>
 					</table>

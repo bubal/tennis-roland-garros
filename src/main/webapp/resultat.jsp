@@ -41,7 +41,7 @@
 				<ul>
 					<li>Simple Messieurs</li>
 					<li>Court : Philippe Chatrier</li>
-					<li>GaÃ«l Monfils vs Kiki Bertens</li>
+					<li>Gaël Monfils vs Kiki Bertens</li>
 					<li>Arbitre : Aline Thomasson</li>
 					<li>Date : 10/02/2017</li>
 					<li>Vainqueur : Gaél Monfils</li>

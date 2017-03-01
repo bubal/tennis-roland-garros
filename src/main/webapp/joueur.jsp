@@ -84,12 +84,20 @@
 				<table class="table table-hover" >
 					<thead>
 		              	<tr>
-		              		<th>Nom</th><th>Prénom</th><th>Classement</th><th></th>
+		              		<th>Nom</th>
+		              		<th>Prénom</th>
+		              		<th>Classement</th>
+		              		<th></th>
 		              	</tr>
 		             </thead>
 		             <tbody id="TabDyn">
 		             <c:forEach var="joueur" items="${listingJoueurs}">
-		             	<tr id="${joueur.id}_TabDyn"><th>${joueur.nom}</th><th>${joueur.prenom}</th><th><c:choose><c:when test="${joueur.classement == 0}">Aucun</c:when><c:otherwise>${joueur.classement}</c:otherwise></c:choose></th><th><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delJoueur('<c:url value='/AjaxServlet' />', '${joueur.id}_TabDyn','msg');">Delete</button></th></tr>
+		             	<tr id="${joueur.id}_TabDyn">
+		             		<td>${joueur.nom}</td>
+		             		<td>${joueur.prenom}</td>
+		             		<td><c:choose><c:when test="${joueur.classement == 0}">Aucun</c:when><c:otherwise>${joueur.classement}</c:otherwise></c:choose></td>
+		             		<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delJoueur('<c:url value='/AjaxServlet' />', '${joueur.id}_TabDyn','msg');">Delete</button></td>
+		             	</tr>
 					</c:forEach>
 	              	</tbody>
 				</table>
