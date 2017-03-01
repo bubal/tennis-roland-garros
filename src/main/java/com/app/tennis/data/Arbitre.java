@@ -1,5 +1,7 @@
 package com.app.tennis.data;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,26 +11,40 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
 @Table(name="arbitres")
 @NamedQuery(name = "Arbitre.findAll", query = "select p from Arbitre p")
-public class Arbitre{
+public class Arbitre implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@Column(name = "id_arbitre")
 	@GeneratedValue
 	private int id;
 
+	@NotNull
+    @Size(max = 30)
 	private String nom;
+	
+	@NotNull
+    @Size(max = 30)
 	private String prenom;
+	
+	@NotNull
+    @Size(max = 1)
 	private char sexe;
 
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_pays")
 	private Pays pays;
 
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_niveau")
 	private NiveauArbitre niveau;

@@ -1,6 +1,8 @@
 package com.app.tennis.data;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="acces")
@@ -16,19 +20,29 @@ import javax.persistence.Transient;
 	@NamedQuery(name = "Acces.findAll", query = "select p from Acces p"),
 	@NamedQuery(name = "Acces.findObj", query = "select p from Acces p where p.login = :login")
 })
-public class Acces {
+public class Acces implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@Column(name = "id_acces")
 	@GeneratedValue
 	private int id;
+	
+	@NotNull
+	@Size(max = 30)
 	private String login;
+	
+	@NotNull
+	@Size(max = 30)
 	private String password;
 
 	@Transient
 	private String error;
+	
 	@Transient
 	private boolean exist;
+	
 	@Transient
 	private boolean acces;
 

@@ -1,5 +1,7 @@
 package com.app.tennis.data;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,43 +11,63 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="matchs")
 @NamedQuery(name = "Match.findAll", query = "select p from Match p")
-public class Match {
+public class Match implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@Column(name = "id_match")
 	@GeneratedValue
 	private int id;
 
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_tournoi")
 	private Tournoi tournoi;
 
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_court")
 	private Court court;
 
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_arbitre")
 	private Arbitre arbitre;
 
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_joueur1")
 	private Joueur joueur1;
 
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_joueur2")
 	private Joueur joueur2;
 
+	@NotNull
+	@Size(max = 30)
 	private String date;
+	
+	@Size(max = 30)
 	private String heure_debut;
+	
+	@Size(max = 30)
 	private String heure_fin;
+	
+	@NotNull
 	private Long sets_joueur1;
+	
+	@NotNull
 	private Long sets_joueur2;
 
+	
 	public Match() {
 		super();
 	}

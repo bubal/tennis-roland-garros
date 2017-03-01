@@ -1,5 +1,7 @@
 package com.app.tennis.data;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,16 +11,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="joueurs")
 @NamedQuery(name = "Joueur.findAll", query = "select p from Joueur p")
-public class Joueur{
+public class Joueur implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@Column(name = "id_joueur")
 	@GeneratedValue
 	private int id;
+
+	@NotNull
+	@Size(max = 30)
 	private String nom;
 	private String prenom;
 	private char sexe;
@@ -27,8 +36,10 @@ public class Joueur{
 	@JoinColumn(name="id_pays")
 	private Pays pays;
 
-	private int classement;
+	@NotNull
+	private Long classement;
 
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_qualification")
 	private TypeQualification qualification;
@@ -38,7 +49,7 @@ public class Joueur{
 		super();
 	}
 
-	public Joueur(String nom, String prenom, String sexe, Pays pays, int classement, TypeQualification qualification) {
+	public Joueur(String nom, String prenom, String sexe, Pays pays, Long classement, TypeQualification qualification) {
 		this.id = 0;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -49,11 +60,11 @@ public class Joueur{
 	}
 
 
-	public int getClassement() {
+	public Long getClassement() {
 		return classement;
 	}
 
-	public void setClassement(int classement) {
+	public void setClassement(Long classement) {
 		this.classement = classement;
 	}
 
@@ -116,7 +127,7 @@ public class Joueur{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + classement;
+		result = prime * result + ((classement == null) ? 0 : classement.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((pays == null) ? 0 : pays.hashCode());
@@ -135,7 +146,10 @@ public class Joueur{
 		if (getClass() != obj.getClass())
 			return false;
 		Joueur other = (Joueur) obj;
-		if (classement != other.classement)
+		if (classement == null) {
+			if (other.classement != null)
+				return false;
+		} else if (!classement.equals(other.classement))
 			return false;
 		if (id != other.id)
 			return false;
@@ -163,6 +177,8 @@ public class Joueur{
 			return false;
 		return true;
 	}
+
+
 
 
 }

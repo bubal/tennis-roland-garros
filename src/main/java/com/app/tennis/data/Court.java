@@ -1,21 +1,30 @@
 package com.app.tennis.data;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="courts")
 @NamedQuery(name = "Court.findAll", query = "select p from Court p")
-public class Court {
+public class Court implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@Column(name = "id_court")
 	@GeneratedValue
 	private int id;
+	
+	@NotNull
+	@Size(max = 30)
 	private String nom;
 
 
