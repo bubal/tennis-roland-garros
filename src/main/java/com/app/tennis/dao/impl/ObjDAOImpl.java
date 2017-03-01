@@ -9,18 +9,18 @@ import javax.persistence.TypedQuery;
 import com.app.tennis.dao.DAO;
 import com.app.tennis.exceptions.DAOException;
 
-public class ObjDAO<T> implements DAO<T> {
+public class ObjDAOImpl<T> implements DAO<T> {
 	
-	private EntityManager connection;
-	final Class<T> typeClass;
+	protected EntityManager connection;
+	private Class<T> typeClass;
 	
-	public ObjDAO(EntityManager connection, Class<T> typeClass) throws DAOException {
+	public ObjDAOImpl(EntityManager connection, Class<T> typeClass) throws DAOException {
 		this.connection = connection;
 		this.typeClass = typeClass;
 	}
 
 	@Override
-	public T create(T obj) throws DAOException {
+	public T create(T obj) {
 		connection.getTransaction().begin();
 		connection.persist(obj);
 		connection.getTransaction().commit();
@@ -28,7 +28,7 @@ public class ObjDAO<T> implements DAO<T> {
 	}
 
 	@Override
-	public void delete(int id) throws DAOException {	
+	public void deleteById(int id) {	
 		connection.getTransaction().begin();
 		connection.remove(connection.find(typeClass,id));
 		connection.getTransaction().commit();
@@ -36,24 +36,12 @@ public class ObjDAO<T> implements DAO<T> {
 	}
 
 	@Override
-	public T find(int id) throws DAOException {
+	public T findById(int id) {
 		return connection.find(typeClass,id);
 	}
 
 	@Override
-	public T find(String champs, String param) throws DAOException {
-		String[] nameObj = typeClass.getName().split("\\.");
-		TypedQuery<T> query;
-		try {
-			query = connection.createNamedQuery(nameObj[nameObj.length-1]+".findObj", typeClass).setParameter(champs, param);
-			return query.getSingleResult();
-		} catch (Exception e) {
-			throw new DAOException(e);
-		}
-	}
-
-	@Override
-	public T update(T obj) throws DAOException {
+	public T update(T obj) {
 		connection.getTransaction().begin();
 		obj = connection.merge(obj);
 		connection.getTransaction().commit();
@@ -61,7 +49,7 @@ public class ObjDAO<T> implements DAO<T> {
 	}
 
 	@Override
-	public List<T> listAll() throws DAOException {
+	public List<T> listAll() {
 		List<T> listeObj = new ArrayList<T>();
 		String[] nameObj = typeClass.getName().split("\\.");
 		TypedQuery<T> query = connection.createNamedQuery(nameObj[nameObj.length-1]+".findAll", typeClass);
