@@ -26,6 +26,11 @@ public class DAOFactory {
 		}
 	}
 	
+	
+	public EntityManager getEntityManager(){
+		return entityManager;
+	}
+	
 	/* Accès aux DAO */	
 	public <T> DAO<T> getObjDAO(Class<T> typeClass) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		
