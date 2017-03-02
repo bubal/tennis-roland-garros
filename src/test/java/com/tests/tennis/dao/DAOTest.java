@@ -69,7 +69,7 @@ public class DAOTest {
 			@Override
 			public void execute(Connection connection) throws SQLException {
 				try {
-					File script = new File(getClass().getResource("/data.sql").getFile());
+					File script = new File(getClass().getResource("/h2.sql").getFile());
 					RunScript.execute(connection, new FileReader(script));
 				} catch (FileNotFoundException e) {
 					throw new RuntimeException("could not initialize with script");

@@ -19,7 +19,7 @@ public class DAOFactory {
 		
 		/* On test si le singleton est déjà instancié ou non */
 		if (entityManager==null){
-			entityManager = Persistence.createEntityManagerFactory("tennis-db").createEntityManager();
+			entityManager = Persistence.createEntityManagerFactory("tennis-test-db").createEntityManager();
 			if (entityManager==null){
 				throw new DAOConfigurationException("Echec du chargement de la persistence");
 			}
