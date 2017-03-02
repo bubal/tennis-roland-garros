@@ -2,7 +2,8 @@ package com.app.tennis.servlets;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -82,11 +83,11 @@ public class MatchSubController {
 		int id_court = Integer.parseInt(request.getParameter("court"));
 		int id_arbitre = Integer.parseInt(request.getParameter("arbitre"));
 		int id_tournoi = Integer.parseInt(request.getParameter("tournoi"));
-		SimpleDateFormat formatSaisie = new SimpleDateFormat("dd/MM/yyyy");
-		SimpleDateFormat formatDb = new SimpleDateFormat("yyyy-MM-dd");
 		
-		String dateDb = formatDb.format(formatSaisie.parse(request.getParameter("date")));
+		DateTimeFormatter formatSaisie = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		//DateTimeFormatter formatDb = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
+		LocalDate dateDb = LocalDate.parse(request.getParameter("date"), formatSaisie);
 	
 		newmatch.setTournoi(tournoiDao.findById(id_tournoi));
 		newmatch.setArbitre(arbitreDao.findById(id_arbitre));

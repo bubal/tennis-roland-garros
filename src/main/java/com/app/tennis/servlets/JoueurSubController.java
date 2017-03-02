@@ -64,11 +64,11 @@ public class JoueurSubController {
 		int id_qualification = Integer.parseInt(request.getParameter("qualification"));
 		
 	
-		Long num;
+		int num;
 		try {
-			num = Long.parseLong(request.getParameter("classement"));
+			num = Integer.parseInt(request.getParameter("classement"));
 		} catch (NumberFormatException e) {
-			num = 0L;
+			num = 0;
 		}
 	
 		newjoueur.setNom(request.getParameter("nom"));

@@ -37,7 +37,7 @@ public class Joueur implements Serializable{
 	private Pays pays;
 
 	@NotNull
-	private Long classement;
+	private int classement;
 
 	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -49,7 +49,7 @@ public class Joueur implements Serializable{
 		super();
 	}
 
-	public Joueur(String nom, String prenom, String sexe, Pays pays, Long classement, TypeQualification qualification) {
+	public Joueur(String nom, String prenom, String sexe, Pays pays, int classement, TypeQualification qualification) {
 		this.id = 0;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -60,11 +60,11 @@ public class Joueur implements Serializable{
 	}
 
 
-	public Long getClassement() {
+	public int getClassement() {
 		return classement;
 	}
 
-	public void setClassement(Long classement) {
+	public void setClassement(int classement) {
 		this.classement = classement;
 	}
 
@@ -127,7 +127,7 @@ public class Joueur implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((classement == null) ? 0 : classement.hashCode());
+		result = prime * result + classement;
 		result = prime * result + id;
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((pays == null) ? 0 : pays.hashCode());
@@ -146,10 +146,7 @@ public class Joueur implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Joueur other = (Joueur) obj;
-		if (classement == null) {
-			if (other.classement != null)
-				return false;
-		} else if (!classement.equals(other.classement))
+		if (classement != other.classement)
 			return false;
 		if (id != other.id)
 			return false;
@@ -177,8 +174,5 @@ public class Joueur implements Serializable{
 			return false;
 		return true;
 	}
-
-
-
 
 }
