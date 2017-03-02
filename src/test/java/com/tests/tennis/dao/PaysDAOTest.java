@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.app.tennis.data.Pays;
 
-public class TestPaysJPA extends DAOTest {
+public class PaysDAOTest extends DAOTest {
 	
 	
 	@Test

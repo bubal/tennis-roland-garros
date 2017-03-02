@@ -10,7 +10,7 @@ import com.app.tennis.data.Acces;
 import com.app.tennis.exceptions.DAOConfigurationException;
 import com.app.tennis.exceptions.DAOException;
 
-public class TestAccesJpa {
+public class AccesDAOTest {
 
 	public static void main(String[] args) {
 		

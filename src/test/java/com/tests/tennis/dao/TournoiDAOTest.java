@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.app.tennis.data.Tournoi;
 
-public class TestTournoiJPA extends DAOTest {
+public class TournoiDAOTest extends DAOTest {
 	
 	@Test
 	public void testFindIntJpa() throws Exception {
