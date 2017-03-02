@@ -1,4 +1,4 @@
-package com.app.tennis.tests;
+package com.tests.tennis.dao;
 
 
 
