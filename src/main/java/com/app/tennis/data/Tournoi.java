@@ -28,14 +28,14 @@ public class Tournoi implements Serializable{
 	private String nom;
 	
 	@NotNull
-	private Long nbr_sets;
+	private int nbr_sets;
 
 	
 	public Tournoi(){
 		super();
 	}
 
-	public Tournoi(String nom, Long nbr_sets) {
+	public Tournoi(String nom, int nbr_sets) {
 		super();
 		this.id = 0;
 		this.nom = nom;
@@ -55,10 +55,10 @@ public class Tournoi implements Serializable{
 		this.nom = nom;
 	}
 
-	public Long getNbr_sets() {
+	public int getNbr_sets() {
 		return nbr_sets;
 	}
-	public void setNbr_sets(Long nbr_sets) {
+	public void setNbr_sets(int nbr_sets) {
 		this.nbr_sets = nbr_sets;
 	}
 
@@ -72,7 +72,7 @@ public class Tournoi implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ((nbr_sets == null) ? 0 : nbr_sets.hashCode());
+		result = prime * result + nbr_sets;
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
@@ -88,10 +88,7 @@ public class Tournoi implements Serializable{
 		Tournoi other = (Tournoi) obj;
 		if (id != other.id)
 			return false;
-		if (nbr_sets == null) {
-			if (other.nbr_sets != null)
-				return false;
-		} else if (!nbr_sets.equals(other.nbr_sets))
+		if (nbr_sets != other.nbr_sets)
 			return false;
 		if (nom == null) {
 			if (other.nom != null)
@@ -101,6 +98,7 @@ public class Tournoi implements Serializable{
 		return true;
 	}
 
+	
 
 
 }

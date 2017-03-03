@@ -1,7 +1,7 @@
 package com.app.tennis.data;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="matchs")
@@ -59,17 +58,15 @@ public class Match implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
-	@Size(max = 30)
-	private String heure_debut;
+	private Timestamp heure_debut;
 	
-	@Size(max = 30)
-	private String heure_fin;
+	private Timestamp heure_fin;
 	
 	@NotNull
-	private Long sets_joueur1;
+	private int sets_joueur1;
 	
 	@NotNull
-	private Long sets_joueur2;
+	private int sets_joueur2;
 
 	
 	public Match() {
@@ -77,7 +74,7 @@ public class Match implements Serializable{
 	}
 
 	public Match(Tournoi tournoi, Court court, Arbitre arbitre, Joueur joueur1, Joueur joueur2, Date date,
-			String heure_debut, String heure_fin, Long sets_joueur1, Long sets_joueur2) {
+			Timestamp heure_debut, Timestamp heure_fin, int sets_joueur1, int sets_joueur2) {
 		super();
 		this.id = 0;
 		this.tournoi = tournoi;
@@ -148,35 +145,35 @@ public class Match implements Serializable{
 		this.date = date;
 	}
 
-	public String getHeure_debut() {
+	public Timestamp getHeure_debut() {
 		return heure_debut;
 	}
 
-	public void setHeure_debut(String heure_debut) {
+	public void setHeure_debut(Timestamp heure_debut) {
 		this.heure_debut = heure_debut;
 	}
 
-	public String getHeure_fin() {
+	public Timestamp getHeure_fin() {
 		return heure_fin;
 	}
 
-	public void setHeure_fin(String heure_fin) {
+	public void setHeure_fin(Timestamp heure_fin) {
 		this.heure_fin = heure_fin;
 	}
 
-	public Long getSets_joueur1() {
+	public int getSets_joueur1() {
 		return sets_joueur1;
 	}
 
-	public void setSets_joueur1(Long sets_joueur1) {
+	public void setSets_joueur1(int sets_joueur1) {
 		this.sets_joueur1 = sets_joueur1;
 	}
 
-	public Long getSets_joueur2() {
+	public int getSets_joueur2() {
 		return sets_joueur2;
 	}
 
-	public void setSets_joueur2(Long sets_joueur2) {
+	public void setSets_joueur2(int sets_joueur2) {
 		this.sets_joueur2 = sets_joueur2;
 	}
 
@@ -200,8 +197,8 @@ public class Match implements Serializable{
 		result = prime * result + id;
 		result = prime * result + ((joueur1 == null) ? 0 : joueur1.hashCode());
 		result = prime * result + ((joueur2 == null) ? 0 : joueur2.hashCode());
-		result = prime * result + ((sets_joueur1 == null) ? 0 : sets_joueur1.hashCode());
-		result = prime * result + ((sets_joueur2 == null) ? 0 : sets_joueur2.hashCode());
+		result = prime * result + sets_joueur1;
+		result = prime * result + sets_joueur2;
 		result = prime * result + ((tournoi == null) ? 0 : tournoi.hashCode());
 		return result;
 	}
@@ -252,15 +249,9 @@ public class Match implements Serializable{
 				return false;
 		} else if (!joueur2.equals(other.joueur2))
 			return false;
-		if (sets_joueur1 == null) {
-			if (other.sets_joueur1 != null)
-				return false;
-		} else if (!sets_joueur1.equals(other.sets_joueur1))
+		if (sets_joueur1 != other.sets_joueur1)
 			return false;
-		if (sets_joueur2 == null) {
-			if (other.sets_joueur2 != null)
-				return false;
-		} else if (!sets_joueur2.equals(other.sets_joueur2))
+		if (sets_joueur2 != other.sets_joueur2)
 			return false;
 		if (tournoi == null) {
 			if (other.tournoi != null)
@@ -270,5 +261,6 @@ public class Match implements Serializable{
 		return true;
 	}
 
+	
 
 }
