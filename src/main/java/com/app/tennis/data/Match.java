@@ -2,6 +2,7 @@ package com.app.tennis.data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -53,8 +56,8 @@ public class Match implements Serializable{
 	private Joueur joueur2;
 
 	@NotNull
-	@Size(max = 30)
-	private LocalDate date;
+	@Temporal(TemporalType.DATE)
+	private Date date;
 	
 	@Size(max = 30)
 	private String heure_debut;
@@ -73,7 +76,7 @@ public class Match implements Serializable{
 		super();
 	}
 
-	public Match(Tournoi tournoi, Court court, Arbitre arbitre, Joueur joueur1, Joueur joueur2, LocalDate date,
+	public Match(Tournoi tournoi, Court court, Arbitre arbitre, Joueur joueur1, Joueur joueur2, Date date,
 			String heure_debut, String heure_fin, Long sets_joueur1, Long sets_joueur2) {
 		super();
 		this.id = 0;
@@ -137,11 +140,11 @@ public class Match implements Serializable{
 		this.joueur2 = joueur2;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
