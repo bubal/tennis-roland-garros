@@ -1,16 +1,11 @@
 package com.app.tennis.servlets;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.text.ParseException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.app.tennis.exceptions.DAOException;
 
 public class ControlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -57,7 +52,7 @@ public class ControlServlet extends HttpServlet {
 			try {
 				JoueurSubController joueurControl = new JoueurSubController(request);
 				request.setAttribute("listingJoueurs",joueurControl.listAll());
-			} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				request.setAttribute("errorMsg", e.getMessage());
 			}
 			rd = request.getRequestDispatcher("joueur.jsp");
@@ -67,7 +62,7 @@ public class ControlServlet extends HttpServlet {
 			try {
 				ArbitreSubController arbitreControl = new ArbitreSubController(request);
 				request.setAttribute("listingArbitres",arbitreControl.listAll());
-			} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				request.setAttribute("errorMsg", e.getMessage());
 			}
 			rd = request.getRequestDispatcher("arbitre.jsp");
@@ -76,7 +71,7 @@ public class ControlServlet extends HttpServlet {
 			try {
 				CourtSubController courtControl = new CourtSubController(request);
 				request.setAttribute("listingCourts",courtControl.listAll());
-			} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				request.setAttribute("errorMsg", e.getMessage());
 			}
 			rd = request.getRequestDispatcher("court.jsp");
@@ -88,7 +83,7 @@ public class ControlServlet extends HttpServlet {
 				request.setAttribute("listingJoueurs",matchControl.getListeJoueurs());
 				request.setAttribute("listingCourts",matchControl.getListeCourts());
 				request.setAttribute("listingArbitres",matchControl.getListeArbitres());
-			} catch (DAOException | ParseException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				request.setAttribute("errorMsg", e.getMessage());
 			}
 			rd = request.getRequestDispatcher("match.jsp");

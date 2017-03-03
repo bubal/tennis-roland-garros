@@ -1,6 +1,5 @@
 package com.app.tennis.listeners;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -10,8 +9,6 @@ import javax.servlet.ServletContextListener;
 import com.app.tennis.dao.DAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.NiveauArbitre;
-import com.app.tennis.exceptions.DAOConfigurationException;
-import com.app.tennis.exceptions.DAOException;
 
 
 public class NiveauArbitreListener implements ServletContextListener {
@@ -34,19 +31,15 @@ public class NiveauArbitreListener implements ServletContextListener {
     	daoFactory = (DAOFactory) application.getAttribute("daoFactory");
     	
     	if (daoFactory==null){
-    		try {
-				daoFactory = new DAOFactory();
-				application.setAttribute("daoFactory",daoFactory);
-			} catch (DAOConfigurationException e1) {
-				e1.printStackTrace();
-			}
+    		daoFactory = new DAOFactory("tennis-db");
+			application.setAttribute("daoFactory",daoFactory);
     	}
     	
     	try {
     		DAO<NiveauArbitre> niveauDao = daoFactory.getObjDAO(NiveauArbitre.class);
 			listeNiveauArbitre = niveauDao.listAll();
 			
-		} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e1) {
+		} catch ( Exception e1 ) {
 			e1.printStackTrace();
 		}
     	

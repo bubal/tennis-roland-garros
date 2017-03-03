@@ -23,7 +23,7 @@ public class ArbitreSubController {
 	private String json;
 
 	
-	public ArbitreSubController(HttpServletRequest request) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+	public ArbitreSubController(HttpServletRequest request) throws Exception {
 		
 		ServletContext application = request.getServletContext();
 		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
@@ -58,7 +58,7 @@ public class ArbitreSubController {
 		
 	}
 
-	private void create(HttpServletRequest request) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	private void create(HttpServletRequest request) throws Exception {
 		Arbitre newarbitre = new Arbitre();
 		DAO<Pays> paysDao = daoFactory.getObjDAO(Pays.class);
 		DAO<NiveauArbitre> niveauDao= daoFactory.getObjDAO(NiveauArbitre.class);

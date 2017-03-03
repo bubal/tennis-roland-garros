@@ -1,10 +1,6 @@
 package com.app.tennis.servlets;
 
-import java.lang.reflect.InvocationTargetException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +34,7 @@ public class MatchSubController {
 	private String json;
 	
 	
-	public MatchSubController(HttpServletRequest request) throws DAOException, ParseException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public MatchSubController(HttpServletRequest request) throws Exception {
 		super();
 
 		/* Initialisation du DAO */
@@ -77,7 +73,7 @@ public class MatchSubController {
 		
 	}
 
-	private void create(HttpServletRequest request) throws DAOException, ParseException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	private void create(HttpServletRequest request) throws Exception {
 		Match newmatch = new Match();
 		
 		int id_joueur1 = Integer.parseInt(request.getParameter("joueur1"));
@@ -98,13 +94,13 @@ public class MatchSubController {
 		newmatch.setCourt(courtDao.findById(id_court));
 		newmatch.setJoueur1(joueurDao.findById(id_joueur1));
 		newmatch.setJoueur2(joueurDao.findById(id_joueur2));
-		newmatch.setSets_joueur1(0L);
-		newmatch.setSets_joueur2(0L);
+		newmatch.setSets_joueur1(0);
+		newmatch.setSets_joueur2(0);
 		newmatch.setDate(dateDb);
 		this.match = matchDao.create(newmatch);
 	}
 
-	public List<Match> listAll() throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public List<Match> listAll() throws Exception {
 		return matchDao.listAll();
 	}
 

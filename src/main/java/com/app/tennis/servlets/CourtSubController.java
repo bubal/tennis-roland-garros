@@ -1,6 +1,5 @@
 package com.app.tennis.servlets;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -21,7 +20,7 @@ public class CourtSubController {
 	private String json;
 
 	
-	public CourtSubController(HttpServletRequest request) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+	public CourtSubController(HttpServletRequest request) throws Exception {
 		
 		ServletContext application = request.getServletContext();
 		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
@@ -60,7 +59,7 @@ public class CourtSubController {
 		this.court = courtDao.create(newcourt);
 	}
 
-	public List<Court> listAll() throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public List<Court> listAll() throws Exception {
 		return courtDao.listAll();
 	}
 	

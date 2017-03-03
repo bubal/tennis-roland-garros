@@ -1,6 +1,5 @@
 package com.app.tennis.servlets;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -24,7 +23,7 @@ public class JoueurSubController {
 	private String json;
 	
 	
-	public JoueurSubController(HttpServletRequest request) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public JoueurSubController(HttpServletRequest request) throws Exception {
 		super();
 
 		/* Initialisation du DAO */
@@ -55,7 +54,7 @@ public class JoueurSubController {
 		
 	}
 
-	private void create(HttpServletRequest request) throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	private void create(HttpServletRequest request) throws Exception {
 		Joueur newjoueur = new Joueur();
 		DAO<Pays> paysDao = daoFactory.getObjDAO(Pays.class);
 		DAO<TypeQualification> qualificationDao= daoFactory.getObjDAO(TypeQualification.class);
@@ -80,7 +79,7 @@ public class JoueurSubController {
 		this.joueur = joueurDao.create(newjoueur);
 	}
 
-	public List<Joueur> listAll() throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public List<Joueur> listAll() throws Exception {
 		return joueurDao.listAll();
 	}
 

@@ -1,15 +1,10 @@
 package com.app.tennis.servlets;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.text.ParseException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.app.tennis.exceptions.DAOException;
 
 
 public class AjaxServlet extends HttpServlet {
@@ -32,7 +27,7 @@ public class AjaxServlet extends HttpServlet {
 			try {
 				joueurSubControl = new JoueurSubController(request);
 				json = joueurSubControl.getJson();
-			} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				request.setAttribute("errorMsg", e.getMessage());
 			}
 			
@@ -42,7 +37,7 @@ public class AjaxServlet extends HttpServlet {
 			try {
 				arbitreSubControl = new ArbitreSubController(request);
 				json = arbitreSubControl.getJson();
-			} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				request.setAttribute("errorMsg", e.getMessage());
 			}
 			
@@ -51,7 +46,7 @@ public class AjaxServlet extends HttpServlet {
 			try {
 				CourtSubController courtControl = new CourtSubController(request);
 				json = courtControl.getJson();
-			} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				request.setAttribute("errorMsg", e.getMessage());
 			}
 			break;
@@ -59,7 +54,7 @@ public class AjaxServlet extends HttpServlet {
 			try {
 				MatchSubController matchControl = new MatchSubController(request);
 				json = matchControl.getJson();
-			} catch (DAOException | ParseException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				request.setAttribute("errorMsg", e.getMessage());
 			}
 			break;

@@ -1,7 +1,5 @@
 package com.app.tennis.servlets;
 
-import java.lang.reflect.InvocationTargetException;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import com.app.tennis.dao.AccesDAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Acces;
-import com.app.tennis.exceptions.DAOException;
 
 public class ConnexionSubController {
 	
@@ -44,7 +41,7 @@ public class ConnexionSubController {
 				user.setExist(false);
 			}
 			
-		} catch (DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+		} catch (Exception e) {
 			user.setError(e.getMessage());
 		}
 		
