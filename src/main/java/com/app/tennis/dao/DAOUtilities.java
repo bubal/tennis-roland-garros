@@ -1,46 +1,32 @@
 package com.app.tennis.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class DAOUtilities {
 
-	/* Quelques méthodes très pratique */
+	private static EntityManager entityManager;
+	private static EntityManagerFactory entityManagerFactory;
+	private String persistenceUnitName;
 	
-	public static void closeSecure(Connection connection){
-		if (connection != null){
-			try { connection.close(); } catch (SQLException e) {
-				 System.out.println( "Erreur lors de la fermeture de la Connection : " + e.getMessage() );
-			}
+	public DAOUtilities (String persistenceUnitName){
+		this.persistenceUnitName = persistenceUnitName;
+	}
+	
+	public EntityManager getEntityManager(){
+		if (entityManager==null){
+			entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
+			entityManager = entityManagerFactory.createEntityManager();
 		}
+		return entityManager;
 	}
 	
-	public static void closeSecure(PreparedStatement preparedStatement){
-		if (preparedStatement != null){
-			try { preparedStatement.close(); } catch (SQLException e) {
-				 System.out.println( "Erreur lors de la fermeture du Statement : " + e.getMessage() );
-			}
+	public void closeEntityManager(){
+		if (entityManager!=null){
+			entityManager.clear();
+			entityManager.close();
+			entityManagerFactory.close();
 		}
-	}
-	
-	public static void closeSecure(ResultSet resultSet){
-		if (resultSet != null){
-			try { resultSet.close(); } catch (SQLException e) {
-				 System.out.println( "Erreur lors de la fermeture du ResultSet : " + e.getMessage() );
-			}
-		}
-	}
-	
-	public static void closeSecureAll(ResultSet resultSet, PreparedStatement preparedStatement, Connection connection){
-		closeSecure(resultSet);
-		closeSecure(preparedStatement);
-		closeSecure(connection);
-	}
-	
-	public static void closeSecureAll(ResultSet resultSet, PreparedStatement preparedStatement){
-		closeSecure(resultSet);
-		closeSecure(preparedStatement);
 	}
 }
