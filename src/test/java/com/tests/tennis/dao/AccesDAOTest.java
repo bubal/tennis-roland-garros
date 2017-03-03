@@ -1,14 +1,8 @@
 package com.tests.tennis.dao;
 
-
-
-import java.lang.reflect.InvocationTargetException;
-
 import com.app.tennis.dao.AccesDAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Acces;
-import com.app.tennis.exceptions.DAOConfigurationException;
-import com.app.tennis.exceptions.DAOException;
 
 public class AccesDAOTest {
 
@@ -25,7 +19,7 @@ public class AccesDAOTest {
 		
 		try {
 			
-			daoFactory = new DAOFactory();
+			daoFactory=new DAOFactory("tennis-test-db");
 			
 			AccesDAO objDao = (AccesDAO) daoFactory.getObjDAO(Acces.class);
 			
@@ -62,7 +56,7 @@ public class AccesDAOTest {
 //				System.out.println(pays.toString());
 //			}
 			
-		}catch (DAOConfigurationException | DAOException | ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+		}catch ( Exception e) {
 				e.printStackTrace();
 			}
 

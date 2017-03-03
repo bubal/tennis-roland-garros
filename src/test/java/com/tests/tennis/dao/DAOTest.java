@@ -29,6 +29,7 @@ import com.app.tennis.exceptions.DAOException;
 
 public class DAOTest {
 
+	private static String nameDB = "tennis-test-db";
 	protected static DAOFactory daoFactory;
 
 	protected static DAO<Acces> accesDao;
@@ -45,7 +46,7 @@ public class DAOTest {
 	@BeforeClass
 	public static void init() throws DAOConfigurationException, DAOException, Exception{
 
-		daoFactory=new DAOFactory();
+		daoFactory=new DAOFactory(nameDB);
 
 		accesDao = daoFactory.getObjDAO(Acces.class);
 		paysDao = daoFactory.getObjDAO(Pays.class);
@@ -79,10 +80,9 @@ public class DAOTest {
 	}
 
 	
-	@AfterClass
-	public static void tearDown(){
-		daoFactory.getEntityManager().clear();
-		daoFactory.getEntityManager().close();
-	}
+//	@AfterClass
+//	public static void tearDown(){
+//		daoFactory.closeEntityManager();
+//	}
 
 }

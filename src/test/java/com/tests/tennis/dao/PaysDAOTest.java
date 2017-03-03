@@ -11,7 +11,6 @@ import com.app.tennis.data.Pays;
 
 public class PaysDAOTest extends DAOTest {
 	
-	
 	@Test
 	public void testFindIntJpa() throws Exception {
 		Pays obj = paysDao.findById(1);
