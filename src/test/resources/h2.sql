@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS `acces`;
 CREATE TABLE `acces` (
   `id_acces` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `login` varchar(20) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `login` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
   PRIMARY KEY (`id_acces`),
   UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -16,8 +16,8 @@ INSERT INTO `acces` VALUES
 DROP TABLE IF EXISTS `niveau_arbitre`;
 CREATE TABLE `niveau_arbitre` (
   `id_niveau` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(20) NOT NULL,
-  `description` text,
+  `nom` varchar(30) NOT NULL,
+  `description` varchar(50),
   PRIMARY KEY (`id_niveau`),
   UNIQUE KEY `nom_niveau` (`nom`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -32,7 +32,7 @@ INSERT INTO `niveau_arbitre` VALUES
 DROP TABLE IF EXISTS `types_qualifications`;
 CREATE TABLE `types_qualifications` (
   `id_qualification` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
+  `nom` varchar(50) NOT NULL,
   PRIMARY KEY (`id_qualification`),
   UNIQUE KEY `nom_qualification` (`nom`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -47,8 +47,8 @@ INSERT INTO `types_qualifications` VALUES
 DROP TABLE IF EXISTS `tournois`;
 CREATE TABLE `tournois` (
   `id_tournoi` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  `nbr_sets` tinyint(3) unsigned NOT NULL,
+  `nom` varchar(30) NOT NULL,
+  `nbr_sets` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id_tournoi`),
   UNIQUE KEY `nom_tournoi` (`nom`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
@@ -66,7 +66,7 @@ INSERT INTO `tournois` VALUES
 DROP TABLE IF EXISTS `pays`;
 CREATE TABLE `pays` (
   `id_pays` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) NOT NULL,
+  `nom` varchar(30) NOT NULL,
   PRIMARY KEY (`id_pays`),
   UNIQUE KEY `nom_pays` (`nom`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
@@ -95,7 +95,7 @@ INSERT INTO `pays` VALUES
 DROP TABLE IF EXISTS `courts`;
 CREATE TABLE `courts` (
   `id_court` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) NOT NULL,
+  `nom` varchar(30) NOT NULL,
   PRIMARY KEY (`id_court`),
   UNIQUE KEY `nom_courts` (`nom`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -110,8 +110,8 @@ INSERT INTO `courts` VALUES
 DROP TABLE IF EXISTS `arbitres`;
 CREATE TABLE `arbitres` (
   `id_arbitre` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
+  `nom` varchar(30) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
   `sexe` char(1) NOT NULL,
   `id_pays` int(11) unsigned NOT NULL,
   `id_niveau` int(11) unsigned NOT NULL,
@@ -136,8 +136,8 @@ INSERT INTO `arbitres` VALUES
 DROP TABLE IF EXISTS `joueurs`;
 CREATE TABLE `joueurs` (
   `id_joueur` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
+  `nom` varchar(30) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
   `sexe` char(1) NOT NULL,
   `id_pays` int(11) unsigned NOT NULL,
   `classement` int(11) unsigned NOT NULL,
@@ -168,8 +168,8 @@ CREATE TABLE `matchs` (
   `id_joueur1` int(11) unsigned NOT NULL,
   `id_joueur2` int(11) unsigned NOT NULL,
   `date` date NOT NULL,
-  `heure_debut` time DEFAULT NULL,
-  `heure_fin` time DEFAULT NULL,
+  `heure_debut` timestamp DEFAULT NULL,
+  `heure_fin` timestamp DEFAULT NULL,
   `sets_joueur1` int(11) unsigned NOT NULL,
   `sets_joueur2` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id_match`),
@@ -181,6 +181,6 @@ CREATE TABLE `matchs` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 INSERT INTO `matchs` VALUES 
-(1,1,2,4,4,6,'2017-02-08','10:00:00','12:12:17',3,0),
+(1,1,2,4,4,6,'2017-02-08','2017-02-08 10:00:00','2017-02-08 12:12:17',3,0),
 (2,1,1,4,4,1,'2017-09-02',NULL,NULL,0,0);
 
