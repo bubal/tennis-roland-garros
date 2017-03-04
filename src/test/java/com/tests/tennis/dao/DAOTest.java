@@ -23,12 +23,12 @@ public class DAOTest {
 	
 	protected static DAOFactory daoFactory;
 
-	protected static DAO<Acces> 			accesDao;
+	protected static DAO<Acces>				accesDao;
 	protected static DAO<Pays>				paysDao;
 	protected static DAO<Tournoi>			tournoiDao;
 	protected static DAO<NiveauArbitre>		niveauArbitreDao;
-	protected static DAO<TypeQualification> typeQualificationDao;
-	protected static DAO<Joueur> 			joueurDao;
+	protected static DAO<TypeQualification>	typeQualificationDao;
+	protected static DAO<Joueur>			joueurDao;
 	protected static DAO<Arbitre>			arbitreDao;
 	protected static DAO<Court>				courtDao;
 	protected static DAO<Match>				matchDao;
@@ -44,8 +44,8 @@ public class DAOTest {
 		accesDao 				=	daoFactory.getObjDAO(Acces.class);
 		paysDao 				=	daoFactory.getObjDAO(Pays.class);
 		tournoiDao 				=	daoFactory.getObjDAO(Tournoi.class);
-		niveauArbitreDao 		=	daoFactory.getObjDAO(NiveauArbitre.class);
-		typeQualificationDao 	=	daoFactory.getObjDAO(TypeQualification.class);
+		niveauArbitreDao		=	daoFactory.getObjDAO(NiveauArbitre.class);
+		typeQualificationDao	=	daoFactory.getObjDAO(TypeQualification.class);
 		joueurDao 				=	daoFactory.getObjDAO(Joueur.class);
 		arbitreDao				=	daoFactory.getObjDAO(Arbitre.class);
 		courtDao 				=	daoFactory.getObjDAO(Court.class);
