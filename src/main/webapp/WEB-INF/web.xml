@@ -10,6 +10,11 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <listener>
+  	<listener-class>
+  		com.app.tennis.listeners.DaoFactoryListener
+    </listener-class>
+   </listener>
+   <listener>
     <listener-class>
   		com.app.tennis.listeners.PaysListener
     </listener-class>
@@ -29,7 +34,6 @@
   		com.app.tennis.listeners.TournoisListener
     </listener-class>
   </listener>
-  
   <servlet>
     <servlet-name>ControlServlet</servlet-name>
     <servlet-class>com.app.tennis.servlets.ControlServlet</servlet-class>
@@ -38,12 +42,10 @@
     <servlet-name>ControlServlet</servlet-name>
     <url-pattern>/AppliTennis</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>ControlServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>AjaxServlet</servlet-name>
     <servlet-class>com.app.tennis.servlets.AjaxServlet</servlet-class>
@@ -52,20 +54,15 @@
     <servlet-name>AjaxServlet</servlet-name>
     <url-pattern>/AjaxServlet</url-pattern>
   </servlet-mapping>
-  
-  
-
-<servlet>
-  <servlet-name>WebjarsServlet</servlet-name>
-  <servlet-class>org.webjars.servlet.WebjarsServlet</servlet-class>
-  <load-on-startup>2</load-on-startup>
-</servlet>
-<servlet-mapping>
-  <servlet-name>WebjarsServlet</servlet-name>
-  <url-pattern>/webjars/*</url-pattern>
-</servlet-mapping>
-
-  
+  <servlet>
+    <servlet-name>WebjarsServlet</servlet-name>
+    <servlet-class>org.webjars.servlet.WebjarsServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebjarsServlet</servlet-name>
+    <url-pattern>/webjars/*</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>/css/*</url-pattern>
@@ -74,8 +71,6 @@
     <servlet-name>default</servlet-name>
     <url-pattern>/js/*</url-pattern>
   </servlet-mapping>
-  
-  
   <filter>
     <filter-name>AccesFilter</filter-name>
     <filter-class>com.app.tennis.filters.AccesFilter</filter-class>
