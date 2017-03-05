@@ -30,7 +30,6 @@ public class Court implements Serializable{
 
 	public Court() {
 		super();
-
 	}
 
 	public Court(String nom) {

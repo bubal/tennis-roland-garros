@@ -55,10 +55,10 @@ public class Acces implements Serializable{
 	public Acces(String login) {
 		super();
 		this.id=0;
+		this.login = login;
 		this.acces=false;
 		this.exist=false;
 		this.error=null;
-		this.login = login;
 	}
 
 
