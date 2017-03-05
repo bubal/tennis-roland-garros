@@ -43,7 +43,7 @@ public class DAOUtilities {
 					File script = new File(getClass().getResource(nameDB).getFile());
 					RunScript.execute(connection, new FileReader(script));
 				} catch (FileNotFoundException e) {
-					throw new RuntimeException("could not initialize with script");
+					throw new RuntimeException("Impossible de charger le script d'initialisation de la base de données");
 				}
 			}
 		});

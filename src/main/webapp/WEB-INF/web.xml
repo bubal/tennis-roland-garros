@@ -9,31 +9,22 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <listener>
-  	<listener-class>
-  		com.app.tennis.listeners.DaoFactoryListener
-    </listener-class>
-   </listener>
-   <listener>
-    <listener-class>
-  		com.app.tennis.listeners.PaysListener
-    </listener-class>
-  </listener>
+  
   <listener>
     <listener-class>
-  		com.app.tennis.listeners.NiveauArbitreListener
+  		com.app.tennis.listeners.InitialisationListener
     </listener-class>
   </listener>
-  <listener>
-    <listener-class>
-  		com.app.tennis.listeners.QualificationsListener
-    </listener-class>
-  </listener>
-  <listener>
-    <listener-class>
-  		com.app.tennis.listeners.TournoisListener
-    </listener-class>
-  </listener>
+  
+  <filter>
+    <filter-name>AccesFilter</filter-name>
+    <filter-class>com.app.tennis.filters.AccesFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AccesFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
   <servlet>
     <servlet-name>ControlServlet</servlet-name>
     <servlet-class>com.app.tennis.servlets.ControlServlet</servlet-class>
@@ -71,14 +62,8 @@
     <servlet-name>default</servlet-name>
     <url-pattern>/js/*</url-pattern>
   </servlet-mapping>
-  <filter>
-    <filter-name>AccesFilter</filter-name>
-    <filter-class>com.app.tennis.filters.AccesFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>AccesFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+ 
+ 
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
