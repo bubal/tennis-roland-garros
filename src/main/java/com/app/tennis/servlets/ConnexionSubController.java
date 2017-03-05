@@ -9,7 +9,7 @@ import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Acces;
 
 public class ConnexionSubController {
-	
+
 	private HttpServletRequest request;
 	String pageVue;
 	Acces user;
@@ -18,41 +18,47 @@ public class ConnexionSubController {
 		super();
 		this.request = request;
 	}
-	
+
 	public void connecting() {
-		
+
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		this.pageVue = "/connexion.jsp";
-		
+
 		ServletContext application = request.getServletContext();
 		DAOFactory daoFactory = (DAOFactory) application.getAttribute("daoFactory");
 		HttpSession session = request.getSession();
 		
-		try {
-			AccesDAO accesDao = (AccesDAO) daoFactory.getObjDAO(Acces.class);
-			user = new Acces(login);
+		user = new Acces(login);
+
+		if (login == null){
+			session.setAttribute( "sessionUser", null );
+
+		} else {
+
 			try {
-				user = accesDao.findByLogin(login);
-				user.setExist(true);
+				AccesDAO accesDao = (AccesDAO) daoFactory.getObjDAO(Acces.class);
+				try {
+					user = accesDao.findByLogin(login);
+				} catch (Exception e) {
+					session.setAttribute( "sessionUser", null );
+					user.setError("Le login "+ user.getLogin() + " n'existe pas!");
+					user.setExist(false);
+				}
+
 			} catch (Exception e) {
-				session.setAttribute( "sessionUser", null );
-				user.setError("Le login "+ user.getLogin() + " n'existe pas!");
-				user.setExist(false);
+				user.setError(e.getMessage());
 			}
-			
-		} catch (Exception e) {
-			user.setError(e.getMessage());
-		}
-		
-		if(user.isExist()){
-			if (user.isAcces(password)){
-				session.setAttribute( "sessionUser", user.getLogin() );
-				this.pageVue = "index.jsp";
-			} 
-			else{
-				session.setAttribute( "sessionUser", null );
-				user.setError("Mot de passe érroné !");
+
+			if(user.isExist()){
+				if (user.isAcces(password)){
+					session.setAttribute( "sessionUser", user.getLogin() );
+					this.pageVue = "index.jsp";
+				} 
+				else{
+					session.setAttribute( "sessionUser", null );
+					user.setError("Mot de passe érroné !");
+				}
 			}
 		}
 	}
@@ -62,7 +68,7 @@ public class ConnexionSubController {
 		session.setAttribute( "sessionUser", null );
 		this.pageVue = "deconnexion.jsp";
 	}
-	
+
 	public String getPageVue() {
 		return pageVue;
 	}
@@ -78,8 +84,8 @@ public class ConnexionSubController {
 	public void setUser(Acces user) {
 		this.user = user;
 	}
-	
-	
-	
+
+
+
 
 }
