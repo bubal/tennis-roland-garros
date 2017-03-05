@@ -5,11 +5,12 @@ CREATE TABLE `acces` (
   `password` varchar(30) NOT NULL,
   PRIMARY KEY (`id_acces`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 INSERT INTO `acces` VALUES 
 (1, 'admin', 'admin'),
-(2, 'organisateur', 'organisateur');
+(2, 'organisateur', 'organisateur'),
+(3, 'test', 'test');
 
 /* ----------------------- */
 
@@ -20,12 +21,13 @@ CREATE TABLE `niveau_arbitre` (
   `description` varchar(50),
   PRIMARY KEY (`id_niveau`),
   UNIQUE KEY `nom_niveau` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 INSERT INTO `niveau_arbitre` VALUES 
 (1,'A1','Débutant'),
 (2,'A2','Confirmé'),
-(3,'A3','Expert');
+(3,'A3','Expert'),
+(4,'A4','Super Expert');
 
 /* ----------------------- */
 
@@ -35,12 +37,13 @@ CREATE TABLE `types_qualifications` (
   `nom` varchar(50) NOT NULL,
   PRIMARY KEY (`id_qualification`),
   UNIQUE KEY `nom_qualification` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 INSERT INTO `types_qualifications` VALUES
 (1,'Wildcards'),
 (2,'Par classement ATP/WPA'),
-(3,'Épreuve de qualification');
+(3,'Épreuve de qualification'),
+(4,'Par QCM');
 
 /* ----------------------- */
 
@@ -51,7 +54,7 @@ CREATE TABLE `tournois` (
   `nbr_sets` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id_tournoi`),
   UNIQUE KEY `nom_tournoi` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 INSERT INTO `tournois` VALUES 
 (1,'Simple Messieurs',3),
@@ -59,7 +62,8 @@ INSERT INTO `tournois` VALUES
 (3,'Simple Juniors Messieurs',2),
 (4,'Simple Juniors Dames',2),
 (5,'Double Messieurs',3),
-(6,'Double Dames',2);
+(6,'Double Dames',2),
+(7,'Triple Messieurs',3);
 
 /* ----------------------- */
 
@@ -69,7 +73,7 @@ CREATE TABLE `pays` (
   `nom` varchar(30) NOT NULL,
   PRIMARY KEY (`id_pays`),
   UNIQUE KEY `nom_pays` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 INSERT INTO `pays` VALUES
 (1,'Angleterre'),
@@ -88,7 +92,8 @@ INSERT INTO `pays` VALUES
 (14,'Grèce'),
 (15,'Mexique'),
 (16,'Islande'),
-(17,'Pérou');
+(17,'Pérou'),
+(18,'Colombie');
 
 /* ----------------------- */
 
@@ -98,12 +103,13 @@ CREATE TABLE `courts` (
   `nom` varchar(30) NOT NULL,
   PRIMARY KEY (`id_court`),
   UNIQUE KEY `nom_courts` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 INSERT INTO `courts` VALUES
 (1,'Philippe-Chatrier'),
 (2,'Suzanne-Lenglen'),
-(3,'Court n°1');
+(3,'Court n°1'),
+(4,'Court n°5');
 
 /* ----------------------- */
 
