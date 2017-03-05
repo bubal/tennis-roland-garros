@@ -18,8 +18,8 @@ import com.app.tennis.exceptions.DAOException;
 
 public class DAOTest {
 
-	private static String persistenceUnitName = "tennis-test-db";
-	private static String nameDB = "test-db";
+	private static String NAME_PERSISTENCE = "tennis-test-db";
+	private static String NAME_DB = "/test-db.sql";
 	
 	protected static DAOFactory daoFactory;
 
@@ -37,9 +37,9 @@ public class DAOTest {
 	@BeforeClass
 	public static void init() throws DAOConfigurationException, DAOException, Exception{
 
-		daoFactory = new DAOFactory(persistenceUnitName);
+		daoFactory = new DAOFactory( NAME_PERSISTENCE );
 
-		daoFactory.initDatabase( "/" + nameDB + ".sql" );
+		daoFactory.initDatabase( NAME_DB );
 		
 		accesDao                =	daoFactory.getObjDAO(Acces.class);
 		paysDao                 =	daoFactory.getObjDAO(Pays.class);
