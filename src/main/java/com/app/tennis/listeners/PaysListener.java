@@ -9,6 +9,7 @@ import javax.servlet.ServletContextListener;
 import com.app.tennis.dao.DAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Pays;
+import com.app.tennis.exceptions.DAOConfigurationException;
 
 
 
@@ -16,10 +17,7 @@ public class PaysListener implements ServletContextListener {
 
    
     public PaysListener() {
-    }
-
-    public void contextDestroyed(ServletContextEvent e)  { 
-     
+    	
     }
 
     public void contextInitialized(ServletContextEvent e)  { 
@@ -31,20 +29,25 @@ public class PaysListener implements ServletContextListener {
     	
     	daoFactory = (DAOFactory) application.getAttribute("daoFactory");
     	
-    	if (daoFactory==null){
-    		daoFactory = new DAOFactory("tennis-db");
-			application.setAttribute("daoFactory",daoFactory);
-    	}
-    	
     	try {
+    		
+    		if (daoFactory==null){
+        		throw new DAOConfigurationException("Erreur : la daoFactory n'a pas été initialisée");
+        	}
+    		
 			DAO<Pays> paysDao = daoFactory.getObjDAO(Pays.class);
 			listePays = paysDao.listAll();
+			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
     	
     	application.setAttribute("listePays",listePays);
     	
+    }
+    
+    public void contextDestroyed(ServletContextEvent e)  { 
+        
     }
 	
 }

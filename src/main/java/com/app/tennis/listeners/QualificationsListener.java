@@ -9,40 +9,40 @@ import javax.servlet.ServletContextListener;
 import com.app.tennis.dao.DAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.TypeQualification;
+import com.app.tennis.exceptions.DAOConfigurationException;
 
 
 public class QualificationsListener implements ServletContextListener {
 
-   
-    public QualificationsListener() {
-    }
 
-    public void contextDestroyed(ServletContextEvent e)  { 
-    	
-    	
-    }
+	public QualificationsListener() {
 
-    public void contextInitialized(ServletContextEvent e)  { 
-    	ServletContext application = e.getServletContext();
-    	DAOFactory daoFactory;
-    	
-    	List<TypeQualification> listeQualifications = null;
-    	
-    	daoFactory = (DAOFactory) application.getAttribute("daoFactory");
-    	
-    	if (daoFactory==null){
-    		daoFactory = new DAOFactory("tennis-db");
-			application.setAttribute("daoFactory",daoFactory);
-    	}
-    	
-    	try {
-    		DAO<TypeQualification> qualificationDao= daoFactory.getObjDAO(TypeQualification.class);
+	}
+
+	public void contextInitialized(ServletContextEvent e)  { 
+		ServletContext application = e.getServletContext();
+		DAOFactory daoFactory;
+
+		List<TypeQualification> listeQualifications = null;
+
+		daoFactory = (DAOFactory) application.getAttribute("daoFactory");
+
+		try {
+			if (daoFactory==null){
+				throw new DAOConfigurationException("Erreur : la daoFactory n'a pas été initialisée");
+			}
+
+			DAO<TypeQualification> qualificationDao= daoFactory.getObjDAO(TypeQualification.class);
 			listeQualifications = qualificationDao.listAll();
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-    	
-    	application.setAttribute("listeQualifications",listeQualifications);
-    }
-	
+
+		application.setAttribute("listeQualifications",listeQualifications);
+	}
+
+	public void contextDestroyed(ServletContextEvent e)  { 
+
+	}
 }

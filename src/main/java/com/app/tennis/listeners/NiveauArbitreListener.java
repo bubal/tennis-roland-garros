@@ -9,20 +9,17 @@ import javax.servlet.ServletContextListener;
 import com.app.tennis.dao.DAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.NiveauArbitre;
+import com.app.tennis.exceptions.DAOConfigurationException;
 
 
 public class NiveauArbitreListener implements ServletContextListener {
 
     
     public NiveauArbitreListener() {
-      
+    	
     }
 
-    public void contextDestroyed(ServletContextEvent e)  { 
-         
-    }
-
-    public void contextInitialized(ServletContextEvent e)  { 
+    public void contextInitialized(ServletContextEvent e){ 
     	
     	ServletContext application = e.getServletContext();
     	DAOFactory daoFactory;
@@ -30,12 +27,12 @@ public class NiveauArbitreListener implements ServletContextListener {
     	
     	daoFactory = (DAOFactory) application.getAttribute("daoFactory");
     	
-    	if (daoFactory==null){
-    		daoFactory = new DAOFactory("tennis-db");
-			application.setAttribute("daoFactory",daoFactory);
-    	}
-    	
     	try {
+    		
+    		if (daoFactory==null){
+        		throw new DAOConfigurationException("Erreur : la daoFactory n'a pas été initialisée");
+        	}
+    		
     		DAO<NiveauArbitre> niveauDao = daoFactory.getObjDAO(NiveauArbitre.class);
 			listeNiveauArbitre = niveauDao.listAll();
 			
@@ -44,6 +41,10 @@ public class NiveauArbitreListener implements ServletContextListener {
 		}
     	
     	application.setAttribute("listeNiveauArbitre",listeNiveauArbitre);
+    	
+    }
+    
+    public void contextDestroyed(ServletContextEvent e)  {
     	
     }
 	
