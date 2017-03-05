@@ -1,7 +1,9 @@
 package com.tests.tennis.dao;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
+import com.app.tennis.dao.AccesDAO;
 import com.app.tennis.dao.DAO;
 import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Acces;
@@ -13,17 +15,15 @@ import com.app.tennis.data.NiveauArbitre;
 import com.app.tennis.data.Pays;
 import com.app.tennis.data.Tournoi;
 import com.app.tennis.data.TypeQualification;
-import com.app.tennis.exceptions.DAOConfigurationException;
-import com.app.tennis.exceptions.DAOException;
 
 public class DAOTest {
 
 	private static String NAME_PERSISTENCE = "tennis-test-db";
 	private static String NAME_DB = "/test-db.sql";
 	
-	protected static DAOFactory daoFactory;
+	protected static DAOFactory daoFactory; //= new DAOFactory( NAME_PERSISTENCE );
 
-	protected static DAO<Acces>               accesDao;
+	protected static AccesDAO               accesDao;
 	protected static DAO<Pays>                paysDao;
 	protected static DAO<Tournoi>             tournoiDao;
 	protected static DAO<NiveauArbitre>       niveauArbitreDao;
@@ -35,13 +35,14 @@ public class DAOTest {
 
 	
 	@BeforeClass
-	public static void init() throws DAOConfigurationException, DAOException, Exception{
+	public static void init() throws Exception{
 
 		daoFactory = new DAOFactory( NAME_PERSISTENCE );
 
 		daoFactory.initDatabase( NAME_DB );
 		
-		accesDao                =	daoFactory.getObjDAO(Acces.class);
+		
+		accesDao                =	(AccesDAO) daoFactory.getObjDAO(Acces.class);
 		paysDao                 =	daoFactory.getObjDAO(Pays.class);
 		tournoiDao              =	daoFactory.getObjDAO(Tournoi.class);
 		niveauArbitreDao        =	daoFactory.getObjDAO(NiveauArbitre.class);
@@ -52,11 +53,10 @@ public class DAOTest {
 		matchDao                =	daoFactory.getObjDAO(Match.class);
 
 	}
-
 	
-//	@AfterClass
-//	public static void tearDown(){
-//		daoFactory.closeEntityManager();
-//	}
+	@AfterClass
+	public static void tearDown(){
+		daoFactory.closeEntityManager();
+	}
 
 }
