@@ -25,7 +25,7 @@ public class DAOUtilities {
 	}
 	
 	public EntityManager getEntityManager(){
-		if (entityManager == null){
+		if ( entityManager == null || !entityManager.isOpen() ){
 			entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
 			entityManager = entityManagerFactory.createEntityManager();
 		}
@@ -56,4 +56,5 @@ public class DAOUtilities {
 			entityManagerFactory.close();
 		}
 	}
+	
 }
