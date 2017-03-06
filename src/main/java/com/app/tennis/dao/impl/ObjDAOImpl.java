@@ -7,17 +7,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.app.tennis.dao.DAO;
-import com.app.tennis.exceptions.DAOException;
+import com.app.tennis.dao.DAOUtilities;
 
-public class ObjDAOImpl<T> implements DAO<T> {
+public abstract class ObjDAOImpl<T> implements DAO<T> {
 	
-	protected EntityManager connection;
-	private Class<T> typeClass;
-	
-	public ObjDAOImpl(EntityManager connection, Class<T> typeClass) throws DAOException {
-		this.connection = connection;
-		this.typeClass = typeClass;
-	}
+	public EntityManager connection = DAOUtilities.entityManager;
+	abstract Class<T> getTypeClass();
 
 	@Override
 	public T create(T obj) {
@@ -30,14 +25,14 @@ public class ObjDAOImpl<T> implements DAO<T> {
 	@Override
 	public void deleteById(int id) {	
 		connection.getTransaction().begin();
-		connection.remove(connection.find(typeClass,id));
+		connection.remove(connection.find(getTypeClass(),id));
 		connection.getTransaction().commit();
 		
 	}
 
 	@Override
 	public T findById(int id) {
-		return connection.find(typeClass,id);
+		return connection.find(getTypeClass(),id);
 	}
 
 	@Override
@@ -51,8 +46,8 @@ public class ObjDAOImpl<T> implements DAO<T> {
 	@Override
 	public List<T> listAll() {
 		List<T> listeObj = new ArrayList<T>();
-		String[] nameObj = typeClass.getName().split("\\.");
-		TypedQuery<T> query = connection.createNamedQuery(nameObj[nameObj.length-1]+".findAll", typeClass);
+		String[] nameObj = getTypeClass().getName().split("\\.");
+		TypedQuery<T> query = connection.createNamedQuery(nameObj[nameObj.length-1]+".findAll", getTypeClass());
 		listeObj = query.getResultList();
 		return listeObj;
 	}
