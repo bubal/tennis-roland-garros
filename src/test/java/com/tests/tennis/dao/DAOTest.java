@@ -21,7 +21,7 @@ public class DAOTest {
 	private static String NAME_PERSISTENCE = "tennis-test-db";
 	private static String NAME_DB = "/test-db.sql";
 	
-	protected static DAOFactory daoFactory; //= new DAOFactory( NAME_PERSISTENCE );
+	protected static DAOFactory daoFactory; 
 
 	protected static AccesDAO               accesDao;
 	protected static DAO<Pays>                paysDao;
