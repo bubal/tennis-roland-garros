@@ -7,7 +7,7 @@ import com.app.tennis.services.ObjService;
 
 public abstract class ObjServiceImpl<T> implements ObjService<T> {
 
-	abstract DAO<T> getDAO();
+	public abstract DAO<T> getDAO();
 	
 	@Override
 	public T create(T obj) {
