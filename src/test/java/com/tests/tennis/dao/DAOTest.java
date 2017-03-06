@@ -4,8 +4,15 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import com.app.tennis.dao.AccesDAO;
-import com.app.tennis.dao.DAO;
+import com.app.tennis.dao.ArbitreDAO;
+import com.app.tennis.dao.CourtDAO;
 import com.app.tennis.dao.DAOFactory;
+import com.app.tennis.dao.JoueurDAO;
+import com.app.tennis.dao.MatchDAO;
+import com.app.tennis.dao.NiveauArbitreDAO;
+import com.app.tennis.dao.PaysDAO;
+import com.app.tennis.dao.TournoiDAO;
+import com.app.tennis.dao.TypeQualificationDAO;
 import com.app.tennis.data.Acces;
 import com.app.tennis.data.Arbitre;
 import com.app.tennis.data.Court;
@@ -23,15 +30,15 @@ public class DAOTest {
 	
 	protected static DAOFactory daoFactory; 
 
-	protected static AccesDAO               accesDao;
-	protected static DAO<Pays>                paysDao;
-	protected static DAO<Tournoi>             tournoiDao;
-	protected static DAO<NiveauArbitre>       niveauArbitreDao;
-	protected static DAO<TypeQualification>   typeQualificationDao;
-	protected static DAO<Joueur>              joueurDao;
-	protected static DAO<Arbitre>             arbitreDao;
-	protected static DAO<Court>               courtDao;
-	protected static DAO<Match>               matchDao;
+	protected static AccesDAO              accesDao;
+	protected static PaysDAO               paysDao;
+	protected static TournoiDAO            tournoiDao;
+	protected static NiveauArbitreDAO      niveauArbitreDao;
+	protected static TypeQualificationDAO  typeQualificationDao;
+	protected static JoueurDAO             joueurDao;
+	protected static ArbitreDAO            arbitreDao;
+	protected static CourtDAO              courtDao;
+	protected static MatchDAO              matchDao;
 
 	
 	@BeforeClass
@@ -43,14 +50,14 @@ public class DAOTest {
 		
 		
 		accesDao                =	(AccesDAO) daoFactory.getObjDAO(Acces.class);
-		paysDao                 =	daoFactory.getObjDAO(Pays.class);
-		tournoiDao              =	daoFactory.getObjDAO(Tournoi.class);
-		niveauArbitreDao        =	daoFactory.getObjDAO(NiveauArbitre.class);
-		typeQualificationDao    =	daoFactory.getObjDAO(TypeQualification.class);
-		joueurDao               =	daoFactory.getObjDAO(Joueur.class);
-		arbitreDao              =	daoFactory.getObjDAO(Arbitre.class);
-		courtDao                =	daoFactory.getObjDAO(Court.class);
-		matchDao                =	daoFactory.getObjDAO(Match.class);
+		paysDao                 =	(PaysDAO) daoFactory.getObjDAO(Pays.class);
+		tournoiDao              =	(TournoiDAO) daoFactory.getObjDAO(Tournoi.class);
+		niveauArbitreDao        =	(NiveauArbitreDAO) daoFactory.getObjDAO(NiveauArbitre.class);
+		typeQualificationDao    =	(TypeQualificationDAO) daoFactory.getObjDAO(TypeQualification.class);
+		joueurDao               =	(JoueurDAO) daoFactory.getObjDAO(Joueur.class);
+		arbitreDao              =	(ArbitreDAO) daoFactory.getObjDAO(Arbitre.class);
+		courtDao                =	(CourtDAO) daoFactory.getObjDAO(Court.class);
+		matchDao                =	(MatchDAO) daoFactory.getObjDAO(Match.class);
 
 	}
 	
