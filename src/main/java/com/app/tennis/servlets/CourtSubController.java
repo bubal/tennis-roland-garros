@@ -5,16 +5,17 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.app.tennis.dao.DAO;
-import com.app.tennis.dao.DAOFactory;
+import com.app.tennis.dao.DAOUtilities;
 import com.app.tennis.data.Court;
 import com.app.tennis.exceptions.DAOException;
+import com.app.tennis.services.CourtService;
+import com.app.tennis.services.impl.CourtServiceImpl;
 import com.google.gson.Gson;
 
 public class CourtSubController {
 	
-	private DAO<Court> courtDao;
-	DAOFactory daoFactory;
+	private CourtService courtService;
+	DAOUtilities daoUtilities;
 	private Court court;
 	private List<Court> listeCourts;
 	private String json;
@@ -23,8 +24,8 @@ public class CourtSubController {
 	public CourtSubController(HttpServletRequest request) throws Exception {
 		
 		ServletContext application = request.getServletContext();
-		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
-		courtDao = daoFactory.getObjDAO(Court.class);
+		this.daoUtilities = (DAOUtilities) application.getAttribute("daoUtilities");
+		courtService = new CourtServiceImpl();
 		
 		String strAction = request.getParameter("action");
 		
@@ -50,17 +51,17 @@ public class CourtSubController {
 
 	private void delete(HttpServletRequest request) throws DAOException {
 		int id_court = Integer.parseInt(request.getParameter("id"));
-		courtDao.deleteById(id_court);
+		courtService.deleteById(id_court);
 	}
 
 	private void create(HttpServletRequest request) throws DAOException {
 		Court newcourt = new Court();
 		newcourt.setNom(request.getParameter("nom"));
-		this.court = courtDao.create(newcourt);
+		this.court = courtService.create(newcourt);
 	}
 
 	public List<Court> listAll() throws Exception {
-		return courtDao.listAll();
+		return courtService.listAll();
 	}
 	
 	public String getJson() {

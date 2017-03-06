@@ -6,18 +6,21 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.app.tennis.dao.DAO;
-import com.app.tennis.dao.DAOFactory;
+import com.app.tennis.dao.DAOUtilities;
 import com.app.tennis.data.Arbitre;
-import com.app.tennis.data.NiveauArbitre;
-import com.app.tennis.data.Pays;
 import com.app.tennis.exceptions.DAOException;
+import com.app.tennis.services.ArbitreService;
+import com.app.tennis.services.NiveauArbitreService;
+import com.app.tennis.services.PaysService;
+import com.app.tennis.services.impl.ArbitreServiceImpl;
+import com.app.tennis.services.impl.NiveauArbitreServiceImpl;
+import com.app.tennis.services.impl.PaysServiceImpl;
 import com.google.gson.Gson;
 
 public class ArbitreSubController {
 	
-	private DAO<Arbitre> arbitreDao;
-	DAOFactory daoFactory;
+	private ArbitreService arbitreService;
+	DAOUtilities daoUtilities;
 	private Arbitre arbitre;
 	private List<Arbitre> listeArbitres;
 	private String json;
@@ -26,8 +29,8 @@ public class ArbitreSubController {
 	public ArbitreSubController(HttpServletRequest request) throws Exception {
 		
 		ServletContext application = request.getServletContext();
-		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
-		arbitreDao = daoFactory.getObjDAO(Arbitre.class);
+		this.daoUtilities = (DAOUtilities) application.getAttribute("daoUtilities");
+		arbitreService = new ArbitreServiceImpl();
 		
 		String strAction = request.getParameter("action");
 		
@@ -53,15 +56,17 @@ public class ArbitreSubController {
 	}
 
 	private void delete(HttpServletRequest request) throws DAOException {
+		
 		int id_arbitre = Integer.parseInt(request.getParameter("id"));
-		arbitreDao.deleteById(id_arbitre);
+		arbitreService.deleteById(id_arbitre);
 		
 	}
 
 	private void create(HttpServletRequest request) throws Exception {
+		
 		Arbitre newarbitre = new Arbitre();
-		DAO<Pays> paysDao = daoFactory.getObjDAO(Pays.class);
-		DAO<NiveauArbitre> niveauDao= daoFactory.getObjDAO(NiveauArbitre.class);
+		PaysService paysService = new PaysServiceImpl();
+		NiveauArbitreService niveauService= new NiveauArbitreServiceImpl();
 		
 		int id_pays = Integer.parseInt(request.getParameter("pays"));
 		int id_niveau = Integer.parseInt(request.getParameter("niveau"));
@@ -69,14 +74,14 @@ public class ArbitreSubController {
 		newarbitre.setNom(request.getParameter("nom"));
 		newarbitre.setPrenom(request.getParameter("prenom"));
 		newarbitre.setSexe(request.getParameter("sexe"));
-		newarbitre.setPays(paysDao.findById(id_pays));
-		newarbitre.setNiveau(niveauDao.findById(id_niveau));
-		this.arbitre = arbitreDao.create(newarbitre);
+		newarbitre.setPays(paysService.findById(id_pays));
+		newarbitre.setNiveau(niveauService.findById(id_niveau));
+		this.arbitre = arbitreService.create(newarbitre);
 		
 	}
 
 	public List<Arbitre> listAll() throws DAOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		return arbitreDao.listAll();
+		return arbitreService.listAll();
 	}
 	
 	public String getJson() {

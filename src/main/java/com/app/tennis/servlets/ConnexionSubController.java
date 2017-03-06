@@ -1,12 +1,11 @@
 package com.app.tennis.servlets;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.app.tennis.dao.AccesDAO;
-import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Acces;
+import com.app.tennis.services.AccesService;
+import com.app.tennis.services.impl.AccesServiceImpl;
 
 public class ConnexionSubController {
 
@@ -25,8 +24,6 @@ public class ConnexionSubController {
 		String password = request.getParameter("password");
 		this.pageVue = "/connexion.jsp";
 
-		ServletContext application = request.getServletContext();
-		DAOFactory daoFactory = (DAOFactory) application.getAttribute("daoFactory");
 		HttpSession session = request.getSession();
 		
 		user = new Acces(login);
@@ -37,9 +34,9 @@ public class ConnexionSubController {
 		} else {
 
 			try {
-				AccesDAO accesDao = (AccesDAO) daoFactory.getObjDAO(Acces.class);
+				AccesService accesService = new AccesServiceImpl();
 				try {
-					user = accesDao.findByLogin(login);
+					user = accesService.findByLogin(login);
 				} catch (Exception e) {
 					session.setAttribute( "sessionUser", null );
 					user.setError("Le login "+ user.getLogin() + " n'existe pas!");

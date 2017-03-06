@@ -4,28 +4,33 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.app.tennis.dao.DAO;
-import com.app.tennis.dao.DAOFactory;
 import com.app.tennis.data.Arbitre;
 import com.app.tennis.data.Court;
 import com.app.tennis.data.Joueur;
 import com.app.tennis.data.Match;
-import com.app.tennis.data.Tournoi;
 import com.app.tennis.exceptions.DAOException;
+import com.app.tennis.services.ArbitreService;
+import com.app.tennis.services.CourtService;
+import com.app.tennis.services.JoueurService;
+import com.app.tennis.services.MatchService;
+import com.app.tennis.services.TournoiService;
+import com.app.tennis.services.impl.ArbitreServiceImpl;
+import com.app.tennis.services.impl.CourtServiceImpl;
+import com.app.tennis.services.impl.JoueurServiceImpl;
+import com.app.tennis.services.impl.MatchServiceImpl;
+import com.app.tennis.services.impl.TournoiServiceImpl;
 import com.google.gson.Gson;
 
 public class MatchSubController {
 	
 	
-	private DAO<Match> matchDao;
-	DAO<Joueur> joueurDao;
-	DAO<Court> courtDao;
-	DAO<Arbitre> arbitreDao;
-	DAO<Tournoi> tournoiDao;
-	DAOFactory daoFactory;
+	private MatchService matchService;
+	private JoueurService joueurService;
+	private CourtService courtService;
+	private ArbitreService arbitreService;
+	private TournoiService tournoiService;
 	private Match match;
 	private List<Match> listeMatchs;
 	private List<Court> listeCourts;
@@ -37,18 +42,16 @@ public class MatchSubController {
 	public MatchSubController(HttpServletRequest request) throws Exception {
 		super();
 
-		/* Initialisation du DAO */
-		ServletContext application = request.getServletContext();
-		this.daoFactory = (DAOFactory) application.getAttribute("daoFactory");
-		matchDao = daoFactory.getObjDAO(Match.class);
-		joueurDao = daoFactory.getObjDAO(Joueur.class);
-		courtDao = daoFactory.getObjDAO(Court.class);
-		arbitreDao = daoFactory.getObjDAO(Arbitre.class);
-		tournoiDao = daoFactory.getObjDAO(Tournoi.class);
+		/* Initialisation des services */
+		matchService = new MatchServiceImpl();
+		joueurService = new JoueurServiceImpl();
+		courtService = new CourtServiceImpl();
+		arbitreService = new ArbitreServiceImpl();
+		tournoiService = new TournoiServiceImpl();
 		
-		listeCourts = courtDao.listAll();
-		listeJoueurs = joueurDao.listAll();
-		listeArbitres = arbitreDao.listAll();
+		listeCourts = courtService.listAll();
+		listeJoueurs = joueurService.listAll();
+		listeArbitres = arbitreService.listAll();
 		
 		String strAction = request.getParameter("action");
 		
@@ -82,26 +85,23 @@ public class MatchSubController {
 		int id_arbitre = Integer.parseInt(request.getParameter("arbitre"));
 		int id_tournoi = Integer.parseInt(request.getParameter("tournoi"));
 		
-		//DateTimeFormatter formatSaisie = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		//DateTimeFormatter formatDb = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		SimpleDateFormat formatSaisie = new SimpleDateFormat("dd/MM/yyyy");
 		
-		//LocalDate dateDb = LocalDate.parse(request.getParameter("date"), formatSaisie);
 		Date dateDb = formatSaisie.parse(request.getParameter("date"));
 	
-		newmatch.setTournoi(tournoiDao.findById(id_tournoi));
-		newmatch.setArbitre(arbitreDao.findById(id_arbitre));
-		newmatch.setCourt(courtDao.findById(id_court));
-		newmatch.setJoueur1(joueurDao.findById(id_joueur1));
-		newmatch.setJoueur2(joueurDao.findById(id_joueur2));
+		newmatch.setTournoi(tournoiService.findById(id_tournoi));
+		newmatch.setArbitre(arbitreService.findById(id_arbitre));
+		newmatch.setCourt(courtService.findById(id_court));
+		newmatch.setJoueur1(joueurService.findById(id_joueur1));
+		newmatch.setJoueur2(joueurService.findById(id_joueur2));
 		newmatch.setSets_joueur1(0);
 		newmatch.setSets_joueur2(0);
 		newmatch.setDate(dateDb);
-		this.match = matchDao.create(newmatch);
+		this.match = matchService.create(newmatch);
 	}
 
 	public List<Match> listAll() throws Exception {
-		return matchDao.listAll();
+		return matchService.listAll();
 	}
 
 	public List<Court> getListeCourts() throws DAOException {
@@ -119,7 +119,7 @@ public class MatchSubController {
 	private void delete(HttpServletRequest request) throws DAOException {
 		
 		int id_match = Integer.parseInt(request.getParameter("id"));
-		matchDao.deleteById(id_match);
+		matchService.deleteById(id_match);
 		
 	}
 

@@ -6,12 +6,19 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.app.tennis.dao.DAO;
-import com.app.tennis.dao.DAOFactory;
+import com.app.tennis.dao.DAOUtilities;
 import com.app.tennis.data.NiveauArbitre;
 import com.app.tennis.data.Pays;
 import com.app.tennis.data.Tournoi;
 import com.app.tennis.data.TypeQualification;
+import com.app.tennis.services.NiveauArbitreService;
+import com.app.tennis.services.PaysService;
+import com.app.tennis.services.TournoiService;
+import com.app.tennis.services.TypeQualificationService;
+import com.app.tennis.services.impl.NiveauArbitreServiceImpl;
+import com.app.tennis.services.impl.PaysServiceImpl;
+import com.app.tennis.services.impl.TournoiServiceImpl;
+import com.app.tennis.services.impl.TypeQualificationServiceImpl;
 
 public class InitialisationListener implements ServletContextListener {
 	
@@ -30,28 +37,28 @@ public class InitialisationListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent e) { 
 		
 		ServletContext application = e.getServletContext();
-		DAOFactory daoFactory;
+		DAOUtilities daoUtilities;
 
-		daoFactory = (DAOFactory) application.getAttribute("daoFactory");
+		daoUtilities = (DAOUtilities) application.getAttribute("daoUtilities");
 
-		if (daoFactory==null){
+		if (daoUtilities==null){
 			
-			daoFactory = new DAOFactory( NAME_PERSISTENCE );
-			daoFactory.initDatabase( NAME_DB );
-			application.setAttribute("daoFactory",daoFactory);
+			daoUtilities = new DAOUtilities( NAME_PERSISTENCE );
+			daoUtilities.initDatabase( NAME_DB );
+			application.setAttribute("daoFactory",daoUtilities);
 		}
 		
 		try {
 			
-			DAO<Pays> paysDao                             =	daoFactory.getObjDAO(Pays.class);
-			DAO<Tournoi>tournoiDao                        =	daoFactory.getObjDAO(Tournoi.class);
-			DAO<NiveauArbitre>niveauArbitreDao            =	daoFactory.getObjDAO(NiveauArbitre.class);
-			DAO<TypeQualification>typeQualificationDao    =	daoFactory.getObjDAO(TypeQualification.class);
+			PaysService paysService                              =	new PaysServiceImpl();
+			TournoiService tournoiService                        =	new TournoiServiceImpl();
+			NiveauArbitreService niveauArbitreService            =	new NiveauArbitreServiceImpl();
+			TypeQualificationService typeQualificationService    =	new TypeQualificationServiceImpl();
 			
-			listeTournois                                 = tournoiDao.listAll();
-			listePays                                     = paysDao.listAll();
-			listeQualifications                           = typeQualificationDao.listAll();
-			listeNiveauArbitre                            = niveauArbitreDao.listAll();
+			listeTournois             = tournoiService.listAll();
+			listePays                 = paysService.listAll();
+			listeQualifications       = typeQualificationService.listAll();
+			listeNiveauArbitre        = niveauArbitreService.listAll();
 			
 			
 		} catch (Exception e1) {
@@ -69,12 +76,12 @@ public class InitialisationListener implements ServletContextListener {
 	public void contextDestroyed(ServletContextEvent e)  { 
 		
 		ServletContext application = e.getServletContext();
-		DAOFactory daoFactory;
+		DAOUtilities daoUtilities;
 
-		daoFactory = (DAOFactory) application.getAttribute("daoFactory");
+		daoUtilities = (DAOUtilities) application.getAttribute("daoUtilities");
 
-		if (daoFactory!=null){
-			daoFactory.closeEntityManager();
+		if (daoUtilities!=null){
+			daoUtilities.closeEntityManager();
 		}
 
 	}
