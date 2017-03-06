@@ -12,7 +12,7 @@ public class NiveauArbitreDAOTest extends DAOTest {
 
 		NiveauArbitre obj = new NiveauArbitre("Ax","Indéterminé");
 
-		NiveauArbitre newObj = niveauArbitreDao.create(obj);
+		NiveauArbitre newObj = serviceNiveauArbitre.create(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj.getNom(),newObj.getNom());
@@ -21,7 +21,7 @@ public class NiveauArbitreDAOTest extends DAOTest {
 	@Test
 	public void testFindById() throws Exception {
 
-		NiveauArbitre obj = niveauArbitreDao.findById(1);
+		NiveauArbitre obj = serviceNiveauArbitre.findById(1);
 
 		assertNotNull(obj);
 		assertEquals("A1",obj.getNom());
@@ -30,12 +30,12 @@ public class NiveauArbitreDAOTest extends DAOTest {
 	@Test
 	public void testUpdate() throws Exception {
 
-		NiveauArbitre obj = niveauArbitreDao.findById(2);
+		NiveauArbitre obj = serviceNiveauArbitre.findById(2);
 		assertNotNull(obj);
 
 		obj.setNom("A7");
 
-		NiveauArbitre newObj = niveauArbitreDao.update(obj);
+		NiveauArbitre newObj = serviceNiveauArbitre.update(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj,newObj);
@@ -44,12 +44,12 @@ public class NiveauArbitreDAOTest extends DAOTest {
 	@Test
 	public void testDeleteById() throws Exception {
 
-		List<NiveauArbitre> listBefore = niveauArbitreDao.listAll();
+		List<NiveauArbitre> listBefore = serviceNiveauArbitre.listAll();
 		assertNotNull(listBefore);
 
-		niveauArbitreDao.deleteById(listBefore.size());
+		serviceNiveauArbitre.deleteById(listBefore.size());
 
-		List<NiveauArbitre> listAfter = niveauArbitreDao.listAll();
+		List<NiveauArbitre> listAfter = serviceNiveauArbitre.listAll();
 		assertNotNull(listAfter);
 
 		assertEquals(listBefore.size(),listAfter.size()+1);

@@ -13,7 +13,7 @@ public class PaysDAOTest extends DAOTest {
 
 		Pays obj = new Pays("Pologne");
 
-		Pays newObj = paysDao.create(obj);
+		Pays newObj = servicePays.create(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj.getNom(),newObj.getNom());
@@ -22,7 +22,7 @@ public class PaysDAOTest extends DAOTest {
 	@Test
 	public void testFindById() throws Exception {
 
-		Pays obj = paysDao.findById(1);
+		Pays obj = servicePays.findById(1);
 
 		assertNotNull(obj);
 		assertEquals("Angleterre",obj.getNom());
@@ -31,12 +31,12 @@ public class PaysDAOTest extends DAOTest {
 	@Test
 	public void testUpdate() throws Exception {
 
-		Pays obj = paysDao.findById(2);
+		Pays obj = servicePays.findById(2);
 		assertNotNull(obj);
 
 		obj.setNom("Royaume-Unis");
 
-		Pays newObj = paysDao.update(obj);
+		Pays newObj = servicePays.update(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj,newObj);
@@ -45,12 +45,12 @@ public class PaysDAOTest extends DAOTest {
 	@Test
 	public void testDeleteById() throws Exception {
 
-		List<Pays> listBefore = paysDao.listAll();
+		List<Pays> listBefore = servicePays.listAll();
 		assertNotNull(listBefore);
 
-		paysDao.deleteById(listBefore.size());
+		servicePays.deleteById(listBefore.size());
 
-		List<Pays> listAfter = paysDao.listAll();
+		List<Pays> listAfter = servicePays.listAll();
 		assertNotNull(listAfter);
 
 		assertEquals(listBefore.size(),listAfter.size()+1);

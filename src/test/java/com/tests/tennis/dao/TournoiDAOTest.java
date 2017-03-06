@@ -12,7 +12,7 @@ public class TournoiDAOTest extends DAOTest {
 
 		Tournoi obj = new Tournoi("Nouveau Tournoi",4);
 
-		Tournoi newObj = tournoiDao.create(obj);
+		Tournoi newObj = serviceTournoi.create(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj.getNom(),newObj.getNom());
@@ -21,7 +21,7 @@ public class TournoiDAOTest extends DAOTest {
 	@Test
 	public void testFindById() throws Exception {
 
-		Tournoi obj = tournoiDao.findById(1);
+		Tournoi obj = serviceTournoi.findById(1);
 
 		assertNotNull(obj);
 		assertEquals("Simple Messieurs",obj.getNom());
@@ -30,12 +30,12 @@ public class TournoiDAOTest extends DAOTest {
 	@Test
 	public void testUpdate() throws Exception {
 
-		Tournoi obj = tournoiDao.findById(2);
+		Tournoi obj = serviceTournoi.findById(2);
 		assertNotNull(obj);
 
 		obj.setNom("Simple mixte");
 
-		Tournoi newObj = tournoiDao.update(obj);
+		Tournoi newObj = serviceTournoi.update(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj,newObj);
@@ -44,12 +44,12 @@ public class TournoiDAOTest extends DAOTest {
 	@Test
 	public void testDeleteById() throws Exception {
 
-		List<Tournoi> listBefore = tournoiDao.listAll();
+		List<Tournoi> listBefore = serviceTournoi.listAll();
 		assertNotNull(listBefore);
 
-		tournoiDao.deleteById(listBefore.size());
+		serviceTournoi.deleteById(listBefore.size());
 
-		List<Tournoi> listAfter = tournoiDao.listAll();
+		List<Tournoi> listAfter = serviceTournoi.listAll();
 		assertNotNull(listAfter);
 
 		assertEquals(listBefore.size(),listAfter.size()+1);

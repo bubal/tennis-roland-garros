@@ -12,7 +12,7 @@ public class TypeQualificationDAOTest extends DAOTest {
 
 		TypeQualification obj = new TypeQualification("Qualification Test");
 
-		TypeQualification newObj = typeQualificationDao.create(obj);
+		TypeQualification newObj = serviceTypeQualification.create(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj.getNom(),newObj.getNom());
@@ -21,7 +21,7 @@ public class TypeQualificationDAOTest extends DAOTest {
 	@Test
 	public void testFindById() throws Exception {
 
-		TypeQualification obj = typeQualificationDao.findById(1);
+		TypeQualification obj = serviceTypeQualification.findById(1);
 
 		assertNotNull(obj);
 		assertEquals("Wildcards",obj.getNom());
@@ -30,12 +30,12 @@ public class TypeQualificationDAOTest extends DAOTest {
 	@Test
 	public void testUpdate() throws Exception {
 
-		TypeQualification obj = typeQualificationDao.findById(2);
+		TypeQualification obj = serviceTypeQualification.findById(2);
 		assertNotNull(obj);
 
 		obj.setNom("Par jet de dés");
 
-		TypeQualification newObj = typeQualificationDao.update(obj);
+		TypeQualification newObj = serviceTypeQualification.update(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj,newObj);
@@ -44,12 +44,12 @@ public class TypeQualificationDAOTest extends DAOTest {
 	@Test
 	public void testDeleteById() throws Exception {
 
-		List<TypeQualification> listBefore = typeQualificationDao.listAll();
+		List<TypeQualification> listBefore = serviceTypeQualification.listAll();
 		assertNotNull(listBefore);
 
-		typeQualificationDao.deleteById(listBefore.size());
+		serviceTypeQualification.deleteById(listBefore.size());
 
-		List<TypeQualification> listAfter = typeQualificationDao.listAll();
+		List<TypeQualification> listAfter = serviceTypeQualification.listAll();
 		assertNotNull(listAfter);
 
 		assertEquals(listBefore.size(),listAfter.size()+1);

@@ -15,7 +15,7 @@ public class AccesDAOTest extends DAOTest {
 		Acces obj = new Acces("newUser");
 		obj.setPassword("newpass");
 
-		Acces newObj = accesDao.create(obj);
+		Acces newObj = serviceAcces.create(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj.getLogin(),newObj.getLogin());
@@ -24,7 +24,7 @@ public class AccesDAOTest extends DAOTest {
 	@Test
 	public void testFindById() throws Exception {
 
-		Acces obj = accesDao.findById(1);
+		Acces obj = serviceAcces.findById(1);
 
 		assertNotNull(obj);
 		assertEquals("admin",obj.getLogin());
@@ -33,12 +33,12 @@ public class AccesDAOTest extends DAOTest {
 	@Test
 	public void testUpdate() throws Exception {
 
-		Acces obj = accesDao.findById(2);
+		Acces obj = serviceAcces.findById(2);
 		assertNotNull(obj);
 
 		obj.setLogin("orga");
 
-		Acces newObj = accesDao.update(obj);
+		Acces newObj = serviceAcces.update(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj,newObj);
@@ -47,12 +47,12 @@ public class AccesDAOTest extends DAOTest {
 	@Test
 	public void testDeleteById() throws Exception {
 
-		List<Acces> listBefore = accesDao.listAll();
+		List<Acces> listBefore = serviceAcces.listAll();
 		assertNotNull(listBefore);
 
-		accesDao.deleteById(listBefore.size());
+		serviceAcces.deleteById(listBefore.size());
 
-		List<Acces> listAfter = accesDao.listAll();
+		List<Acces> listAfter = serviceAcces.listAll();
 		assertNotNull(listAfter);
 
 		assertEquals(listBefore.size(),listAfter.size()+1);
@@ -61,7 +61,7 @@ public class AccesDAOTest extends DAOTest {
 	@Test
 	public void testAccesLoginGoodPassBad() throws DAOException{
 		
-		Acces user = accesDao.findByLogin("admin");
+		Acces user = serviceAcces.findByLogin("admin");
 		assertTrue(user.isExist());
 		assertFalse(user.isAcces("wrong"));
 	}
@@ -69,14 +69,14 @@ public class AccesDAOTest extends DAOTest {
 	@Test
 	public void testAccesLoginGoodPassGood() throws DAOException{
 		
-		Acces user = accesDao.findByLogin("admin");
+		Acces user = serviceAcces.findByLogin("admin");
 		assertTrue(user.isExist());
 		assertTrue(user.isAcces("admin"));
 	}
 	
 	@Test(expected=DAOException.class)
 	public void testAccesLoginBad() throws DAOException{
-		accesDao.findByLogin("inconnu");
+		serviceAcces.findByLogin("inconnu");
 	}
 	
 	
