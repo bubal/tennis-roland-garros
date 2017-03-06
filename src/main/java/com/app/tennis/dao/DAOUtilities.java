@@ -16,25 +16,29 @@ import org.hibernate.jdbc.Work;
 
 public class DAOUtilities {
 
-	public static EntityManager entityManager;
+	public  static EntityManager        entityManager;
 	private static EntityManagerFactory entityManagerFactory;
-	private String persistenceUnitName;
+	private static String               persistenceUnitName;
 	
 	public DAOUtilities (String persistenceUnitName){
-		this.persistenceUnitName = persistenceUnitName;
+		
+		DAOUtilities.persistenceUnitName = persistenceUnitName;
 	}
 	
-	public EntityManager getEntityManager(){
+	
+	public static EntityManager getEntityManager(){
+		
 		if ( entityManager == null || !entityManager.isOpen() ){
-			entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
+			entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnitName);
 			entityManager = entityManagerFactory.createEntityManager();
 		}
 		return entityManager;
 	}
 	
+	
 	public void initDatabase(String nameDB){
 
-		Session session = this.getEntityManager().unwrap(Session.class);
+		Session session = DAOUtilities.getEntityManager().unwrap(Session.class);
 		session.doWork(new Work() {
 			
 			@Override
@@ -50,7 +54,7 @@ public class DAOUtilities {
 	}
 	
 	public void closeEntityManager(){
-		if (entityManager!=null){
+		if (entityManager!=null && entityManager.isOpen()){
 			entityManager.clear();
 			entityManager.close();
 			entityManagerFactory.close();
