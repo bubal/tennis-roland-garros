@@ -1,7 +1,6 @@
 package com.app.tennis.dao;
 
 
-import javax.persistence.EntityManager;
 import com.app.tennis.dao.impl.ObjDAOImpl;
 import com.app.tennis.exceptions.DAOException;
 
@@ -12,7 +11,7 @@ public class DAOFactory extends DAOUtilities{
 	}
 	
 	/* Accès aux DAO */	
-	public <T> DAO<T> getObjDAO(Class<T> typeClass) throws DAOException, Exception {
+	public <T> DAO<T> getObjDAO(Class<T> typeClass) throws DAOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		
 		/* On construit le nom de la classe DAO à partir du nom de l'objet et on la charge */
 		String strClass = ObjDAOImpl.class.getPackage().getName()+"."+typeClass.getSimpleName()+"DAOImpl";
@@ -20,7 +19,7 @@ public class DAOFactory extends DAOUtilities{
 		
 		/* On instancie la classe DAO */
 		@SuppressWarnings("unchecked")
-		DAO<T> objDAO = (DAO<T>) classeDAO.getDeclaredConstructor(EntityManager.class).newInstance(getEntityManager());
+		DAO<T> objDAO = (DAO<T>) classeDAO.newInstance();
 		return objDAO;
 	}
 	
