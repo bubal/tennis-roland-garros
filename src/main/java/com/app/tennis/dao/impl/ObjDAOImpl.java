@@ -11,7 +11,7 @@ import com.app.tennis.dao.DAOUtilities;
 
 public abstract class ObjDAOImpl<T> implements DAO<T> {
 	
-	public EntityManager connection = DAOUtilities.entityManager;
+	public EntityManager connection = DAOUtilities.getEntityManager();
 	abstract Class<T> getTypeClass();
 
 	@Override
