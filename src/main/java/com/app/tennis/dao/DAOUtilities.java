@@ -16,7 +16,7 @@ import org.hibernate.jdbc.Work;
 
 public class DAOUtilities {
 
-	private static EntityManager entityManager;
+	public static EntityManager entityManager;
 	private static EntityManagerFactory entityManagerFactory;
 	private String persistenceUnitName;
 	
