@@ -1,25 +1,22 @@
 package com.app.tennis.dao.impl;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import com.app.tennis.dao.AccesDAO;
 import com.app.tennis.data.Acces;
-import com.app.tennis.exceptions.DAOException;
 
 public class AccesDAOImpl extends ObjDAOImpl<Acces> implements AccesDAO {
 
 	@Override
-	public Acces findByLogin(String login) throws DAOException{
+	public Acces findByLogin(String login) {
 		
 		TypedQuery<Acces> query = connection.createNamedQuery("Acces.findObj", Acces.class).setParameter("login", login);
-			
 		Acces user = new Acces(login);
 		try {
 			user = query.getSingleResult();
 			user.setExist(true);
-		} catch (Exception e) {
-			throw new DAOException("Le login " + login +" n'existe pas !");
-		}
+		} catch (NoResultException e) {}
 		
 		return user;
 	}
