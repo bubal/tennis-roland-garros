@@ -25,8 +25,8 @@ import com.app.tennis.services.impl.TypeQualificationServiceImpl;
 
 public class DAOTest {
 
-	private static String NAME_PERSISTENCE = "tennis-test-db";
-	private static String NAME_DB = "/test-db.sql";
+	private static String NAME_PERSISTENCE = "tennis-db";
+	//private static String NAME_DB = "/test-db.sql";
 	
 	protected static DAOUtilities daoUtilities; 
 
@@ -46,7 +46,7 @@ public class DAOTest {
 
 		daoUtilities = new DAOUtilities( NAME_PERSISTENCE );
 
-		daoUtilities.initDatabase( NAME_DB );
+		//daoUtilities.initDatabase( NAME_DB );
 		
 		
 		serviceAcces                =	new AccesServiceImpl();
