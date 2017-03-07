@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.List;
 import org.junit.Test;
 import com.app.tennis.data.Acces;
-import com.app.tennis.exceptions.DAOException;
 
 public class AccesDAOTest extends DAOTest {
 	
@@ -59,24 +58,25 @@ public class AccesDAOTest extends DAOTest {
 	}
 	
 	@Test
-	public void testAccesLoginGoodPassBad() throws DAOException{
+	public void testAccesLoginNotFound() {
 		
-		Acces user = serviceAcces.findByLogin("admin");
-		assertTrue(user.isExist());
-		assertFalse(user.isAcces("wrong"));
+		assertFalse(serviceAcces.findByLogin("inconnu").isExist());
 	}
 	
 	@Test
-	public void testAccesLoginGoodPassGood() throws DAOException{
+	public void testAccesLoginGoodPassBad() {
 		
-		Acces user = serviceAcces.findByLogin("admin");
+		Acces user = serviceAcces.grantedAcces("admin", "wrong");
 		assertTrue(user.isExist());
-		assertTrue(user.isAcces("admin"));
+		assertFalse(user.isAcces());
 	}
 	
-	@Test(expected=DAOException.class)
-	public void testAccesLoginBad() throws DAOException{
-		serviceAcces.findByLogin("inconnu");
-	}
+	@Test
+	public void testAccesLoginGoodPassGood() {
+		
+		Acces user = serviceAcces.grantedAcces("admin", "admin");
+		assertTrue(user.isExist());
+		assertTrue(user.isAcces());
+	}	
 
 }
