@@ -27,36 +27,17 @@ public class ConnexionSubController {
 		HttpSession session = request.getSession();
 		
 		user = new Acces(login);
+		session.setAttribute( "sessionUser", null );
 
-		if (login == null){
-			session.setAttribute( "sessionUser", null );
-
-		} else {
-
-			try {
-				AccesService accesService = new AccesServiceImpl();
-				try {
-					user = accesService.findByLogin(login);
-				} catch (Exception e) {
-					session.setAttribute( "sessionUser", null );
-					user.setError("Le login "+ user.getLogin() + " n'existe pas!");
-					user.setExist(false);
-				}
-
-			} catch (Exception e) {
-				user.setError(e.getMessage());
-			}
-
-			if(user.isExist()){
-				if (user.isAcces(password)){
-					session.setAttribute( "sessionUser", user.getLogin() );
-					this.pageVue = "index.jsp";
-				} 
-				else{
-					session.setAttribute( "sessionUser", null );
-					user.setError("Mot de passe érroné !");
-				}
-			}
+		if (login != null){
+		
+			AccesService accesService = new AccesServiceImpl();
+			user = accesService.grantedAcces(login, password);
+			
+			if (user.isAcces()){
+				session.setAttribute( "sessionUser", user.getLogin() );
+				this.pageVue = "index.jsp";
+			} 
 		}
 	}
 
