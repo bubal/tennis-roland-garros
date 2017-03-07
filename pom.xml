@@ -33,6 +33,13 @@
             <artifactId>h2</artifactId>
             <version>1.4.192</version>
         </dependency>
+        
+        <dependency>
+		    <groupId>javax.ejb</groupId>
+		    <artifactId>javax.ejb-api</artifactId>
+		    <version>3.2</version>
+		</dependency>
+        
 		
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
