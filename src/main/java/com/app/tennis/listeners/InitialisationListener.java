@@ -23,7 +23,7 @@ import com.app.tennis.services.impl.TypeQualificationServiceImpl;
 public class InitialisationListener implements ServletContextListener {
 	
 	private String NAME_PERSISTENCE = "tennis-db";
-	private String NAME_DB = "/app-db.sql";
+	//private String NAME_DB = "/app-db.sql";
 	
 	List<Tournoi> listeTournois = null;
 	List<TypeQualification> listeQualifications = null;
@@ -44,7 +44,6 @@ public class InitialisationListener implements ServletContextListener {
 		if (daoUtilities==null){
 			
 			daoUtilities = new DAOUtilities( NAME_PERSISTENCE );
-			daoUtilities.initDatabase( NAME_DB );
 			application.setAttribute("daoFactory",daoUtilities);
 		}
 		
