@@ -1,15 +1,22 @@
 package com.app.tennis.services.impl;
 
-import com.app.tennis.dao.JoueurDAO;
-import com.app.tennis.dao.impl.JoueurDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.app.tennis.data.Joueur;
+import com.app.tennis.repository.JoueurRepository;
 import com.app.tennis.services.JoueurService;
 
 public class JoueurServiceImpl extends ObjServiceImpl<Joueur> implements JoueurService {
 
+	@Autowired
+	private JoueurRepository objRepository;
+	
 	@Override
-	public JoueurDAO getDAO() {
-		return new JoueurDAOImpl();
+	public JpaRepository<Joueur, Integer> getRepository() {
+		return this.objRepository;
 	}
+
+	
 
 }

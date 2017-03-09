@@ -1,16 +1,27 @@
 package com.app.tennis.services.impl;
 
-import com.app.tennis.dao.AccesDAO;
-import com.app.tennis.dao.impl.AccesDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.app.tennis.data.Acces;
+import com.app.tennis.repository.AccesRepository;
 import com.app.tennis.services.AccesService;
 
 public class AccesServiceImpl extends ObjServiceImpl<Acces> implements AccesService {
 
+	@Autowired
+	private AccesRepository objRepository;
+	
+	@Override
+	public JpaRepository<Acces, Integer> getRepository() {
+		return this.objRepository;
+	}
+	
+	
 	@Override
 	public Acces findByLogin(String login) {
 
-		return getDAO().findByLogin(login);
+		return ((AccesRepository) getRepository()).findByLogin(login);
 	}
 
 	@Override
@@ -28,10 +39,7 @@ public class AccesServiceImpl extends ObjServiceImpl<Acces> implements AccesServ
 
 		return user;
 	}
+
 	
-	@Override
-	public AccesDAO getDAO() {
-		return new AccesDAOImpl();
-	}
 
 }

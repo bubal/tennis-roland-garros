@@ -2,36 +2,37 @@ package com.app.tennis.services.impl;
 
 import java.util.List;
 
-import com.app.tennis.dao.DAO;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.app.tennis.services.ObjService;
 
 public abstract class ObjServiceImpl<T> implements ObjService<T> {
 
-	public abstract DAO<T> getDAO();
+	public abstract JpaRepository<T,Integer> getRepository();
 	
 	@Override
 	public T create(T obj) {
-		return getDAO().create(obj);
+		return getRepository().save(obj);
 	}
 
 	@Override
 	public void deleteById(int id) {
-		getDAO().deleteById(id);
+		getRepository().delete(id);
 	}
 
 	@Override
 	public T findById(int id) {
-		return getDAO().findById(id);
+		return getRepository().findOne(id);
 	}
 
 	@Override
 	public T update(T obj) {
-		return getDAO().update(obj);
+		return getRepository().save(obj);
 	}
 
 	@Override
 	public List<T> listAll() {
-		return getDAO().listAll();
+		return getRepository().findAll();
 	}
 
 }
