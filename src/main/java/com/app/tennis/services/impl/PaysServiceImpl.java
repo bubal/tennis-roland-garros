@@ -1,14 +1,18 @@
 package com.app.tennis.services.impl;
 
-import com.app.tennis.dao.PaysDAO;
-import com.app.tennis.dao.impl.PaysDAOImpl;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.app.tennis.data.Pays;
+import com.app.tennis.repository.PaysRepository;
 import com.app.tennis.services.PaysService;
 
 public class PaysServiceImpl extends ObjServiceImpl<Pays> implements PaysService {
 
+	private PaysRepository objRepository;
+	
 	@Override
-	public PaysDAO getDAO() {
-		return new PaysDAOImpl();
+	public JpaRepository<Pays, Integer> getRepository() {
+		return this.objRepository;
 	}
+
 }

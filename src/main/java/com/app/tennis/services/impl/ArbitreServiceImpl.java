@@ -1,14 +1,21 @@
 package com.app.tennis.services.impl;
 
-import com.app.tennis.dao.ArbitreDAO;
-import com.app.tennis.dao.impl.ArbitreDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.app.tennis.data.Arbitre;
+import com.app.tennis.repository.ArbitreRepository;
 import com.app.tennis.services.ArbitreService;
 
 public class ArbitreServiceImpl extends ObjServiceImpl<Arbitre> implements ArbitreService {
 
+	@Autowired
+	private ArbitreRepository objRepository;
+	
 	@Override
-	public ArbitreDAO getDAO() {
-		return new ArbitreDAOImpl();
+	public JpaRepository<Arbitre, Integer> getRepository() {
+		return this.objRepository;
 	}
+
+	
 }
