@@ -50,7 +50,7 @@
                 <property name="database" value="POSTGRESQL" />
             </bean>
         </property>
-        <property name="persistenceUnitName" value="dmsPersistenceUnit"/>
+        <property name="persistenceUnitName" value="tennis-db"/>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.archive.autodetection">class, hbm</prop>
