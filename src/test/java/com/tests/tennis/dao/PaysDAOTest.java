@@ -3,11 +3,17 @@ package com.tests.tennis.dao;
 import static org.junit.Assert.*;
 import java.util.List;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.app.tennis.data.Pays;
+import com.app.tennis.services.PaysService;
 
 
-public class PaysDAOTest extends DAOTest {
+public class PaysDAOTest extends GenericTest{
 
+	@Autowired
+	private PaysService servicePays;
+	
 	@Test
 	public void testCreate() throws Exception {
 
