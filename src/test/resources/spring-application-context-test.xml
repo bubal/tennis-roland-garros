@@ -29,13 +29,14 @@
                       entity-manager-factory-ref="entityManagerFactory"/>
 
 
-
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${database.driver.name}"/>
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
     </bean>
+    
+    <context:property-placeholder location="classpath:test.properties"/>
 
     <!-- JPA transaction configuration -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
@@ -62,7 +63,5 @@
         </property>
     </bean>
 
-    <context:property-placeholder
-            ignore-resource-not-found="true" ignore-unresolvable="true"
-            location="classpath:test.properties"/>
+    
 </beans>
