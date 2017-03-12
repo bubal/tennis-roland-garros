@@ -15,6 +15,11 @@ public class PaysDAOTest extends GenericTest{
 	private PaysService servicePays;
 	
 	@Test
+	public void autowired() {
+		assertNotNull(servicePays);
+	}
+	
+	@Test
 	public void testCreate() throws Exception {
 
 		Pays obj = new Pays("Pologne");
