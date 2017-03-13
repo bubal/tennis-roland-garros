@@ -15,13 +15,12 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.app.tennis.*"/>
 
-    <tx:annotation-driven/>
-
     <!-- Enable AOP -->
     <aop:aspectj-autoproxy />
 
     <!-- Allow the use of @Transactional annotation -->
     <tx:annotation-driven/>
+
 
     <!-- Setup Spring data repositories. -->
     <jpa:repositories base-package="com.app.tennis.repository"
@@ -29,15 +28,12 @@
                       entity-manager-factory-ref="entityManagerFactory"/>
 
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${database.driver.name}"/>
-        <property name="url" value="${database.url}"/>
-        <property name="username" value="${database.username}"/>
-        <property name="password" value="${database.password}"/>
-    </bean>
+	 <!-- Datasource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:test;INIT=RUNSCRIPT FROM 'classpath:test-db.sql'"/>
+    </bean> 
     
-    <context:property-placeholder location="classpath:test.properties"/>
-
     <!-- JPA transaction configuration -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
@@ -46,22 +42,15 @@
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-              
-        </property>
         <property name="persistenceUnitName" value="tennis-db"/>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.archive.autodetection">class, hbm</prop>
-                <prop key="hibernate.query.substitutions">true '1', false '0'</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.format_sql">false</prop>
                 <prop key="hibernate.hbm2ddl.auto">validate</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
             </props>
         </property>
     </bean>
-
     
 </beans>
