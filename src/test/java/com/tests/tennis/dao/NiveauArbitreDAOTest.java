@@ -3,9 +3,16 @@ package com.tests.tennis.dao;
 import static org.junit.Assert.*;
 import java.util.List;
 import org.junit.Test;
-import com.app.tennis.data.NiveauArbitre;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class NiveauArbitreDAOTest extends DAOTest {
+import com.app.tennis.data.NiveauArbitre;
+import com.app.tennis.services.NiveauArbitreService;
+
+public class NiveauArbitreDAOTest extends GenericTest {
+	
+	@Autowired
+	private NiveauArbitreService serviceNiveauArbitre;
+	
 
 	@Test
 	public void testCreate() throws Exception {

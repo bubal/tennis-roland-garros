@@ -3,10 +3,16 @@ package com.tests.tennis.dao;
 import static org.junit.Assert.*;
 import java.util.List;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.app.tennis.data.TypeQualification;
+import com.app.tennis.services.TypeQualificationService;
 
-public class TypeQualificationDAOTest extends DAOTest {
+public class TypeQualificationDAOTest extends GenericTest {
 
+	@Autowired
+	private TypeQualificationService serviceTypeQualification;
+	
 	@Test
 	public void testCreate() throws Exception {
 

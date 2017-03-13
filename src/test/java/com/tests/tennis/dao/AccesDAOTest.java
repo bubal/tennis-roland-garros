@@ -4,9 +4,15 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 import org.junit.Test;
-import com.app.tennis.data.Acces;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class AccesDAOTest extends DAOTest {
+import com.app.tennis.data.Acces;
+import com.app.tennis.services.AccesService;
+
+public class AccesDAOTest extends GenericTest {
+	
+	@Autowired 
+	private AccesService serviceAcces;
 	
 	@Test
 	public void testCreate() throws Exception {
