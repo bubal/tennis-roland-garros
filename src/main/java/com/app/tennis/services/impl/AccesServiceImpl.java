@@ -2,11 +2,13 @@ package com.app.tennis.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
 import com.app.tennis.data.Acces;
 import com.app.tennis.repository.AccesRepository;
 import com.app.tennis.services.AccesService;
 
+@Service
 public class AccesServiceImpl extends ObjServiceImpl<Acces> implements AccesService {
 
 	@Autowired
