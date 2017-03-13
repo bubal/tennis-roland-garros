@@ -3,9 +3,15 @@ package com.tests.tennis.dao;
 import static org.junit.Assert.*;
 import java.util.List;
 import org.junit.Test;
-import com.app.tennis.data.Tournoi;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class TournoiDAOTest extends DAOTest {
+import com.app.tennis.data.Tournoi;
+import com.app.tennis.services.TournoiService;
+
+public class TournoiDAOTest extends GenericTest {
+	
+	@Autowired
+	private TournoiService serviceTournoi;
 
 	@Test
 	public void testCreate() throws Exception {
