@@ -1,7 +1,6 @@
 package com.app.tennis.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.app.tennis.data.Acces;
@@ -15,21 +14,25 @@ public class AccesServiceImpl extends ObjServiceImpl<Acces> implements AccesServ
 	private AccesRepository objRepository;
 	
 	@Override
-	public JpaRepository<Acces, Integer> getRepository() {
+	public AccesRepository getRepository() {
 		return this.objRepository;
 	}
 	
-	
 	@Override
 	public Acces findByLogin(String login) {
-
-		return ((AccesRepository) getRepository()).findByLogin(login);
+		Acces user = new Acces(login);
+		Acces userFind = objRepository.findByLogin(login);
+		if (userFind != null){
+			user = userFind;
+			user.setExist(true);
+		}
+		return user;
 	}
-
+	
 	@Override
 	public Acces grantedAcces(String login, String password) {
 		
-		Acces user = findByLogin(login);
+		Acces user = this.findByLogin(login);
 		
 		if (!user.isExist()){
 			user.setError("Le login "+ user.getLogin() + " n'existe pas!");
@@ -41,7 +44,5 @@ public class AccesServiceImpl extends ObjServiceImpl<Acces> implements AccesServ
 
 		return user;
 	}
-
 	
-
 }
