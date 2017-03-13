@@ -1,5 +1,6 @@
 package com.app.tennis.services.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import com.app.tennis.services.PaysService;
 @Service
 public class PaysServiceImpl extends ObjServiceImpl<Pays> implements PaysService {
 
+	@Autowired
 	private PaysRepository objRepository;
 	
 	@Override
