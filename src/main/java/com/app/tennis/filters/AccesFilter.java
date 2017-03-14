@@ -24,7 +24,7 @@ public class AccesFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-		String pageConnection = "/ControlServlet?task=connexion";
+		String pageConnection = "/connexion";
 		HttpServletRequest rq = (HttpServletRequest) request;
         
         String url = rq.getRequestURI().substring(rq.getContextPath().length());
