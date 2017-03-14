@@ -3,12 +3,16 @@ package com.app.tennis.servlets;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.app.tennis.data.Acces;
 import com.app.tennis.services.AccesService;
-import com.app.tennis.services.impl.AccesServiceImpl;
 
 public class ConnexionSubController {
 
+	@Autowired
+	private AccesService accesService;
+	
 	private HttpServletRequest request;
 	String pageVue;
 	Acces user;
@@ -31,7 +35,7 @@ public class ConnexionSubController {
 
 		if (login != null){
 		
-			AccesService accesService = new AccesServiceImpl();
+			
 			user = accesService.grantedAcces(login, password);
 			
 			if (user.isAcces()){

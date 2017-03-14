@@ -4,20 +4,25 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.app.tennis.data.Joueur;
 import com.app.tennis.exceptions.DAOException;
 import com.app.tennis.services.JoueurService;
 import com.app.tennis.services.PaysService;
 import com.app.tennis.services.TypeQualificationService;
 import com.app.tennis.services.impl.JoueurServiceImpl;
-import com.app.tennis.services.impl.PaysServiceImpl;
-import com.app.tennis.services.impl.TypeQualificationServiceImpl;
 import com.google.gson.Gson;
 
 public class JoueurSubController {
 	
-	
+	@Autowired
 	private JoueurService joueurService;
+	@Autowired
+	private PaysService paysService ;
+	@Autowired
+	private TypeQualificationService qualificationService;
+	
 	private Joueur joueur;
 	private List<Joueur> listeJoueurs;
 	private String json;
@@ -55,8 +60,7 @@ public class JoueurSubController {
 	private void create(HttpServletRequest request) throws Exception {
 		
 		Joueur newjoueur = new Joueur();
-		PaysService paysService = new PaysServiceImpl();
-		TypeQualificationService qualificationService= new TypeQualificationServiceImpl();
+		
 		
 		int id_pays = Integer.parseInt(request.getParameter("pays"));
 		int id_qualification = Integer.parseInt(request.getParameter("qualification"));
