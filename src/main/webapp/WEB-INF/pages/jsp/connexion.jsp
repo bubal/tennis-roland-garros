@@ -14,7 +14,7 @@
 		<div class="container">
 			<h1 class="invisible">Bienvenue dans l'interface de connexion</h1>
 			
-			<form method="post" action="<c:url value='/ControlServlet' />" class="form-signin">
+			<form method="post" action="<c:url value='/connexion' />" class="form-signin">
         		<h2 class="form-signin-heading">Connexion</h2>
         		<input type="hidden" name="task" value="connexion">
         		<label for="login" class="sr-only">Login</label>
