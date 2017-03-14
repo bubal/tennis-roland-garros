@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.app.tennis.data.Arbitre;
 import com.app.tennis.data.Court;
 import com.app.tennis.data.Joueur;
@@ -16,21 +18,21 @@ import com.app.tennis.services.CourtService;
 import com.app.tennis.services.JoueurService;
 import com.app.tennis.services.MatchService;
 import com.app.tennis.services.TournoiService;
-import com.app.tennis.services.impl.ArbitreServiceImpl;
-import com.app.tennis.services.impl.CourtServiceImpl;
-import com.app.tennis.services.impl.JoueurServiceImpl;
-import com.app.tennis.services.impl.MatchServiceImpl;
-import com.app.tennis.services.impl.TournoiServiceImpl;
 import com.google.gson.Gson;
 
 public class MatchSubController {
 	
-	
+	@Autowired
 	private MatchService matchService;
+	@Autowired
 	private JoueurService joueurService;
+	@Autowired
 	private CourtService courtService;
+	@Autowired
 	private ArbitreService arbitreService;
+	@Autowired
 	private TournoiService tournoiService;
+	
 	private Match match;
 	private List<Match> listeMatchs;
 	private List<Court> listeCourts;
@@ -41,13 +43,6 @@ public class MatchSubController {
 	
 	public MatchSubController(HttpServletRequest request) throws Exception {
 		super();
-
-		/* Initialisation des services */
-		matchService = new MatchServiceImpl();
-		joueurService = new JoueurServiceImpl();
-		courtService = new CourtServiceImpl();
-		arbitreService = new ArbitreServiceImpl();
-		tournoiService = new TournoiServiceImpl();
 		
 		listeCourts = courtService.listAll();
 		listeJoueurs = joueurService.listAll();

@@ -3,34 +3,32 @@ package com.app.tennis.servlets;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.app.tennis.dao.DAOUtilities;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.app.tennis.data.Arbitre;
 import com.app.tennis.exceptions.DAOException;
 import com.app.tennis.services.ArbitreService;
 import com.app.tennis.services.NiveauArbitreService;
 import com.app.tennis.services.PaysService;
-import com.app.tennis.services.impl.ArbitreServiceImpl;
-import com.app.tennis.services.impl.NiveauArbitreServiceImpl;
-import com.app.tennis.services.impl.PaysServiceImpl;
 import com.google.gson.Gson;
 
 public class ArbitreSubController {
 	
+	@Autowired
 	private ArbitreService arbitreService;
-	DAOUtilities daoUtilities;
+	@Autowired
+	private PaysService paysService;
+	@Autowired
+	private NiveauArbitreService niveauService;
+	
 	private Arbitre arbitre;
 	private List<Arbitre> listeArbitres;
 	private String json;
 
 	
 	public ArbitreSubController(HttpServletRequest request) throws Exception {
-		
-		ServletContext application = request.getServletContext();
-		this.daoUtilities = (DAOUtilities) application.getAttribute("daoUtilities");
-		arbitreService = new ArbitreServiceImpl();
 		
 		String strAction = request.getParameter("action");
 		
@@ -65,8 +63,7 @@ public class ArbitreSubController {
 	private void create(HttpServletRequest request) throws Exception {
 		
 		Arbitre newarbitre = new Arbitre();
-		PaysService paysService = new PaysServiceImpl();
-		NiveauArbitreService niveauService= new NiveauArbitreServiceImpl();
+		
 		
 		int id_pays = Integer.parseInt(request.getParameter("pays"));
 		int id_niveau = Integer.parseInt(request.getParameter("niveau"));

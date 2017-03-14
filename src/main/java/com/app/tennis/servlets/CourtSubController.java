@@ -2,30 +2,26 @@ package com.app.tennis.servlets;
 
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.app.tennis.dao.DAOUtilities;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.app.tennis.data.Court;
 import com.app.tennis.exceptions.DAOException;
 import com.app.tennis.services.CourtService;
-import com.app.tennis.services.impl.CourtServiceImpl;
 import com.google.gson.Gson;
 
 public class CourtSubController {
 	
+	@Autowired
 	private CourtService courtService;
-	DAOUtilities daoUtilities;
+	
 	private Court court;
 	private List<Court> listeCourts;
 	private String json;
 
 	
 	public CourtSubController(HttpServletRequest request) throws Exception {
-		
-		ServletContext application = request.getServletContext();
-		this.daoUtilities = (DAOUtilities) application.getAttribute("daoUtilities");
-		courtService = new CourtServiceImpl();
 		
 		String strAction = request.getParameter("action");
 		
