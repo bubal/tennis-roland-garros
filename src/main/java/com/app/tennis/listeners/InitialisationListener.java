@@ -5,9 +5,10 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.app.tennis.data.NiveauArbitre;
 import com.app.tennis.data.Pays;
 import com.app.tennis.data.Tournoi;
@@ -17,15 +18,16 @@ import com.app.tennis.services.PaysService;
 import com.app.tennis.services.TournoiService;
 import com.app.tennis.services.TypeQualificationService;
 
+@WebListener
 public class InitialisationListener implements ServletContextListener {
 
-	@Autowired
+	/* On ne peut pas utiliser Autowired dans le listener */
+	/* On charge le contexte d'application de spring */
+	private static ApplicationContext   applicationContext  = new ClassPathXmlApplicationContext("classpath:spring-application-context.xml");
+
 	private PaysService paysService;
-	@Autowired
 	private TournoiService tournoiService;
-	@Autowired
 	private NiveauArbitreService niveauArbitreService;
-	@Autowired
 	private TypeQualificationService typeQualificationService;
 
 	List<Tournoi> listeTournois = null;
@@ -35,6 +37,14 @@ public class InitialisationListener implements ServletContextListener {
 
 
 	public InitialisationListener() {
+		
+		/* On récupère les beans depuis le contexte d'application de spring */
+		/* Equivalent à Autowired */
+		
+		paysService              = applicationContext.getBean(PaysService.class);
+		tournoiService           = applicationContext.getBean(TournoiService.class);
+		niveauArbitreService     = applicationContext.getBean(NiveauArbitreService.class);
+		typeQualificationService = applicationContext.getBean(TypeQualificationService.class);
 
 	}
 
