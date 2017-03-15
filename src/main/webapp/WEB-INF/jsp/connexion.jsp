@@ -16,7 +16,6 @@
 			
 			<form method="post" action="<c:url value='/connexion' />" class="form-signin">
         		<h2 class="form-signin-heading">Connexion</h2>
-        		<input type="hidden" name="task" value="connexion">
         		<label for="login" class="sr-only">Login</label>
         		<input type="text" id="login" name="login" class="form-control" placeholder="Login" required autofocus>
         		<label for="password" class="sr-only">Mot de passe</label>
