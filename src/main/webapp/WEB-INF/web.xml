@@ -2,11 +2,8 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>RolandGarros</display-name>
 
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:spring-application-context.xml</param-value>
-  </context-param>
   
+  <!-- Filtre pour gérer les accès à l'appli -->
   <filter>
     <filter-name>AccesFilter</filter-name>
     <filter-class>com.app.tennis.filters.AccesFilter</filter-class>
@@ -16,6 +13,13 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping> 
  
+ <!-- Fichier de configuration de spring -->
+ <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring-application-context.xml</param-value>
+  </context-param>
+ 
+ <!-- Charge la configuration spring au démarrage de l'appli -->
   <listener>
     <listener-class>
             org.springframework.web.context.ContextLoaderListener
@@ -63,6 +67,7 @@
     <url-pattern>/AjaxServlet</url-pattern>
   </servlet-mapping> -->
   
+  <!-- Servlet pour gérer les inclusions de jquery et bootstrap -->
   <servlet>
     <servlet-name>WebjarsServlet</servlet-name>
     <servlet-class>org.webjars.servlet.WebjarsServlet</servlet-class>
@@ -98,7 +103,7 @@
     </servlet-mapping>
   
   
-  
+  <!-- Accès aux fichiers css et js -->
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>/css/*</url-pattern>
@@ -108,11 +113,13 @@
     <url-pattern>/js/*</url-pattern>
   </servlet-mapping>
   
-  
+  <!-- Inclusion systématique des tags sur toutes les pages jsp -->
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
       <include-prelude>include/tags.jsp</include-prelude>
     </jsp-property-group>
   </jsp-config>
+  
+  
 </web-app>
