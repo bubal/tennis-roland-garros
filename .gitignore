@@ -18,9 +18,5 @@ hs_err_pid*
 .settings
 .project
 .classpath
-<<<<<<< HEAD
 /.metadata
 .springBeans
-=======
-.springBeans
->>>>>>> branch 'master' of https://github.com/bubal/tennis-roland-garros.git
