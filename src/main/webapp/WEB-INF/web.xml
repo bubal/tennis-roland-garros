@@ -4,14 +4,14 @@
 
   
   <!-- Filtre pour gérer les accès à l'appli -->
-  <filter>
+  <!-- <filter>
     <filter-name>AccesFilter</filter-name>
     <filter-class>com.app.tennis.filters.AccesFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>AccesFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping> 
+  </filter-mapping>  -->
  
  <!-- Fichier de configuration de spring -->
  <context-param>
