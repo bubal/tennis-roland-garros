@@ -22,6 +22,8 @@
 		<jackson.version>2.5.1</jackson.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<mysql.version>5.1.38</mysql.version>
+		<slf4j.version>1.7.9</slf4j.version>
+		<json.path.version>0.8.1</json.path.version>
 	</properties>
 
 	<dependencies>
@@ -111,6 +113,31 @@
 			<version>1.6.0.RELEASE</version>
 		</dependency>
 
+		<!-- Dépendances du Logeur -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- dépendances pour jackson mapper -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
@@ -133,6 +160,19 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<!-- Jsonpath : pour tester les flux JSON du Web service -->
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>${json.path.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path-assert</artifactId>
+			<version>${json.path.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 
