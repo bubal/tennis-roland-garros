@@ -32,7 +32,7 @@ public class Joueur implements Serializable{
 	private String prenom;
 	private char sexe;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_pays")
 	private Pays pays;
 
@@ -40,7 +40,7 @@ public class Joueur implements Serializable{
 	private int classement;
 
 	@NotNull
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_qualification")
 	private TypeQualification qualification;
 
