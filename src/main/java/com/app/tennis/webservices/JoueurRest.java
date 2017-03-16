@@ -20,12 +20,12 @@ public class JoueurRest {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Joueur> getJoueurs(){
-		return serviceJoueur.listAll();
+		return serviceJoueur.listAllFetchForRest();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public Joueur getJoueur(@PathVariable int id){
-		return serviceJoueur.findById(id);
+		return serviceJoueur.findByIdFetchForRest(id);
 	}
 
 
