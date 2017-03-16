@@ -14,21 +14,21 @@ import com.app.tennis.services.JoueurService;
 public class JoueurServiceImpl extends ObjServiceImpl<Joueur> implements JoueurService {
 
 	@Autowired
-	private JoueurRepository joueurjRepository;
+	private JoueurRepository objRepository;
 	
 	@Override
 	public JpaRepository<Joueur, Integer> getRepository() {
-		return this.joueurjRepository;
+		return this.objRepository;
 	}
 
 	@Override
 	public Joueur findByIdFetchForRest(int id) {
-		return joueurjRepository.findByIdFetchForRest(id);
+		return objRepository.findByIdFetchForRest(id);
 	}
 
 	@Override
 	public List<Joueur> listAllFetchForRest() {
-		return joueurjRepository.listAllFetchForRest();
+		return objRepository.listAllFetchForRest();
 	}
 
 	
