@@ -23,7 +23,7 @@ public class ConnexionController {
 	
 	/* Affichage de la page de login */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView connectPage(){
+	public ModelAndView page(){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("connexion");
 		return mav;
@@ -47,4 +47,11 @@ public class ConnexionController {
 		} 
 		return mav;
 	}
+	
+//	public void deconnecting() {
+//	HttpSession session = request.getSession();
+//	session.setAttribute( "sessionUser", null );
+//	this.pageVue = "deconnexion.jsp";
+//}
+	
 }

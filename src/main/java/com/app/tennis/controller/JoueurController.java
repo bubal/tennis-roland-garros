@@ -27,7 +27,7 @@ public class JoueurController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView joueurPage(){
+	public ModelAndView page(){
 		ModelAndView mav = new ModelAndView();
 		List<Joueur> joueurs = joueurService.listAll();
 		mav.addObject("listingJoueurs", joueurs);
@@ -36,7 +36,7 @@ public class JoueurController {
 	}
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
-	public ModelAndView joueurCreate( 
+	public ModelAndView create( 
 			@RequestParam("nom") String nom,
 			@RequestParam("prenom") String prenom,
 			@RequestParam("sexe") String sexe,
@@ -61,12 +61,12 @@ public class JoueurController {
 				typeQualificationService.findById(id_qualification));
 		
 		joueur = joueurService.create(joueur);
-		return joueurPage();
+		return page();
 	}
 	
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public ModelAndView joueurDelete(@RequestParam("id") int id_joueur){
-		joueurService.deleteById(id_joueur);
-		return joueurPage();
+	public ModelAndView delete(@RequestParam("id") int id){
+		joueurService.deleteById(id);
+		return page();
 	}
 }
