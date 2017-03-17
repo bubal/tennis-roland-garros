@@ -68,7 +68,7 @@
 							
 						</div>
 						<div class="form-group">
-							<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer le joueur" onclick="javascript:return ajouterJoueur('<c:url value="/AjaxServlet" />',{'nom':'onlyText','prenom':'onlyText', 'classement':'number'},'msg','TabDyn');" />
+							<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer le joueur" onclick="javascript:return ajouterJoueur('<c:url value="/api/joueurs" />',{'nom':'onlyText','prenom':'onlyText', 'classement':'number'},'msg','TabDyn');" />
 						</div>
 						<div class="alert" id="msg">${errorMsg}</div>
 					</form>
@@ -93,7 +93,7 @@
 		             		<td>${joueur.nom}</td>
 		             		<td>${joueur.prenom}</td>
 		             		<td><c:choose><c:when test="${joueur.classement == 0}">Aucun</c:when><c:otherwise>${joueur.classement}</c:otherwise></c:choose></td>
-		             		<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delJoueur('<c:url value='/AjaxServlet' />', '${joueur.id}_TabDyn','msg');">Delete</button></td>
+		             		<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delJoueur('<c:url value='/api/joueurs' />', '${joueur.id}_TabDyn','msg');">Delete</button></td>
 		             	</tr>
 					</c:forEach>
 	              	</tbody>
