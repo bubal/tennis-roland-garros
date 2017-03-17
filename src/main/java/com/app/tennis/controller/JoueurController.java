@@ -40,13 +40,11 @@ public class JoueurController {
 			@RequestParam("nom") String nom,
 			@RequestParam("prenom") String prenom,
 			@RequestParam("sexe") String sexe,
-			@RequestParam("pays") String strIdPays,
-			@RequestParam("qualification") String strIdQualification,
+			@RequestParam("pays") int id_pays,
+			@RequestParam("qualification") int id_qualification,
 			@RequestParam("classement") String strClassement)
 	{
 		
-		int id_pays = Integer.parseInt(strIdPays);
-		int id_qualification = Integer.parseInt(strIdQualification);
 		int classement =0;
 		try {
 			classement = Integer.parseInt(strClassement);

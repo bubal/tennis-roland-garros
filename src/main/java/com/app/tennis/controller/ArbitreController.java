@@ -40,12 +40,9 @@ public class ArbitreController {
 			@RequestParam("nom") String nom,
 			@RequestParam("prenom") String prenom,
 			@RequestParam("sexe") String sexe,
-			@RequestParam("pays") String strIdPays,
-			@RequestParam("niveau") String strIdNiveau)
+			@RequestParam("pays") int id_pays,
+			@RequestParam("niveau") int id_niveau)
 	{
-		
-		int id_pays = Integer.parseInt(strIdPays);
-		int id_niveau = Integer.parseInt(strIdNiveau);
 		
 		Arbitre arbitre = new Arbitre(
 				nom,
