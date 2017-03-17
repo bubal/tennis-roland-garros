@@ -1,5 +1,7 @@
 package com.app.tennis.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,16 @@ public class MatchServiceImpl extends ObjServiceImpl<Match> implements MatchServ
 	@Override
 	public JpaRepository<Match, Integer> getRepository() {
 		return this.objRepository;
+	}
+
+	@Override
+	public Match findByIdFetchForRest(int id) {
+		return objRepository.findByIdFetchForRest(id);
+	}
+
+	@Override
+	public List<Match> listAllFetchForRest() {
+		return objRepository.listAllFetchForRest();
 	}
 
 	
