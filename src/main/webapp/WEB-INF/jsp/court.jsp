@@ -24,10 +24,7 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-3 form-background">
 					<h2 class="text-center">Formulaire</h2>
-					<form method="post" action="<c:url value='/ControlServlet' />" class="form-horizontal">
-					
-						<input type="hidden" name="task" value="court">
-						<input type="hidden" name="action" value="create">
+					<form method="post" action="<c:url value='/courts/create' />" class="form-horizontal">
 						
 						<div class="form-group">
 								<label for="nom">Nom :</label>

@@ -26,11 +26,8 @@
 			<div class="col-md-3 form-background">
 				<h2 class="text-center">Formulaire</h2>
 
-				<form method="post" action="<c:url value='/ControlServlet' />"
+				<form method="post" action="<c:url value='/matchs/create' />"
 					class="form-horizontal">
-					
-					<input type="hidden" name="task" value="match">
-					<input type="hidden" name="action" value="create">
 					
 					<div class="form-group">
 						<label for="tournoi">Tournoi :</label> 
