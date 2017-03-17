@@ -46,27 +46,6 @@
     </servlet-mapping>
 
   
- <!--  <servlet>
-    <servlet-name>ControlServlet</servlet-name>
-    <servlet-class>com.app.tennis.servlets.ControlServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ControlServlet</servlet-name>
-    <url-pattern>/AppliTennis</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ControlServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>AjaxServlet</servlet-name>
-    <servlet-class>com.app.tennis.servlets.AjaxServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AjaxServlet</servlet-name>
-    <url-pattern>/AjaxServlet</url-pattern>
-  </servlet-mapping> -->
-  
   <!-- Servlet pour gérer les inclusions de jquery et bootstrap -->
   <servlet>
     <servlet-name>WebjarsServlet</servlet-name>
