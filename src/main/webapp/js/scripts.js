@@ -88,18 +88,35 @@ function control_champs(champs, idError){
 
 /* Fonctions ajax pour les arbitres */
 
+/* Lister les arbitres */
+function listeArbitres(url_json,idDiv){
+	var listeDyn =[];
+	$.ajax({
+			url:url_json,
+			type: "GET",
+			dataType: "json",
+		   	success:function(resultat){
+		   		$.each( resultat, function( indice, valeurs ) {
+		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delArbitre('"+ url_json +"', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
+		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.nom + "</td><td>" + valeurs.prenom + "</td><td>" + valeurs.niveau.nom +"</td><td>" + buttons );
+		   		});
+		   		$("#"+idDiv).html(listeDyn.join(""));
+		   	},
+		   	error:function(resultat){
+		   		$("#"+idDiv).html("Impossible de lister les arbitres !");
+		   	}
+		});
+}
+
 /* Ajouter un arbitre */
 function ajouterArbitre(url_json,champs,idError,idDiv){
 
 	if (control_champs(champs, idError)){
-		
 		$.ajax({
-		   	url:url_json,
+			url: url_json,
+		   	type: "POST",
 		   	dataType: "json",
 		   	data : {
-		   		ajax : "yes",
-		   		action : "create",
-		   		task : "arbitre",
 		   		nom : $("#nom").val(),
 		   		prenom : $("#prenom").val(),
 		   		pays : $("#pays").val(),
@@ -111,78 +128,67 @@ function ajouterArbitre(url_json,champs,idError,idDiv){
 		   		listArbitre(url_json,idDiv)
 		   	},
 		   	error:function(resultat){
-		   		$("#"+idDiv).html("Impossible de récupérer la page!");
+		   		$("#"+idError).html("Impossible d'ajouter l'arbitre !");
+		   	},
+		   	complete:function(){
+		   		listeArbitres(url_json,idDiv);
 		   	}
 		});
 	}
 	return false;
 }
 
-/* Effacer un arbitre */
-function delArbitre(url_json,asID,idError){
+/* Effacer arbitre */
+function delArbitre(url_json_base,asID,idError){
 	
 	var index = asID.substring(0,asID.indexOf("_"));
 	var idDiv = asID.substring(asID.indexOf("_")+1);
+	url_json = url_json_base + "/" + index;
 	$.ajax({
-	   	url:url_json,
+	   	url: url_json,
+		type: 'DELETE',
 	   	dataType: "json",
-	   	data : {
-	   		ajax : "yes",
-	   		action : "delete",
-	   		task : "arbitre",
-	   		id : index,
-	   		},
-	   	success:function(resultat){
-	   		$("#"+idError).html("Arbitre supprimé");
-	   		listArbitre(url_json,idDiv)
-	   	},
-	   	error:function(resultat){
-	   		$("#"+idDiv).html("Impossible de récupérer la page!");
+	   	complete:function(){
+	   		listeArbitres(url_json_base,idDiv);
 	   	}
 	});
 }
 
-/* Lister les arbitres */
-function listArbitre(url_json,idDiv){
+
+/* Fonctions Ajax pour les joueurs */
+
+/* Lister les joueurs */
+function listeJoueurs(url_json,idDiv){
 	var listeDyn =[];
+	var classement="";
 	$.ajax({
 		   	url:url_json,
+			type: "GET",
 		   	dataType: "json",
-		   	data : {
-		   		ajax : "yes",
-		   		action : "liste",
-		   		task : "arbitre"
-		   		},
 		   	success:function(resultat){
 		   		$.each( resultat, function( indice, valeurs ) {
-		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delArbitre('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
-		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.nom + "</td><td>" + valeurs.prenom + "</td><td>" + valeurs.niveau.nom +"</td><td>" + buttons );
+		   			classement = valeurs.classement;
+		   			if (classement == 0){classement="Aucun";}
+		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delJoueur('"+ url_json +"', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
+		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.nom + "</td><td>" + valeurs.prenom + "</td><td>" + classement +"</td><td>" + buttons );
 		   		});
 		   		$("#"+idDiv).html(listeDyn.join(""));
 		   	},
 		   	error:function(resultat){
-		   		$("#"+idDiv).html("Impossible de récupérer la page!");
+		   		$("#"+idDiv).html("Impossible de lister les joueurs !");
 		   	}
 		});
 }
-
-
-
-/* Fonctions ajax pour les joueurs */
-
 
 /* Ajouter un joueur */
 function ajouterJoueur(url_json,champs,idError,idDiv){
 
 	if (control_champs(champs, idError)){
-		
 		$.ajax({
-		   	url:url_json,
+		   	url: url_json,
+		   	type: "POST",
 		   	dataType: "json",
 		   	data : {
-		   		ajax : "yes",
-		   		action : "create",
-		   		task : "joueur",
 		   		nom : $("#nom").val(),
 		   		prenom : $("#prenom").val(),
 		   		pays : $("#pays").val(),
@@ -190,220 +196,111 @@ function ajouterJoueur(url_json,champs,idError,idDiv){
 		   		classement : $("#classement").val(),
 		   		qualification : $("#qualification").val()
 		   		},
-		   	success:function(resultat){
+		   	success:function(){
 		   		$("#"+idError).html("Joueur Ajouté");
-		   		listJoueur(url_json,idDiv)
 		   	},
-		   	error:function(resultat){
-		   		$("#"+idDiv).html("Impossible de récupérer la page!");
+		   	error:function(){
+		   		$("#"+idError).html("Impossible d'ajouter le joueur !");
+		   	},
+		   	complete:function(){
+		   		listeJoueurs(url_json,idDiv);
 		   	}
 		});
 	}
 	return false;
 }
 
-
-/* Effacer un joueur */
-function delJoueur(url_json,asID,idError){
+/* Effacer joueur */
+function delJoueur(url_json_base,asID,idError){
 	
 	var index = asID.substring(0,asID.indexOf("_"));
 	var idDiv = asID.substring(asID.indexOf("_")+1);
+	url_json = url_json_base + "/" + index;
 	$.ajax({
-	   	url:url_json,
+	   	url: url_json,
+		type: 'DELETE',
 	   	dataType: "json",
-	   	data : {
-	   		ajax : "yes",
-	   		action : "delete",
-	   		task : "joueur",
-	   		id : index,
-	   		},
-	   	success:function(resultat){
-	   		$("#"+idError).html("Joueur supprimé");
-	   		listJoueur(url_json,idDiv)
-	   	},
-	   	error:function(resultat){
-	   		$("#"+idDiv).html("Impossible de récupérer la page!");
+	   	complete:function(){
+	   		listeJoueurs(url_json_base,idDiv);
 	   	}
 	});
 }
 
 
-/* Lister les joueurs */
-function listJoueur(url_json,idDiv){
-	var listeDyn =[];
-	var classement="";
-	$.ajax({
-		   	url:url_json,
-		   	dataType: "json",
-		   	data : {
-		   		ajax : "yes",
-		   		action : "liste",
-		   		task : "joueur"
-		   		},
-		   	success:function(resultat){
-		   		$.each( resultat, function( indice, valeurs ) {
-		   			classement = valeurs.classement;
-		   			if (classement == 0){classement="Aucun";}
-		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delJoueur('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
-		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.nom + "</td><td>" + valeurs.prenom + "</td><td>" + classement +"</td><td>" + buttons );
-		   		});
-		   		$("#"+idDiv).html(listeDyn.join(""));
-		   	},
-		   	error:function(resultat){
-		   		$("#"+idDiv).html("Impossible de récupérer la page!");
-		   	}
-		});
-}
-
-
-/* Fonctions ajax pour les courts */
-
-/* Ajouter un court */
-function ajouterCourt(url_json,champs,idError,idDiv){
-
-	if (control_champs(champs, idError)){
-		
-		$.ajax({
-		   	url:url_json,
-		   	dataType: "json",
-		   	data : {
-		   		ajax : "yes",
-		   		action : "create",
-		   		task : "court",
-		   		nom : $("#nom").val(),
-		   		},
-		   	success:function(resultat){
-		   		$("#"+idError).html("Court Ajouté");
-		   		listCourt(url_json,idDiv)
-		   	},
-		   	error:function(resultat){
-		   		$("#"+idDiv).html("Impossible de récupérer la page!");
-		   	}
-		});
-	}
-	return false;
-}
-
-/* Effacer un court */
-function delCourt(url_json,asID,idError){
-	
-	var index = asID.substring(0,asID.indexOf("_"));
-	var idDiv = asID.substring(asID.indexOf("_")+1);
-	$.ajax({
-	   	url:url_json,
-	   	dataType: "json",
-	   	data : {
-	   		ajax : "yes",
-	   		action : "delete",
-	   		task : "court",
-	   		id : index,
-	   		},
-	   	success:function(resultat){
-	   		$("#"+idError).html("Court supprimé");
-	   		listCourt(url_json,idDiv)
-	   	},
-	   	error:function(resultat){
-	   		$("#"+idDiv).html("Impossible de récupérer la page!");
-	   	}
-	});
-}
+/* Fonctions Ajax pour les courts */
 
 /* Lister les courts */
-function listCourt(url_json,idDiv){
+function listeCourts(url_json,idDiv){
 	var listeDyn =[];
 	$.ajax({
 		   	url:url_json,
+		   	type: "GET",
 		   	dataType: "json",
-		   	data : {
-		   		ajax : "yes",
-		   		action : "liste",
-		   		task : "court"
-		   		},
 		   	success:function(resultat){
 		   		$.each( resultat, function( indice, valeurs ) {
-		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delCourt('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
+		   			var buttons = "<button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delCourt('"+ url_json +"', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
 		   			listeDyn.push( "<tr id='" + valeurs.id + "_" + idDiv + "'><td>" + valeurs.nom + "</td><td>" + buttons );
 		   		});
 		   		$("#"+idDiv).html(listeDyn.join(""));
 		   	},
 		   	error:function(resultat){
-		   		$("#"+idDiv).html("Impossible de récupérer la page!");
+		   		$("#"+idDiv).html("Impossible de lister les courts !");
 		   	}
 		});
 }
 
-
-/* Fonctions ajax pour les matchs */
-
-
-/* Ajouter un match */
-function ajouterMatch(url_json,champs,idError,idDiv){
+/* Ajouter un court */
+function ajouterCourt(url_json,champs,idError,idDiv){
 
 	if (control_champs(champs, idError)){
-		
 		$.ajax({
-		   	url:url_json,
+			url: url_json,
+		   	type: "POST",
 		   	dataType: "json",
 		   	data : {
-		   		ajax : "yes",
-		   		action : "create",
-		   		task : "match",
-		   		tournoi : $("#tournoi").val(),
-		   		joueur1 : $("#joueur1").val(),
-		   		joueur2 : $("#joueur2").val(),
-		   		court : $("#court").val(),
-		   		date : $("#date").val(),
-		   		arbitre : $("#arbitre").val()
+		   		nom : $("#nom").val(),
 		   		},
-		   	success:function(resultat){
-		   		$("#"+idError).html("Match Ajouté");
-		   		listMatch(url_json,idDiv)
+		   	success:function(){
+		   		$("#"+idError).html("Court Ajouté");
 		   	},
-		   	error:function(resultat){
-		   		$("#"+idDiv).html("Impossible de récupérer la page!");
+		   	error:function(){
+		   		$("#"+idError).html("Impossible de d'ajouter le court !");
+		   	},
+		   	complete:function(){
+		   		listeCourts(url_json,idDiv);
 		   	}
 		});
 	}
 	return false;
 }
 
-
-/* Effacer un match */
-function delMatch(url_json,asID,idError){
+/* Effacer court */
+function delCourt(url_json_base,asID,idError){
 	
 	var index = asID.substring(0,asID.indexOf("_"));
 	var idDiv = asID.substring(asID.indexOf("_")+1);
+	url_json = url_json_base + "/" + index;
 	$.ajax({
-	   	url:url_json,
+	   	url: url_json,
+		type: 'DELETE',
 	   	dataType: "json",
-	   	data : {
-	   		ajax : "yes",
-	   		action : "delete",
-	   		task : "match",
-	   		id : index,
-	   		},
-	   	success:function(resultat){
-	   		$("#"+idError).html("Match supprimé");
-	   		listMatch(url_json,idDiv)
-	   	},
-	   	error:function(resultat){
-	   		$("#"+idDiv).html("Impossible de récupérer la page!");
+	   	complete:function(){
+	   		listeCourts(url_json_base,idDiv);
 	   	}
 	});
 }
 
 
+
+/* Fonctions ajax pour les matchs */
+
 /* Lister les matchs */
-function listMatch(url_json,idDiv){
+function listeMatchs(url_json,idDiv){
 	var listeDyn =[];
 	$.ajax({
-		   	url:url_json,
-		   	dataType: "json",
-		   	data : {
-		   		ajax : "yes",
-		   		action : "liste",
-		   		task : "match"
-		   		},
+			url:url_json,
+			type: "GET",
+			dataType: "json",
 		   	success:function(resultat){
 		   		$.each( resultat, function( indice, valeurs ) {
 		   			var buttons = "<th><button type='button' class='btn btn-danger btn-xs' onclick=\"javascript:delMatch('AjaxServlet', '" + valeurs.id + "_" + idDiv +"','msg');\">Delete</button></td></tr>";
@@ -417,6 +314,51 @@ function listMatch(url_json,idDiv){
 		});
 }
 
+/* Ajouter un match */
+function ajouterMatch(url_json_base,champs,idError,idDiv){
+
+	if (control_champs(champs, idError)){
+		$.ajax({
+			url: url_json_base,
+		   	type: "POST",
+		   	dataType: "json",
+		   	data : {
+		   		tournoi : $("#tournoi").val(),
+		   		joueur1 : $("#joueur1").val(),
+		   		joueur2 : $("#joueur2").val(),
+		   		court : $("#court").val(),
+		   		date : $("#date").val(),
+		   		arbitre : $("#arbitre").val()
+		   		},
+		   	success:function(){
+		   		$("#"+idError).html("Match Ajouté");
+		   	},
+		   	error:function(){
+		   		$("#"+idError).html("Impossible de d'ajouter le match !");
+		   	},
+		   	complete:function(){
+		   		listeMatchs(url_json_base,idDiv);
+		   	}
+		});
+	}
+	return false;
+}
+
+/* Effacer match */
+function delCourt(url_json_base,asID,idError){
+	
+	var index = asID.substring(0,asID.indexOf("_"));
+	var idDiv = asID.substring(asID.indexOf("_")+1);
+	url_json = url_json_base + "/" + index;
+	$.ajax({
+	   	url: url_json,
+		type: 'DELETE',
+	   	dataType: "json",
+	   	complete:function(){
+	   		listeMatchs(url_json_base,idDiv);
+	   	}
+	});
+}
 
 
 /* Fonctions Cookies */
