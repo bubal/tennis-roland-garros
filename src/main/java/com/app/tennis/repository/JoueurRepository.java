@@ -10,10 +10,15 @@ import com.app.tennis.data.Joueur;
 
 public interface JoueurRepository extends JpaRepository<Joueur, Integer> {
 	
-	@Query(value = "SELECT j FROM Joueur j LEFT JOIN FETCH j.pays JOIN FETCH j.qualification WHERE j.id = (:id)")
+	@Query(value = "SELECT j FROM Joueur j "
+			+ "INNER JOIN FETCH j.pays "
+			+ "INNER JOIN FETCH j.qualification "
+			+ "WHERE j.id = (:id)")
 	public Joueur findByIdFetchForRest(@Param("id") int id);
 	
-	@Query(value = "SELECT j FROM Joueur j LEFT JOIN FETCH j.pays JOIN FETCH j.qualification")
+	@Query(value = "SELECT j FROM Joueur j "
+			+ "INNER JOIN FETCH j.pays "
+			+ "INNER JOIN FETCH j.qualification")
 	public List<Joueur> listAllFetchForRest();
 
 }
