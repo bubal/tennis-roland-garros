@@ -10,10 +10,33 @@ import com.app.tennis.data.Match;
 
 public interface MatchRepository extends JpaRepository<Match, Integer> {
 	
-	@Query(value = "SELECT m FROM Match m LEFT JOIN FETCH m.tournoi JOIN FETCH m.court JOIN FETCH m.arbitre JOIN FETCH m.joueur1 JOIN FETCH m.joueur2 WHERE m.id = (:id)")
+	@Query(value = "SELECT m FROM Match m "
+			+ "INNER JOIN FETCH m.tournoi "
+			+ "INNER JOIN FETCH m.court "
+			+ "INNER JOIN FETCH m.arbitre a "
+			+ "INNER JOIN FETCH a.pays "
+			+ "INNER JOIN FETCH a.niveau "
+			+ "INNER JOIN FETCH m.joueur1 j1 "
+			+ "INNER JOIN FETCH j1.pays "
+			+ "INNER JOIN FETCH j1.qualification "
+			+ "INNER JOIN FETCH m.joueur2 j2 "
+			+ "INNER JOIN FETCH j2.pays "
+			+ "INNER JOIN FETCH j2.qualification "
+			+ "WHERE m.id = (:id)")
 	public Match findByIdFetchForRest(@Param("id") int id);
 	
-	@Query(value = "SELECT m FROM Match m LEFT JOIN FETCH m.tournoi JOIN FETCH m.court JOIN FETCH m.arbitre JOIN FETCH m.joueur1 JOIN FETCH m.joueur2")
+	@Query(value = "SELECT m FROM Match m "
+			+ "INNER JOIN FETCH m.tournoi "
+			+ "INNER JOIN FETCH m.court "
+			+ "INNER JOIN FETCH m.arbitre a "
+			+ "INNER JOIN FETCH a.pays "
+			+ "INNER JOIN FETCH a.niveau "
+			+ "INNER JOIN FETCH m.joueur1 j1 "
+			+ "INNER JOIN FETCH j1.pays "
+			+ "INNER JOIN FETCH j1.qualification "
+			+ "INNER JOIN FETCH m.joueur2 j2 "
+			+ "INNER JOIN FETCH j2.pays "
+			+ "INNER JOIN FETCH j2.qualification ")
 	public List<Match> listAllFetchForRest();
 
 }
