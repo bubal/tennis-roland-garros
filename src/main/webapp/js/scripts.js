@@ -345,7 +345,7 @@ function ajouterMatch(url_json_base,champs,idError,idDiv){
 }
 
 /* Effacer match */
-function delCourt(url_json_base,asID,idError){
+function delMatch(url_json_base,asID,idError){
 	
 	var index = asID.substring(0,asID.indexOf("_"));
 	var idDiv = asID.substring(asID.indexOf("_")+1);
