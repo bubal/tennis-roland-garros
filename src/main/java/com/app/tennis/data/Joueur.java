@@ -29,7 +29,12 @@ public class Joueur implements Serializable{
 	@NotNull
 	@Size(max = 30)
 	private String nom;
+	
+	@NotNull
+	@Size(max = 30)
 	private String prenom;
+	
+	@NotNull
 	private char sexe;
 
 	@ManyToOne(fetch=FetchType.LAZY)
