@@ -81,7 +81,7 @@
 
 					<div class="form-group">
 						<input type="submit" name="valider" id="valider"
-							class="btn btn-success btn-block " value="Enregistrer le match" onclick="javascript:return ajouterMatch('<c:url value='/AjaxServlet' />',{'date':'date'},'msg','TabDyn');"/>
+							class="btn btn-success btn-block " value="Enregistrer le match" onclick="javascript:return ajouterMatch('<c:url value='/api/matchs' />',{'date':'date'},'msg','TabDyn');"/>
 					</div>
 					<div class="alert" id="msg"></div>
 				</form>
@@ -112,7 +112,7 @@
 									<td>${match.joueur1.prenom} ${match.joueur1.nom}</td>
 									<td>${match.joueur2.prenom} ${match.joueur2.nom}</td>
 									<td>${match.date}</td>
-									<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delMatch('<c:url value='/AjaxServlet' />', '${match.id}_TabDyn','msg');">Delete</button></td>
+									<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delMatch('<c:url value='/api/matchs' />', '${match.id}_TabDyn','msg');">Delete</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

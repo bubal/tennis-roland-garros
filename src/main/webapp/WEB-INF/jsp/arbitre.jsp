@@ -59,7 +59,7 @@
 								</c:forEach>
 								</select>
 							</div>	
-						<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer l'arbitre" onclick="javascript:return ajouterArbitre('<c:url value='/AjaxServlet' />',{'nom':'onlyText','prenom':'onlyText'},'msg','TabDyn');" />
+						<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer l'arbitre" onclick="javascript:return ajouterArbitre('<c:url value='/api/arbitres' />',{'nom':'onlyText','prenom':'onlyText'},'msg','TabDyn');" />
 						<div class="alert" id="msg"> </div>
 					</form>
 				</div>
@@ -81,7 +81,7 @@
 		             			<td>${arbitre.nom}</td>
 		             			<td>${arbitre.prenom}</td>
 		             			<td>${arbitre.niveau.nom}</td>
-		             			<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delArbitre('<c:url value='/AjaxServlet' />', '${arbitre.id}_TabDyn','msg');">Delete</button></td>
+		             			<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delArbitre('<c:url value='/api/arbitres' />', '${arbitre.id}_TabDyn','msg');">Delete</button></td>
 		             		</tr>
 							</c:forEach>
 		              	</tbody>

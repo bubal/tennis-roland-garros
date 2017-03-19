@@ -14,17 +14,17 @@
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="<c:url value='/ControlServlet?task=home' />">Home</a></li>
+				<li class="active"><a href="<c:url value='/' />">Home</a></li>
 				<li><a href="#about">About</a></li>
 				<li><a href="#contact">Contact</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Actions<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="<c:url value='/ControlServlet?task=joueur' />">Ajouter un joueur</a></li>
-						<li><a href="<c:url value='/ControlServlet?task=arbitre' />">Ajouter un arbitre</a></li>
-						<li><a href="<c:url value='/ControlServlet?task=court' />">Ajouter un court</a></li>
-						<li><a href="<c:url value='/ControlServlet?task=match' />">Ajouter un match</a></li>
+						<li><a href="<c:url value='/joueurs' />">Ajouter un joueur</a></li>
+						<li><a href="<c:url value='/arbitres' />">Ajouter un arbitre</a></li>
+						<li><a href="<c:url value='/courts' />">Ajouter un court</a></li>
+						<li><a href="<c:url value='/matchs' />">Ajouter un match</a></li>
 					</ul></li>
 			</ul>
 		</div>

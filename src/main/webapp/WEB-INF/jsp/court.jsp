@@ -31,7 +31,7 @@
 									<input type="text" name="nom" id="nom" class="form-control">
 							</div>
 
-						<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer le court" onclick="javascript:return ajouterCourt('<c:url value='/AjaxServlet' />',{'nom':'onlyText'},'msg','TabDyn');" />
+						<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer le court" onclick="javascript:return ajouterCourt('<c:url value='/api/courts' />',{'nom':'onlyText'},'msg','TabDyn');" />
 						<div class="alert" id="msg"> </div>
 					</form>
 				</div>
@@ -50,7 +50,7 @@
 			            	<c:forEach var="court" items="${listingCourts}">
 		             			<tr id="${court.id}_TabDyn">
 		             				<td>${court.nom}</td>
-		             				<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delCourt('<c:url value='/AjaxServlet' />', '${court.id}_TabDyn','msg');">Delete</button></td>
+		             				<td><button type="button" class="btn btn-danger btn-xs" onclick="javascript:delCourt('<c:url value='/api/courts' />', '${court.id}_TabDyn','msg');">Delete</button></td>
 		             			</tr>
 							</c:forEach>
 		              	</tbody>
