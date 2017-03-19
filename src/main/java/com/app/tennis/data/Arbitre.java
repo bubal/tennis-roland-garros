@@ -36,7 +36,6 @@ public class Arbitre implements Serializable{
 	private String prenom;
 	
 	@NotNull
-    @Size(max = 1)
 	private char sexe;
 
 	@NotNull
