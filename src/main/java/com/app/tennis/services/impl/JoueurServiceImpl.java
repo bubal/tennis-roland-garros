@@ -22,13 +22,13 @@ public class JoueurServiceImpl extends ObjServiceImpl<Joueur> implements JoueurS
 	}
 
 	@Override
-	public Joueur findByIdFetchForRest(int id) {
-		return objRepository.findByIdFetchForRest(id);
+	public Joueur findByIdFetchAll(int id) {
+		return objRepository.findByIdFetchAll(id);
 	}
 
 	@Override
-	public List<Joueur> listAllFetchForRest() {
-		return objRepository.listAllFetchForRest();
+	public List<Joueur> listAllFetchAll() {
+		return objRepository.listAllFetchAll();
 	}
 
 	

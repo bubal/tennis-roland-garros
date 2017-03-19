@@ -14,11 +14,11 @@ public interface ArbitreRepository extends JpaRepository<Arbitre, Integer> {
 			+ "INNER JOIN FETCH a.pays "
 			+ "INNER JOIN FETCH a.niveau "
 			+ "WHERE a.id = (:id)")
-	public Arbitre findByIdFetchForRest(@Param("id") int id);
+	public Arbitre findByIdFetchAll(@Param("id") int id);
 	
 	@Query(value = "SELECT a FROM Arbitre a "
 			+ "INNER JOIN FETCH a.pays "
 			+ "INNER JOIN FETCH a.niveau")
-	public List<Arbitre> listAllFetchForRest();
+	public List<Arbitre> listAllFetchAll();
 
 }

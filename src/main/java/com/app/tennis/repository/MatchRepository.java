@@ -23,7 +23,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 			+ "INNER JOIN FETCH j2.pays "
 			+ "INNER JOIN FETCH j2.qualification "
 			+ "WHERE m.id = (:id)")
-	public Match findByIdFetchForRest(@Param("id") int id);
+	public Match findByIdFetchAll(@Param("id") int id);
 	
 	@Query(value = "SELECT m FROM Match m "
 			+ "INNER JOIN FETCH m.tournoi "
@@ -37,6 +37,6 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 			+ "INNER JOIN FETCH m.joueur2 j2 "
 			+ "INNER JOIN FETCH j2.pays "
 			+ "INNER JOIN FETCH j2.qualification ")
-	public List<Match> listAllFetchForRest();
+	public List<Match> listAllFetchAll();
 
 }

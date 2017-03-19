@@ -22,13 +22,13 @@ public class MatchServiceImpl extends ObjServiceImpl<Match> implements MatchServ
 	}
 
 	@Override
-	public Match findByIdFetchForRest(int id) {
-		return objRepository.findByIdFetchForRest(id);
+	public Match findByIdFetchAll(int id) {
+		return objRepository.findByIdFetchAll(id);
 	}
 
 	@Override
-	public List<Match> listAllFetchForRest() {
-		return objRepository.listAllFetchForRest();
+	public List<Match> listAllFetchAll() {
+		return objRepository.listAllFetchAll();
 	}
 
 	

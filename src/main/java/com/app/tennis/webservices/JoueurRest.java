@@ -28,12 +28,12 @@ public class JoueurRest {
 
 	@RequestMapping(method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public List<Joueur> getJoueurs(){
-		return joueurService.listAllFetchForRest();
+		return joueurService.listAllFetchAll();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public Joueur getJoueur(@PathVariable int id){
-		return joueurService.findByIdFetchForRest(id);
+		return joueurService.findByIdFetchAll(id);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})

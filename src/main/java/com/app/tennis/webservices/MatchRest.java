@@ -37,12 +37,12 @@ public class MatchRest {
 
 	@RequestMapping(method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public List<Match> getMatchs(){
-		return matchService.listAllFetchForRest();
+		return matchService.listAllFetchAll();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public Match getMatch(@PathVariable int id){
-		return matchService.findByIdFetchForRest(id);
+		return matchService.findByIdFetchAll(id);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -69,10 +69,10 @@ public class MatchRest {
 		} catch (ParseException e) {
 		}
 		match.setTournoi(tournoiService.findById(id_tournoi));
-		match.setArbitre(arbitreService.findById(id_arbitre));
+		match.setArbitre(arbitreService.findByIdFetchAll(id_arbitre));
 		match.setCourt(courtService.findById(id_court));
-		match.setJoueur1(joueurService.findById(id_joueur1));
-		match.setJoueur2(joueurService.findById(id_joueur2));
+		match.setJoueur1(joueurService.findByIdFetchAll(id_joueur1));
+		match.setJoueur2(joueurService.findByIdFetchAll(id_joueur2));
 		match.setSets_joueur1(0);
 		match.setSets_joueur2(0);
 		

@@ -6,6 +6,6 @@ import com.app.tennis.data.Joueur;
 
 public interface JoueurService extends ObjService<Joueur> {
 	
-	Joueur findByIdFetchForRest(int id);
-	List<Joueur> listAllFetchForRest();
+	Joueur findByIdFetchAll(int id);
+	List<Joueur> listAllFetchAll();
 }

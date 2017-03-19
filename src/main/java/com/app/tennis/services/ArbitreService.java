@@ -6,6 +6,6 @@ import com.app.tennis.data.Arbitre;
 
 public interface ArbitreService extends ObjService<Arbitre> {
 
-	Arbitre findByIdFetchForRest(int id);
-	List<Arbitre> listAllFetchForRest();
+	Arbitre findByIdFetchAll(int id);
+	List<Arbitre> listAllFetchAll();
 }

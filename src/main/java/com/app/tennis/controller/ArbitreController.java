@@ -29,7 +29,7 @@ public class ArbitreController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView page(){
 		ModelAndView mav = new ModelAndView();
-		List<Arbitre> arbitres = arbitreService.listAll();
+		List<Arbitre> arbitres = arbitreService.listAllFetchAll();
 		mav.addObject("listingArbitres", arbitres);
 		mav.setViewName("arbitre");
 		return mav;

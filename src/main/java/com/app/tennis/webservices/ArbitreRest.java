@@ -28,12 +28,12 @@ public class ArbitreRest {
 
 	@RequestMapping(method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public List<Arbitre> getArbitres(){
-		return arbitreService.listAllFetchForRest();
+		return arbitreService.listAllFetchAll();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public Arbitre getArbitre(@PathVariable int id){
-		return arbitreService.findByIdFetchForRest(id);
+		return arbitreService.findByIdFetchAll(id);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})

@@ -6,6 +6,6 @@ import com.app.tennis.data.Match;
 
 public interface MatchService extends ObjService<Match> {
 
-	Match findByIdFetchForRest(int id);
-	List<Match> listAllFetchForRest();
+	Match findByIdFetchAll(int id);
+	List<Match> listAllFetchAll();
 }

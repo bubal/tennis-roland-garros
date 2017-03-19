@@ -14,11 +14,11 @@ public interface JoueurRepository extends JpaRepository<Joueur, Integer> {
 			+ "INNER JOIN FETCH j.pays "
 			+ "INNER JOIN FETCH j.qualification "
 			+ "WHERE j.id = (:id)")
-	public Joueur findByIdFetchForRest(@Param("id") int id);
+	public Joueur findByIdFetchAll(@Param("id") int id);
 	
 	@Query(value = "SELECT j FROM Joueur j "
 			+ "INNER JOIN FETCH j.pays "
 			+ "INNER JOIN FETCH j.qualification")
-	public List<Joueur> listAllFetchForRest();
+	public List<Joueur> listAllFetchAll();
 
 }

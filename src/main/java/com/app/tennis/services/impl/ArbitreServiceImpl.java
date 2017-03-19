@@ -22,13 +22,13 @@ public class ArbitreServiceImpl extends ObjServiceImpl<Arbitre> implements Arbit
 	}
 
 	@Override
-	public Arbitre findByIdFetchForRest(int id) {
-		return objRepository.findByIdFetchForRest(id);
+	public Arbitre findByIdFetchAll(int id) {
+		return objRepository.findByIdFetchAll(id);
 	}
 
 	@Override
-	public List<Arbitre> listAllFetchForRest() {
-		return objRepository.listAllFetchForRest();
+	public List<Arbitre> listAllFetchAll() {
+		return objRepository.listAllFetchAll();
 	}
 
 	
