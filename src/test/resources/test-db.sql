@@ -127,15 +127,15 @@ CREATE TABLE `arbitres` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 INSERT INTO `arbitres` VALUES 
-(1, 'Manzotti', 'Robin', 'M', 8, 3),
-(2, 'Conry', 'Jean-Christophe', 'M', 7, 2),
-(3, 'Antolsky', 'Arnaud', 'M', 2, 3),
+(1, 'Manzotti', 'Robin', 'H', 8, 3),
+(2, 'Conry', 'Jean-Christophe', 'H', 7, 2),
+(3, 'Antolsky', 'Arnaud', 'H', 2, 3),
 (4, 'Chatellard', 'Mathilde', 'F', 7, 2),
 (5, 'David', 'Laure', 'F', 1, 3),
 (6, 'Neveux', 'Stéphanie', 'F', 7, 3),
-(7, 'Sore', 'Guillaume', 'M', 2, 1),
+(7, 'Sore', 'Guillaume', 'H', 2, 1),
 (8, 'Comelli', 'Amélie', 'F', 8, 1),
-(9, 'Salmon', 'Léo', 'M', 1, 2);
+(9, 'Salmon', 'Léo', 'H', 1, 2);
 
 /* ----------------------- */
 
