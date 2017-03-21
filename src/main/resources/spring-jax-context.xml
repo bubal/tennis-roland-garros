@@ -19,10 +19,16 @@
 	 <!-- pour convertir java vers  JSON dans le cadre JAX-RS -->
 	<bean id='jacksonJsonProvider' 
    		class='com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider' />
+   		
+   	<bean id="corsFilter" class="org.apache.cxf.rs.security.cors.
+                                                CrossOriginResourceSharingFilter">
+   		<!--  <property name="allowCredentials" value="true"/> -->
+	</bean>    
 
 	<jaxrs:server id="myRestServices" address="/rest">
 		<jaxrs:providers>
 			<ref bean='jacksonJsonProvider'/>
+			<ref bean='corsFilter' /> 
 		</jaxrs:providers>
 		<jaxrs:serviceBeans>
 			<ref bean="joueurJaxRest" />

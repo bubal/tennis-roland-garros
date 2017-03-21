@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.app.tennis.data.Joueur;
@@ -21,6 +22,7 @@ import com.app.tennis.services.TypeQualificationService;
 @Path("/joueurs")
 @Produces("application/json")
 @Component
+@CrossOriginResourceSharing(allowAllOrigins = true)
 public class JoueurJaxRest {
 
 	@Autowired

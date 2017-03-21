@@ -30,6 +30,7 @@
     <!-- Allow the use of @Transactional annotation -->
     <tx:annotation-driven/>
 
-	<import resource="spring-jpa-context.xml" />
+	<import resource="spring-jpa-context.xml" />    
+	
     
 </beans>
