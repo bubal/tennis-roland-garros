@@ -8,10 +8,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.app.tennis.data.Joueur;
 import com.app.tennis.services.JoueurService;
 import com.app.tennis.services.PaysService;
@@ -49,12 +49,12 @@ public class JoueurJaxRest {
 	
 	@POST
 	public void addJoueur(
-			@RequestParam("nom") String nom,
-			@RequestParam("prenom") String prenom,
-			@RequestParam("sexe") String sexe,
-			@RequestParam("pays") int id_pays,
-			@RequestParam("qualification") int id_qualification,
-			@RequestParam("classement") String strClassement){
+			@QueryParam("nom") String nom,
+			@QueryParam("prenom") String prenom,
+			@QueryParam("sexe") String sexe,
+			@QueryParam("pays") int id_pays,
+			@QueryParam("qualification") int id_qualification,
+			@QueryParam("classement") String strClassement){
 		
 		int classement =0;
 		try {
