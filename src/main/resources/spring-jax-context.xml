@@ -20,8 +20,7 @@
 	<bean id='jacksonJsonProvider' 
    		class='com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider' />
    		
-   	<bean id="corsFilter" class="org.apache.cxf.rs.security.cors.
-                                                CrossOriginResourceSharingFilter">
+   	<bean id="corsFilter" class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter">
    		<!--  <property name="allowCredentials" value="true"/> -->
 	</bean>    
 
