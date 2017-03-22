@@ -68,7 +68,7 @@
 							
 						</div>
 						<div class="form-group">
-							<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer le joueur" onclick="javascript:return ajouterJoueur('<c:url value="/api/joueurs" />',{'nom':'onlyText','prenom':'onlyText', 'classement':'number'},'msg','TabDyn');" />
+							<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer le joueur" onclick="javascript:return ajouterJoueur('<c:url value="/api/joueurs" />',{'nom':'notEmpty','prenom':'notEmpty', 'classement':'number'},'msg','TabDyn');" />
 						</div>
 						<div class="alert" id="msg">${errorMsg}</div>
 					</form>
