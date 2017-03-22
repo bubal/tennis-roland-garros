@@ -36,22 +36,22 @@ public class MatchRest {
 	private TournoiService tournoiService;
 
 	@RequestMapping(method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<Match> getMatchs(){
+	public List<Match> get(){
 		return matchService.listAllFetchAll();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public Match getMatch(@PathVariable int id){
+	public Match get(@PathVariable int id){
 		return matchService.findByIdFetchAll(id);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public void delMatch(@PathVariable int id){
+	public void del(@PathVariable int id){
 		matchService.deleteById(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public void addMatch(
+	public void add(
 			@RequestParam("joueur1") int id_joueur1,
 			@RequestParam("joueur2") int id_joueur2,
 			@RequestParam("court") int id_court,
@@ -61,22 +61,22 @@ public class MatchRest {
 	{
 
 		SimpleDateFormat formatSaisie = new SimpleDateFormat("dd/MM/yyyy");
-		Match match = new Match();
+		Match obj = new Match();
 		
 		try {
 			Date dateDb = formatSaisie.parse(strdate);
-			match.setDate(dateDb);
+			obj.setDate(dateDb);
 		} catch (ParseException e) {
 		}
-		match.setTournoi(tournoiService.findById(id_tournoi));
-		match.setArbitre(arbitreService.findByIdFetchAll(id_arbitre));
-		match.setCourt(courtService.findById(id_court));
-		match.setJoueur1(joueurService.findByIdFetchAll(id_joueur1));
-		match.setJoueur2(joueurService.findByIdFetchAll(id_joueur2));
-		match.setSets_joueur1(0);
-		match.setSets_joueur2(0);
+		obj.setTournoi(tournoiService.findById(id_tournoi));
+		obj.setArbitre(arbitreService.findByIdFetchAll(id_arbitre));
+		obj.setCourt(courtService.findById(id_court));
+		obj.setJoueur1(joueurService.findByIdFetchAll(id_joueur1));
+		obj.setJoueur2(joueurService.findByIdFetchAll(id_joueur2));
+		obj.setSets_joueur1(0);
+		obj.setSets_joueur2(0);
 		
-		match = matchService.create(match);
+		obj = matchService.create(obj);
 	}
 
 }

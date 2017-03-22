@@ -18,27 +18,27 @@ import com.app.tennis.services.CourtService;
 public class CourtRest {
 
 	@Autowired
-	CourtService courtService;
+	private CourtService courtService;
 
 	@RequestMapping(method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<Court> getCourts(){
+	public List<Court> get(){
 		return courtService.listAll();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public Court getCourt(@PathVariable int id){
+	public Court get(@PathVariable int id){
 		return courtService.findById(id);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public void delCourt(@PathVariable int id){
+	public void del(@PathVariable int id){
 		courtService.deleteById(id);
 	}
 
 	@RequestMapping(method=RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public void addCourt( @RequestParam("nom") String nom){
-		Court court = new Court(nom);
-		court = courtService.create(court);
+	public void add(@RequestParam("nom") String nom){
+		Court obj = new Court(nom);
+		obj = courtService.create(obj);
 	}
 
 }

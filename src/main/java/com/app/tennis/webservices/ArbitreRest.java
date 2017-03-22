@@ -27,36 +27,36 @@ public class ArbitreRest {
 	private NiveauArbitreService niveauService;
 
 	@RequestMapping(method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<Arbitre> getArbitres(){
+	public List<Arbitre> get(){
 		return arbitreService.listAllFetchAll();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public Arbitre getArbitre(@PathVariable int id){
+	public Arbitre get(@PathVariable int id){
 		return arbitreService.findByIdFetchAll(id);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public void delArbitre(@PathVariable int id){
+	public void del(@PathVariable int id){
 		arbitreService.deleteById(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public void addJoueur(
+	public void add(
 			@RequestParam("nom") String nom,
 			@RequestParam("prenom") String prenom,
 			@RequestParam("sexe") String sexe,
 			@RequestParam("pays") int id_pays,
 			@RequestParam("niveau") int id_niveau){
 		
-		Arbitre arbitre = new Arbitre(
+		Arbitre obj = new Arbitre(
 				nom,
 				prenom,
 				sexe,
 				paysService.findById(id_pays),
 				niveauService.findById(id_niveau));
 		
-		arbitre = arbitreService.create(arbitre);
+		obj = arbitreService.create(obj);
 	}
 
 }

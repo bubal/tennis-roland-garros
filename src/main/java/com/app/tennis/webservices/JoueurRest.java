@@ -20,29 +20,29 @@ import com.app.tennis.services.TypeQualificationService;
 public class JoueurRest {
 
 	@Autowired
-	JoueurService joueurService;
+	private JoueurService joueurService;
 	@Autowired
 	private PaysService paysService;
 	@Autowired
 	private TypeQualificationService typeQualificationService;
 
 	@RequestMapping(method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<Joueur> getJoueurs(){
+	public List<Joueur> get(){
 		return joueurService.listAllFetchAll();
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public Joueur getJoueur(@PathVariable int id){
+	public Joueur get(@PathVariable int id){
 		return joueurService.findByIdFetchAll(id);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public void delJoueur(@PathVariable int id){
+	public void del(@PathVariable int id){
 		joueurService.deleteById(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-	public void addJoueur(
+	public void add(
 			@RequestParam("nom") String nom,
 			@RequestParam("prenom") String prenom,
 			@RequestParam("sexe") String sexe,
@@ -55,7 +55,7 @@ public class JoueurRest {
 			classement = Integer.parseInt(strClassement);
 		} catch (NumberFormatException e) {}
 		
-		Joueur joueur = new Joueur(
+		Joueur obj = new Joueur(
 				nom,
 				prenom,
 				sexe,
@@ -63,7 +63,7 @@ public class JoueurRest {
 				classement,
 				typeQualificationService.findById(id_qualification));
 		
-		joueur = joueurService.create(joueur);
+		obj = joueurService.create(obj);
 	}
 
 }
