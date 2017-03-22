@@ -59,7 +59,7 @@
 								</c:forEach>
 								</select>
 							</div>	
-						<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer l'arbitre" onclick="javascript:return ajouterArbitre('<c:url value='/api/arbitres' />',{'nom':'onlyText','prenom':'onlyText'},'msg','TabDyn');" />
+						<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer l'arbitre" onclick="javascript:return ajouterArbitre('<c:url value='/api/arbitres' />',{'nom':'notEmpty','prenom':'notEmpty'},'msg','TabDyn');" />
 						<div class="alert" id="msg"> </div>
 					</form>
 				</div>

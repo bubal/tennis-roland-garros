@@ -31,7 +31,7 @@
 									<input type="text" name="nom" id="nom" class="form-control">
 							</div>
 
-						<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer le court" onclick="javascript:return ajouterCourt('<c:url value='/api/courts' />',{'nom':'onlyText'},'msg','TabDyn');" />
+						<input type="submit" name="valider" id="valider" class="btn btn-success btn-block " value="Enregistrer le court" onclick="javascript:return ajouterCourt('<c:url value='/api/courts' />',{'nom':'notEmpty'},'msg','TabDyn');" />
 						<div class="alert" id="msg"> </div>
 					</form>
 				</div>

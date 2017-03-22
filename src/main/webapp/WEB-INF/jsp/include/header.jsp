@@ -11,7 +11,6 @@
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.js"></script>
 
 <script src="js/scripts.js"></script>
-<script src="data/login.json.js"></script>
 
 <link href="css/jquery/jquery-ui.min.css" rel="stylesheet"
 	type="text/css">
