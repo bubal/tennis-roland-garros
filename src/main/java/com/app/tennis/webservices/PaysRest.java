@@ -2,6 +2,7 @@ package com.app.tennis.webservices;
 
 import java.util.List;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import com.app.tennis.services.PaysService;
 
 @RestController
 @RequestMapping(value="/api/pays")
+@CrossOriginResourceSharing(allowAllOrigins = true)
 public class PaysRest {
 
 	@Autowired
