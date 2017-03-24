@@ -12,8 +12,8 @@ import com.app.tennis.data.TypeQualification;
 import com.app.tennis.services.TypeQualificationService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-application-context-test.xml"})
-public class TestTypeQualification {
+@ContextConfiguration(locations = {"classpath:spring-application-context.xml"})
+public class TestTypeQualificationRepository {
 
 	@Autowired
 	private TypeQualificationService serviceTypeQualification;

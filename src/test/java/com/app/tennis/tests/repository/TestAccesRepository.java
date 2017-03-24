@@ -1,6 +1,7 @@
 package com.app.tennis.tests.repository;
 
 import static org.junit.Assert.*;
+
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,46 +9,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.app.tennis.data.NiveauArbitre;
-import com.app.tennis.services.NiveauArbitreService;
+import com.app.tennis.data.Acces;
+import com.app.tennis.services.AccesService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-application-context-test.xml"})
-public class TestNiveauArbitre {
+@ContextConfiguration(locations = {"classpath:spring-application-context.xml"})
+public class TestAccesRepository {
 	
-	@Autowired
-	private NiveauArbitreService serviceNiveauArbitre;
+	@Autowired 
+	private AccesService serviceAcces;
 	
-
 	@Test
 	public void testCreate() throws Exception {
 
-		NiveauArbitre obj = new NiveauArbitre("Ax","Indéterminé");
+		Acces obj = new Acces("newUser");
+		obj.setPassword("newpass");
 
-		NiveauArbitre newObj = serviceNiveauArbitre.create(obj);
+		Acces newObj = serviceAcces.create(obj);
 
 		assertNotNull(newObj);
-		assertEquals(obj.getNom(),newObj.getNom());
+		assertEquals(obj.getLogin(),newObj.getLogin());
 	}
 
 	@Test
 	public void testFindById() throws Exception {
 
-		NiveauArbitre obj = serviceNiveauArbitre.findById(1);
+		Acces obj = serviceAcces.findById(1);
 
 		assertNotNull(obj);
-		assertEquals("A1",obj.getNom());
+		assertEquals("admin",obj.getLogin());
 	}
 
 	@Test
 	public void testUpdate() throws Exception {
 
-		NiveauArbitre obj = serviceNiveauArbitre.findById(2);
+		Acces obj = serviceAcces.findById(1);
 		assertNotNull(obj);
+		obj.setPassword("passtest");
 
-		obj.setNom("A7");
-
-		NiveauArbitre newObj = serviceNiveauArbitre.update(obj);
+		Acces newObj = serviceAcces.update(obj);
 
 		assertNotNull(newObj);
 		assertEquals(obj,newObj);
@@ -56,14 +56,15 @@ public class TestNiveauArbitre {
 	@Test
 	public void testDeleteById() throws Exception {
 
-		List<NiveauArbitre> listBefore = serviceNiveauArbitre.listAll();
+		List<Acces> listBefore = serviceAcces.listAll();
 		assertNotNull(listBefore);
 
-		serviceNiveauArbitre.deleteById(listBefore.size());
+		serviceAcces.deleteById(listBefore.size());
 
-		List<NiveauArbitre> listAfter = serviceNiveauArbitre.listAll();
+		List<Acces> listAfter = serviceAcces.listAll();
 		assertNotNull(listAfter);
 
 		assertEquals(listBefore.size(),listAfter.size()+1);
 	}
+
 }

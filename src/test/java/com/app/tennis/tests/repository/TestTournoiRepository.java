@@ -12,8 +12,8 @@ import com.app.tennis.data.Tournoi;
 import com.app.tennis.services.TournoiService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-application-context-test.xml"})
-public class TestTournoi {
+@ContextConfiguration(locations = {"classpath:spring-application-context.xml"})
+public class TestTournoiRepository {
 	
 	@Autowired
 	private TournoiService serviceTournoi;
