@@ -2,9 +2,9 @@ package com.app.tennis.webservices;
 
 import java.util.List;
 
-import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +18,7 @@ import com.app.tennis.services.PaysService;
 
 @RestController
 @RequestMapping(value="/api/arbitres")
-@CrossOriginResourceSharing(allowAllOrigins = true)
+@CrossOrigin
 public class ArbitreRest {
 
 	@Autowired

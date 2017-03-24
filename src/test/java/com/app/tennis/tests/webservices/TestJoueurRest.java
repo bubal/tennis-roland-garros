@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-application-context-test.xml"})
+@ContextConfiguration(locations = {"classpath:spring-application-context.xml"})
 @WebAppConfiguration
 public class TestJoueurRest {
 
