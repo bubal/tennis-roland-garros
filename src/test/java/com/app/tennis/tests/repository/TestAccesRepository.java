@@ -43,7 +43,7 @@ public class TestAccesRepository {
 	@Test
 	public void testUpdate() throws Exception {
 
-		Acces obj = serviceAcces.findById(1);
+		Acces obj = serviceAcces.findById(2);
 		assertNotNull(obj);
 		obj.setPassword("passtest");
 
