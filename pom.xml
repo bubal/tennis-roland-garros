@@ -9,9 +9,9 @@
 	<url>http://maven.apache.org</url>
 
 	<scm>
-		<connection>scm:git:git@github.com:bubal/tennis-roland-garros.git</connection>
-		<url>scm:git:git@github.com:bubal/tennis-roland-garros.git</url>
-		<developerConnection>scm:git:git@github.com:bubal/tennis-roland-garros.git</developerConnection>
+		<connection>scm:git:https://github.com/bubal/tennis-roland-garros.git</connection>
+		<url>scm:git:https://github.com/bubal/tennis-roland-garros.git</url>
+		<developerConnection>scm:git:https://github.com/bubal/tennis-roland-garros.git</developerConnection>
 	</scm>
 
 	<!-- url des repository (en lecture) depuis lesquels on peut recuperer/telecharger 
