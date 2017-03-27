@@ -14,6 +14,30 @@
 		<developerConnection>scm:git:git@github.com:bubal/tennis-roland-garros.git</developerConnection>
 	</scm>
 
+	<!-- url des repository (en lecture) depuis lesquels on peut recuperer/telecharger 
+		les artifacts -->
+	<repositories>
+		<repository>
+			<id>public</id>
+			<url>http://localhost:8484/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<!-- url des repository vers lesquels il faut envoyer les artifacts construits 
+		(.jar ou .war , releases ou snapshots) suite au declenchement de mvn deploy -->
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>http://localhost:8484/nexus/content/repositories/releases</url> <!--habituellement autre machine que localhost -->
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>http://localhost:8484/nexus/content/repositories/snapshots</url><!--habituellement 
+				autre machine que localhost -->
+		</snapshotRepository>
+	</distributionManagement>
+	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
