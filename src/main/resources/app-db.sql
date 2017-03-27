@@ -5,11 +5,12 @@ CREATE TABLE `acces` (
   `password` varchar(30) NOT NULL,
   PRIMARY KEY (`id_acces`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 INSERT INTO `acces` VALUES 
 (1, 'admin', 'admin'),
-(2, 'organisateur', 'organisateur');
+(2, 'organisateur', 'organisateur'),
+(3, 'other', 'other');
 
 /* ----------------------- */
 
@@ -20,12 +21,13 @@ CREATE TABLE `niveau_arbitre` (
   `description` varchar(50),
   PRIMARY KEY (`id_niveau`),
   UNIQUE KEY `nom_niveau` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 INSERT INTO `niveau_arbitre` VALUES 
 (1,'A1','Débutant'),
 (2,'A2','Confirmé'),
-(3,'A3','Expert');
+(3,'A3','Expert'),
+(4,'A4','Dieu');
 
 /* ----------------------- */
 
@@ -35,12 +37,13 @@ CREATE TABLE `types_qualifications` (
   `nom` varchar(50) NOT NULL,
   PRIMARY KEY (`id_qualification`),
   UNIQUE KEY `nom_qualification` (`nom`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 INSERT INTO `types_qualifications` VALUES
 (1,'Wildcards'),
 (2,'Par classement ATP/WPA'),
-(3,'Épreuve de qualification');
+(3,'Épreuve de qualification'),
+(4,'Soudoiement');
 
 /* ----------------------- */
 
